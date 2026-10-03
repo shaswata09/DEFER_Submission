@@ -29,11 +29,12 @@ It contains:
 
 *Attacker content enters through five channels on two surfaces (left). DEFER settles
 what it can with 27 deterministic checks and sends only the undecided proposals, about a
-quarter, to a panel of four open-weight judges (center). Right: attack success in the
-security-operations domain with no checks, with the same judges alone, and with DEFER
-(32.0%, 34.7%, 2.2%), and on the 255 Agent Security Bench cases with no checks, access
-control only, and DEFER (28.8%, 30.0%, 1.8%); 10 to 27% of legitimate actions are denied
-across the four domains.*
+quarter, to a panel of four open-weight judges (center). Right: the share of attempted
+attacks each configuration stops. In the security-operations domain the same judges alone
+stop 22% and DEFER 95% (attack success 32.0% undefended, 34.7% with the judges alone, 2.2%
+with DEFER); on the 255 Agent Security Bench cases access control stops none of the
+injected actions the agent emits and DEFER 94% (attack success 28.8%, 30.0%, 1.8%). 10 to
+27% of legitimate actions are denied across the four domains.*
 
 ---
 
@@ -134,12 +135,13 @@ the same runs before the audit fixes (v2.9) are in
 
 ![First interception by decision tier](docs/figures/interception_tiers.png)
 
-*The check that first intercepted each blocked attack, by decision tier. At v3.1,
-rules decide 98% of the 90 interceptions in the development domain and 70% of the 218 in
-the three transfer domains (88% and 67% in the earlier runs).
-In the live Agent Security Bench run, whose injected actions use in-scope tools with
-plausible arguments, they decide 40% of the 154 interceptions, and only through rules
-that read the case's text.*
+*The check that first intercepted each blocked attack, by decision tier. At v3.1, the
+deterministic checks decide 98% of the 90 interceptions in the development domain (rules
+81%, similarity thresholds 17%) and 70% of the 218 in the three transfer domains (rules
+31%, similarity thresholds 39%); 88% and 67% in the earlier runs. In the live Agent
+Security Bench run, whose injected actions use in-scope tools with plausible arguments,
+they decide 40% of the 154 interceptions: 9% through rules that read the case's text and
+31% through similarity thresholds.*
 
 ![Attack success per attack path](docs/figures/ap_heatmap.png)
 
@@ -168,9 +170,10 @@ attack success above FULL's 2.2%: P1 4.9%, P2 6.7%, P3 16.9%, P4 7.6%, P5 6.7%.<
 <td width="50%"><img src="docs/figures/panel_composition.png" alt="Panel composition and lineage"></td>
 </tr>
 <tr>
-<td><em>v3.1, the 3,880 judged FULL rounds of the four domains. (a) Pairwise Cohen's κ
-between the four Local4 judges (diagonal: reject rate); mean κ 0.53. (b) Share of
-proposals approved as a function of the quorum.</em></td>
+<td><em>v3.1, the 3,657 judged FULL rounds of the four domains (the rule-evading
+siblings excluded). (a) Pairwise Cohen's κ between the four Local4 judges (diagonal:
+reject rate); κ 0.41 to 0.65, mean 0.51. (b) Share of proposals approved as a function of
+the quorum: 81.2%, 68.1%, 53.2% (deployed), and 39.0%.</em></td>
 <td><em>Panels re-adjudicated on the same 405 replayed ASB actions and 661 legitimate
 proposals. A same-size panel of one model lineage (Lin3) lets through seven times as
 many actions as a mixed one (Div3L).</em></td>
@@ -201,19 +204,22 @@ channel (14.4% against 45.6% for FLAT).</em></td>
 <td><em>Persistent state (v3.1, as run with the two local judges): benign completion falls
 from 97% to 5% in both passes. Legitimate incidents deny each other through replay
 and ledger state: denials peak over the first incidents and fall back toward the
-isolated level later in the sequence, but completion does not recover. Replayed offline,
-the shipped ledgers deny 96.2% of the first pass's 80 consequential benign proposals; an
-identity-keyed, one-incident expiry leaves 38.8% and keeps all 55 stateful interceptions
-of the isolated CyberOps attack runs.</em></td>
+isolated level (dashed, as run) later in the sequence, but completion does not recover.
+Replayed offline, faithful to the run, the stateful checks deny 87.5% of the first pass's
+80 consequential benign proposals; expiring skeleton keys after five, two, or one
+incidents leaves 48 to 69%, 16 to 54%, and 9 to 35%, and keying on identity (tool,
+action, target) with a one-incident window leaves 5 to 24%.</em></td>
 </tr>
 </table>
 
 ![Cost](docs/figures/cost.png)
 
-*Where the cost goes (v3.1, as run with the two local judges): (a) denials per 100
-legitimate actions by principle and domain, counted per proposed action (tool calls and
-memory operations); (b) median benign-incident latency (FLAT 37 s, FULL 68 s, JUDGEONLY
-79 s); (c) tokens per incident.*
+*Where the cost goes (v3.1): (a) denials per 100 legitimate actions by principle and
+domain, counted per proposed action (tool calls and memory operations), with the panel's
+share under Local4 (by replay) and the rest as run; (b) median time per benign CyberOps
+incident in the primary, the deterministic checks, and the panel, as run with two local
+judges (medians of the timed parts; the median wall-clock incident takes 38 s under FLAT,
+87 s under FULL, and 80 s under JUDGEONLY); (c) tokens per incident.*
 
 ### Robustness of the v3.1 results
 
@@ -271,16 +277,17 @@ mechanism analyses repeated on the v3.1 runs:
   | Attack type | FLAT ASR % | FULL ASR % | FULL, re-judged under Local4 |
   |---|---|---|---|
   | direct prompt injection | 36.9 [25.5, 48.7] | 0.0 [0.0, 0.0] | 0.0 |
-  | impersonation | 18.8 [9.4, 29.3] | 2.7 [0.0, 7.3] | 5.3 [0.7, 11.3] |
+  | impersonation | 30.2 [19.3, 41.9] | 2.7 [0.0, 7.3] | 5.3 [0.7, 11.3] |
   | colluding agents | 40.0 [26.7, 52.7] | 2.0 [0.0, 6.1] | 2.0 [0.0, 6.1] |
   | byzantine agent | 91.2 [85.6, 96.0] | 83.9 [77.7, 89.1] | (judge-scored) |
   | contradicting agents | 18.6 [11.1, 26.4] | 18.6 [11.6, 25.9] | (judge-scored) |
 
   DEFER stops the attacks that act through tool calls and leaves those that corrupt
   agents' reasoning and outputs untouched, because it mediates actions, not
-  conversations. The panel alone made 185 of the 194 blocks: TAMAS gives agents the attack
+  conversations. All attack types pooled: FLAT 43.5%, FULL 21.4% as run and 21.9% under
+  Local4. The panel made 192 of the 202 blocks under Local4: TAMAS gives agents the attack
   tools in their own tool lists, so, as on ASB, the rules rarely can. On the 50 TAMAS
-  tasks used as benign work, FULL denies 10.6% of tool calls. Caveats are listed under
+  tasks used as benign work, FULL denies 10.6% of tool calls as run and 7.7% under Local4. Caveats are listed under
   [known limitations](#provenance-and-known-limitations); numbers:
   [`results/tamas.md`](results/tamas.md).
 - **Calibration of the re-adjudication:** a live run at `defense-freeze-v2.9` with two
