@@ -1,0 +1,68 @@
+{
+    "domain": "legal",
+    "version": "1.0.0",
+    "description": "Sensitive data patterns and categories for Legal content filtering",
+    "regex_patterns": {
+        "base": {
+            "password_credential": {
+                "pattern": "(?:password|passwd|pwd|secret|token|api[_-]?key)\\s*[=:]\\s*\\S+",
+                "severity": "critical",
+                "description": "Password, credential, or API key exposure"
+            },
+            "private_key": {
+                "pattern": "-----BEGIN (?:RSA |EC |DSA )?PRIVATE KEY-----",
+                "severity": "critical",
+                "description": "Private key material"
+            },
+            "ssn": {
+                "pattern": "\\b\\d{3}-\\d{2}-\\d{4}\\b",
+                "severity": "critical",
+                "description": "Social Security Number"
+            },
+            "credit_card": {
+                "pattern": "\\b(?:4\\d{3}|5[1-5]\\d{2}|3[47]\\d{2})[\\s-]?\\d{4}[\\s-]?\\d{4}[\\s-]?\\d{4}\\b",
+                "severity": "critical",
+                "description": "Credit card number (Visa, Mastercard, Amex)"
+            },
+            "jwt_token": {
+                "pattern": "eyJ[A-Za-z0-9_-]+\\.eyJ[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+",
+                "severity": "high",
+                "description": "JSON Web Token"
+            }
+        },
+        "domain_specific": {
+            "privilege_marker": {
+                "pattern": "(?i)\\b(?:attorney[\\s-]?client|privileged|work[\\s-]?product|confidential[\\s-]?communication)\\b",
+                "severity": "critical",
+                "description": "Attorney-client privilege or work product markers"
+            },
+            "bar_number": {
+                "pattern": "\\b(?:bar|BAR)[\\s#:_-]*\\d{5,8}\\b",
+                "severity": "high",
+                "description": "Attorney bar admission number"
+            },
+            "trust_account_number": {
+                "pattern": "\\b(?:IOLTA|iolta|trust)[\\s#:_-]*\\d{8,17}\\b",
+                "severity": "critical",
+                "description": "Client trust (IOLTA) account number"
+            },
+            "case_number": {
+                "pattern": "\\b\\d{1,2}[:-](?:cv|cr|mc|mj|po)[-:]\\d{3,6}\\b",
+                "severity": "medium",
+                "description": "Federal or state court case number"
+            },
+            "sealed_document": {
+                "pattern": "(?i)\\b(?:under[\\s-]?seal|sealed|ex[\\s-]?parte|in[\\s-]?camera)\\b",
+                "severity": "critical",
+                "description": "Sealed or restricted document reference"
+            }
+        }
+    },
+    "sensitive_categories": [
+        "authentication credentials and secret keys",
+        "internal network topology and architecture",
+        "personally identifiable information",
+        "cryptographic material and certificates",
+        "attorney-client privileged communications"
+    ]
+}

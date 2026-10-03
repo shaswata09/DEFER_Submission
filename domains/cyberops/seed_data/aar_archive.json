@@ -1,0 +1,752 @@
+[
+  {
+    "id": "aar_001",
+    "text": "Phishing campaign delivering Emotet loader via macro-enabled Excel attachments was detected by email gateway within 12 minutes of first delivery. SOC analyst triaged and escalated within 25 minutes. All 47 recipient mailboxes were purged within 1.2 hours. No payload execution occurred. Fast detection attributed to updated YARA signatures deployed the previous week.",
+    "metadata": {
+      "aar_id": "AAR-2024-001",
+      "incident_reference": "CASE-2024-017",
+      "incident_type": "phishing",
+      "severity": "high",
+      "mttd_hours": 0.2,
+      "mttc_hours": 1.2,
+      "outcome": "contained",
+      "key_lesson": "Proactive signature updates significantly reduce detection time for known malware families",
+      "date": "2024-03-15"
+    }
+  },
+  {
+    "id": "aar_002",
+    "text": "Ransomware incident involving LockBit 3.0 variant affected 23 endpoints in the finance department. Initial access was through a compromised VPN credential purchased from an initial access broker. Detection occurred 14 hours after initial compromise when encryption activity triggered EDR alerts. Containment achieved by network isolation at 18.5 hours. Three file servers were encrypted before containment. Recovery from offline backups completed within 72 hours.",
+    "metadata": {
+      "aar_id": "AAR-2024-002",
+      "incident_reference": "CASE-2024-031",
+      "incident_type": "ransomware",
+      "severity": "critical",
+      "mttd_hours": 14.0,
+      "mttc_hours": 18.5,
+      "outcome": "partial_breach",
+      "key_lesson": "VPN accounts require MFA enforcement; compromised credential detection via dark web monitoring should be prioritized",
+      "date": "2024-05-22"
+    }
+  },
+  {
+    "id": "aar_003",
+    "text": "Insider threat case involving a departing software engineer who exfiltrated 2.3GB of proprietary source code to a personal cloud storage account. DLP agent detected the upload 45 minutes after it began but alert was not triaged for 6 hours due to weekend staffing gap. Investigation confirmed exfiltration was complete. Legal hold and forensic preservation initiated. HR and legal engaged within 24 hours.",
+    "metadata": {
+      "aar_id": "AAR-2024-003",
+      "incident_reference": "CASE-2024-044",
+      "incident_type": "insider_threat",
+      "severity": "high",
+      "mttd_hours": 0.75,
+      "mttc_hours": 6.75,
+      "outcome": "breached",
+      "key_lesson": "Weekend and off-hours SOC coverage must include DLP alert triage with escalation SLAs",
+      "date": "2024-07-08"
+    }
+  },
+  {
+    "id": "aar_004",
+    "text": "SQL injection attack against customer-facing web application was detected by WAF in blocking mode. Attack originated from a Tor exit node and attempted UNION-based extraction of the customer database. WAF blocked all 340 attempts over 2 hours. SOC was alerted within 5 minutes of first block. IP was added to blocklist and application team was notified to patch the vulnerable parameter.",
+    "metadata": {
+      "aar_id": "AAR-2024-004",
+      "incident_reference": "CASE-2024-052",
+      "incident_type": "web_application_attack",
+      "severity": "medium",
+      "mttd_hours": 0.08,
+      "mttc_hours": 0.5,
+      "outcome": "contained",
+      "key_lesson": "WAF in blocking mode provides effective first line of defense; vulnerable code should still be patched promptly",
+      "date": "2024-08-19"
+    }
+  },
+  {
+    "id": "aar_005",
+    "text": "Business email compromise targeting CFO resulted in a fraudulent wire transfer request of $285,000 to an attacker-controlled account. The compromised email account was accessed via session token theft from an AiTM phishing page. Detection occurred 4 hours after the fraudulent email was sent when the accounts payable team flagged the unusual payment request. Wire transfer was halted by the bank before settlement.",
+    "metadata": {
+      "aar_id": "AAR-2024-005",
+      "incident_reference": "CASE-2024-067",
+      "incident_type": "business_email_compromise",
+      "severity": "critical",
+      "mttd_hours": 4.0,
+      "mttc_hours": 5.5,
+      "outcome": "contained",
+      "key_lesson": "Implement conditional access policies requiring compliant devices and phishing-resistant MFA for executive accounts",
+      "date": "2024-10-03"
+    }
+  },
+  {
+    "id": "aar_006",
+    "text": "Distributed denial of service attack targeting the public API gateway peaked at 45 Gbps using a UDP reflection amplification vector. Cloud-based DDoS mitigation service activated automatically within 3 minutes. Service degradation lasted 18 minutes before scrubbing center fully absorbed the traffic. No customer-facing impact after mitigation engagement. Attack lasted 4 hours total.",
+    "metadata": {
+      "aar_id": "AAR-2024-006",
+      "incident_reference": "CASE-2024-078",
+      "incident_type": "ddos",
+      "severity": "high",
+      "mttd_hours": 0.05,
+      "mttc_hours": 0.3,
+      "outcome": "contained",
+      "key_lesson": "Automated DDoS mitigation reduces human response dependency; regular capacity testing of scrubbing service is essential",
+      "date": "2024-11-14"
+    }
+  },
+  {
+    "id": "aar_007",
+    "text": "Supply chain compromise via a trojanized update to a third-party monitoring agent deployed to 156 servers. Malicious update established a reverse shell to attacker infrastructure. Detection occurred 72 hours post-deployment when network flow analysis identified anomalous outbound connections. Containment required emergency patching and rollback across all affected servers over 36 hours. Forensic analysis confirmed no data exfiltration.",
+    "metadata": {
+      "aar_id": "AAR-2024-007",
+      "incident_reference": "CASE-2024-089",
+      "incident_type": "supply_chain_compromise",
+      "severity": "critical",
+      "mttd_hours": 72.0,
+      "mttc_hours": 108.0,
+      "outcome": "contained",
+      "key_lesson": "Third-party software updates require staged rollout with behavioral monitoring before enterprise-wide deployment",
+      "date": "2024-12-02"
+    }
+  },
+  {
+    "id": "aar_008",
+    "text": "Cryptomining malware discovered on 8 Linux servers in the development environment. Malware was deployed via exposed Docker API on a misconfigured container host. Detection occurred when infrastructure monitoring flagged sustained 95% CPU utilization over 48 hours. Containment achieved within 2 hours of SOC engagement. Root cause was a developer bypassing change management to expose Docker socket for testing.",
+    "metadata": {
+      "aar_id": "AAR-2025-001",
+      "incident_reference": "CASE-2025-003",
+      "incident_type": "cryptomining",
+      "severity": "medium",
+      "mttd_hours": 48.0,
+      "mttc_hours": 50.0,
+      "outcome": "contained",
+      "key_lesson": "Container orchestration security must enforce network policies preventing direct API exposure to untrusted networks",
+      "date": "2025-01-18"
+    }
+  },
+  {
+    "id": "aar_009",
+    "text": "Credential stuffing attack against the customer portal using credentials from a third-party breach. Over 2.1 million login attempts from a botnet of 12,000 IP addresses over 6 hours. Rate limiting and CAPTCHA challenge triggered after 15 minutes. 847 accounts were successfully compromised before defensive measures fully engaged. Affected accounts were force-reset and customers notified within 24 hours.",
+    "metadata": {
+      "aar_id": "AAR-2025-002",
+      "incident_reference": "CASE-2025-011",
+      "incident_type": "credential_stuffing",
+      "severity": "high",
+      "mttd_hours": 0.25,
+      "mttc_hours": 6.0,
+      "outcome": "partial_breach",
+      "key_lesson": "Implement credential breach detection integration and proactive password reuse prevention for customer accounts",
+      "date": "2025-02-27"
+    }
+  },
+  {
+    "id": "aar_010",
+    "text": "Advanced persistent threat group compromised a domain administrator account through a spearphishing email with a zero-day PDF exploit. Attacker maintained persistence for 21 days before detection via anomalous Kerberos ticket patterns. During dwell time, attacker performed extensive Active Directory reconnaissance and accessed sensitive HR file shares. Incident required full domain password reset and rebuild of two domain controllers.",
+    "metadata": {
+      "aar_id": "AAR-2025-003",
+      "incident_reference": "CASE-2025-024",
+      "incident_type": "apt_intrusion",
+      "severity": "critical",
+      "mttd_hours": 504.0,
+      "mttc_hours": 672.0,
+      "outcome": "breached",
+      "key_lesson": "Implement tiered administration model and privileged access workstations to limit blast radius of domain admin compromise",
+      "date": "2025-04-10"
+    }
+  },
+  {
+    "id": "aar_011",
+    "text": "Unauthorized access to AWS S3 bucket containing customer PII due to misconfigured bucket policy allowing public read access. Discovered during routine cloud security posture assessment 8 days after the misconfiguration was introduced by a DevOps engineer. No evidence of unauthorized access in CloudTrail logs during exposure window. Bucket policy corrected and preventive SCPs deployed.",
+    "metadata": {
+      "aar_id": "AAR-2025-004",
+      "incident_reference": "CASE-2025-032",
+      "incident_type": "cloud_misconfiguration",
+      "severity": "high",
+      "mttd_hours": 192.0,
+      "mttc_hours": 192.5,
+      "outcome": "contained",
+      "key_lesson": "Implement real-time CSPM monitoring with automated remediation for public-facing storage misconfigurations",
+      "date": "2025-05-15"
+    }
+  },
+  {
+    "id": "aar_012",
+    "text": "Lateral movement detected when threat actor used compromised service account to pivot from DMZ web server to internal application tier via SMB. EDR detected the lateral movement within 35 minutes through anomalous SMB authentication pattern. Network segmentation firewall rules contained the threat to the application tier. No access to database tier confirmed through forensic analysis.",
+    "metadata": {
+      "aar_id": "AAR-2025-005",
+      "incident_reference": "CASE-2025-038",
+      "incident_type": "lateral_movement",
+      "severity": "high",
+      "mttd_hours": 0.58,
+      "mttc_hours": 2.0,
+      "outcome": "contained",
+      "key_lesson": "Service accounts should use managed identities with restricted network access rather than shared credentials",
+      "date": "2025-06-22"
+    }
+  },
+  {
+    "id": "aar_013",
+    "text": "Zero-day vulnerability in the corporate VPN appliance was exploited by an unknown threat actor to gain initial access. The exploit bypassed authentication and allowed remote code execution. Detection occurred 5 hours after exploitation when the EDR flagged an anomalous process spawned by the VPN service. Emergency patching was coordinated with the vendor within 48 hours. No lateral movement was detected.",
+    "metadata": {
+      "aar_id": "AAR-2025-006",
+      "incident_reference": "CASE-2025-045",
+      "incident_type": "zero_day_exploit",
+      "severity": "critical",
+      "mttd_hours": 5.0,
+      "mttc_hours": 7.5,
+      "outcome": "contained",
+      "key_lesson": "Network appliances require defense-in-depth monitoring; EDR on appliance management planes provides critical visibility",
+      "date": "2025-07-30"
+    }
+  },
+  {
+    "id": "aar_014",
+    "text": "Data exfiltration attempt via DNS tunneling was detected by the DNS analytics platform after 3 hours of low-bandwidth data transfer. Approximately 45MB of data was exfiltrated before the DNS tunnel was blocked. Source endpoint was a compromised developer workstation with access to source code repositories. Full forensic imaging and analysis identified initial compromise vector as a trojanized npm package.",
+    "metadata": {
+      "aar_id": "AAR-2025-007",
+      "incident_reference": "CASE-2025-051",
+      "incident_type": "data_exfiltration",
+      "severity": "high",
+      "mttd_hours": 3.0,
+      "mttc_hours": 3.5,
+      "outcome": "partial_breach",
+      "key_lesson": "Developer environments require enhanced monitoring and software supply chain integrity verification",
+      "date": "2025-08-14"
+    }
+  },
+  {
+    "id": "aar_015",
+    "text": "Privilege escalation incident where a standard user exploited a vulnerable print spooler service (PrintNightmare variant) to gain SYSTEM privileges on a workstation. EDR behavioral detection triggered within 8 minutes of exploitation. Endpoint was isolated automatically via EDR response action. The vulnerable service was disabled enterprise-wide within 4 hours pending patch deployment.",
+    "metadata": {
+      "aar_id": "AAR-2025-008",
+      "incident_reference": "CASE-2025-059",
+      "incident_type": "privilege_escalation",
+      "severity": "high",
+      "mttd_hours": 0.13,
+      "mttc_hours": 0.25,
+      "outcome": "contained",
+      "key_lesson": "Automated EDR containment actions dramatically reduce MTTC for endpoint-based attacks",
+      "date": "2025-09-05"
+    }
+  },
+  {
+    "id": "aar_016",
+    "text": "Watering hole attack compromised an industry news website frequently visited by engineering staff. Drive-by download deployed a RAT on 4 endpoints. Detection was delayed 36 hours because the RAT used encrypted C2 over port 443 blending with legitimate HTTPS traffic. Network threat intelligence feed eventually flagged the C2 domain. All four endpoints were remediated and reimaged.",
+    "metadata": {
+      "aar_id": "AAR-2025-009",
+      "incident_reference": "CASE-2025-068",
+      "incident_type": "watering_hole",
+      "severity": "high",
+      "mttd_hours": 36.0,
+      "mttc_hours": 42.0,
+      "outcome": "contained",
+      "key_lesson": "TLS inspection for non-pinned destinations is essential for detecting encrypted C2 communications",
+      "date": "2025-10-12"
+    }
+  },
+  {
+    "id": "aar_017",
+    "text": "Accidental data exposure when an employee shared a confidential board presentation via a public link in the corporate file sharing platform. The document was indexed by search engines within 4 hours. Discovery occurred 3 days later when a third party notified the communications department. Link was revoked immediately. Google cache removal requested and confirmed within 48 hours.",
+    "metadata": {
+      "aar_id": "AAR-2025-010",
+      "incident_reference": "CASE-2025-073",
+      "incident_type": "accidental_exposure",
+      "severity": "medium",
+      "mttd_hours": 72.0,
+      "mttc_hours": 72.5,
+      "outcome": "breached",
+      "key_lesson": "Enforce DLP policies on cloud file sharing platforms to prevent public link creation for classified documents",
+      "date": "2025-11-01"
+    }
+  },
+  {
+    "id": "aar_018",
+    "text": "Targeted spearphishing campaign against the legal department delivered ISO file attachments containing a shortcut file that launched a PowerShell downloader. Email gateway initially passed the messages as ISO scanning was not configured. Detection occurred within 90 minutes when one recipient executed the payload and EDR blocked the PowerShell execution. 12 recipient mailboxes were remediated.",
+    "metadata": {
+      "aar_id": "AAR-2025-011",
+      "incident_reference": "CASE-2025-082",
+      "incident_type": "phishing",
+      "severity": "high",
+      "mttd_hours": 1.5,
+      "mttc_hours": 3.0,
+      "outcome": "contained",
+      "key_lesson": "Email gateway must be configured to inspect or block container file formats (ISO, VHD, IMG) used for Mark-of-the-Web bypass",
+      "date": "2025-11-20"
+    }
+  },
+  {
+    "id": "aar_019",
+    "text": "Brute force attack against the SSH bastion host from a botnet of approximately 5,000 IP addresses. Fail2ban and rate limiting engaged within 2 minutes. No successful authentications occurred as all accounts use key-based authentication. The attack persisted for 8 hours before abating. Geo-blocking rules were implemented post-incident for SSH access from non-business regions.",
+    "metadata": {
+      "aar_id": "AAR-2025-012",
+      "incident_reference": "CASE-2025-089",
+      "incident_type": "brute_force",
+      "severity": "low",
+      "mttd_hours": 0.03,
+      "mttc_hours": 0.1,
+      "outcome": "contained",
+      "key_lesson": "Key-based SSH authentication eliminates brute force risk; geo-blocking reduces noise for SOC analysts",
+      "date": "2025-12-08"
+    }
+  },
+  {
+    "id": "aar_020",
+    "text": "Malware outbreak from a USB device brought in by a vendor technician during an on-site maintenance visit. The malware propagated to 6 endpoints on the OT network segment before EDR quarantine actions contained the spread. Detection took 2.5 hours as OT endpoints had limited monitoring. Vendor access procedures were revised to require supervised sessions with pre-scanned equipment.",
+    "metadata": {
+      "aar_id": "AAR-2026-001",
+      "incident_reference": "CASE-2026-002",
+      "incident_type": "malware_outbreak",
+      "severity": "high",
+      "mttd_hours": 2.5,
+      "mttc_hours": 4.0,
+      "outcome": "contained",
+      "key_lesson": "OT network segments require enhanced endpoint visibility and strict removable media controls for vendor access",
+      "date": "2026-01-10"
+    }
+  },
+  {
+    "id": "aar_021",
+    "text": "Account takeover of a SaaS administrator account (Salesforce) through credential reuse from a personal email breach. Attacker modified report sharing settings to expose customer pipeline data. Detection occurred 18 hours later when a sales manager noticed unfamiliar shared reports. Salesforce session was revoked, password reset, and MFA enforced. Audit logs confirmed data was accessed but not downloaded in bulk.",
+    "metadata": {
+      "aar_id": "AAR-2026-002",
+      "incident_reference": "CASE-2026-009",
+      "incident_type": "account_takeover",
+      "severity": "high",
+      "mttd_hours": 18.0,
+      "mttc_hours": 19.0,
+      "outcome": "partial_breach",
+      "key_lesson": "SaaS admin accounts require phishing-resistant MFA and integration with CASB for anomalous activity detection",
+      "date": "2026-01-28"
+    }
+  },
+  {
+    "id": "aar_022",
+    "text": "Attempted data destruction by a disgruntled employee who ran rm -rf commands on shared NFS volumes before their termination date. Access revocation was not synchronized with HR termination workflow, leaving a 4-hour gap. 380GB of engineering data was deleted. Recovery from hourly snapshots restored all data within 6 hours. No permanent data loss occurred.",
+    "metadata": {
+      "aar_id": "AAR-2026-003",
+      "incident_reference": "CASE-2026-015",
+      "incident_type": "insider_threat",
+      "severity": "critical",
+      "mttd_hours": 0.5,
+      "mttc_hours": 6.0,
+      "outcome": "contained",
+      "key_lesson": "Automated access revocation must be triggered immediately upon HR termination decision, not on the employee's last day",
+      "date": "2026-02-05"
+    }
+  },
+  {
+    "id": "aar_023",
+    "text": "Man-in-the-middle attack on the guest WiFi network intercepting credentials submitted to unencrypted internal web applications. A contractor discovered the rogue access point during a routine site visit. Investigation revealed the device had been active for approximately 5 days. Network access control logs identified 3 potentially compromised sessions. Affected credentials were reset within 2 hours of discovery.",
+    "metadata": {
+      "aar_id": "AAR-2026-004",
+      "incident_reference": "CASE-2026-021",
+      "incident_type": "rogue_access_point",
+      "severity": "medium",
+      "mttd_hours": 120.0,
+      "mttc_hours": 122.0,
+      "outcome": "partial_breach",
+      "key_lesson": "Deploy wireless intrusion prevention system with rogue AP detection and enforce HSTS on all internal web applications",
+      "date": "2026-02-18"
+    }
+  },
+  {
+    "id": "aar_024",
+    "text": "Successful containment of a Cobalt Strike beacon infection on an executive laptop. Initial access via a LinkedIn message containing a weaponized PDF. EDR detected the beacon callback within 4 minutes of payload execution. Automated network isolation triggered immediately. SOC analyst confirmed true positive and initiated full forensic investigation within 30 minutes. No lateral movement or data access confirmed.",
+    "metadata": {
+      "aar_id": "AAR-2026-005",
+      "incident_reference": "CASE-2026-028",
+      "incident_type": "c2_implant",
+      "severity": "critical",
+      "mttd_hours": 0.07,
+      "mttc_hours": 0.12,
+      "outcome": "contained",
+      "key_lesson": "Automated EDR isolation combined with behavioral C2 detection provides sub-10-minute containment capability",
+      "date": "2026-03-01"
+    }
+  },
+  {
+    "id": "aar_025",
+    "text": "Cloud infrastructure compromise where an attacker exploited an SSRF vulnerability in a web application to access AWS IMDS and retrieve temporary IAM credentials. The credentials were used to enumerate S3 buckets and attempt to create new IAM users. CloudTrail alerts detected the anomalous API calls within 20 minutes. Instance was terminated and IAM role credentials rotated within 45 minutes.",
+    "metadata": {
+      "aar_id": "AAR-2026-006",
+      "incident_reference": "CASE-2026-034",
+      "incident_type": "cloud_compromise",
+      "severity": "critical",
+      "mttd_hours": 0.33,
+      "mttc_hours": 0.75,
+      "outcome": "contained",
+      "key_lesson": "Enforce IMDSv2 to prevent SSRF-based credential theft and implement least-privilege IAM roles for EC2 instances",
+      "date": "2026-03-10"
+    }
+  },
+  {
+    "id": "aar_026",
+    "text": "Third-party vendor data breach notification received indicating that customer data shared under a data processing agreement was exposed. Vendor took 45 days to notify despite contractual 72-hour requirement. Impact assessment determined 12,000 customer records were potentially affected. Regulatory notification submitted and customer communications issued. Vendor relationship under review.",
+    "metadata": {
+      "aar_id": "AAR-2026-007",
+      "incident_reference": "CASE-2026-039",
+      "incident_type": "third_party_breach",
+      "severity": "high",
+      "mttd_hours": 1080.0,
+      "mttc_hours": 1104.0,
+      "outcome": "breached",
+      "key_lesson": "Vendor breach notification SLAs must be enforceable with audit rights; implement independent monitoring of vendor security posture",
+      "date": "2026-03-18"
+    }
+  },
+  {
+    "id": "aar_027",
+    "text": "Successful detection and response to a fileless malware attack using PowerShell and WMI for persistence. Attack chain originated from a malicious browser extension installed by a user. AMSI telemetry detected obfuscated PowerShell scripts within 15 minutes. WMI event subscription used for persistence was identified and removed during investigation. Complete remediation within 3 hours.",
+    "metadata": {
+      "aar_id": "AAR-2026-008",
+      "incident_reference": "CASE-2026-042",
+      "incident_type": "fileless_malware",
+      "severity": "high",
+      "mttd_hours": 0.25,
+      "mttc_hours": 3.0,
+      "outcome": "contained",
+      "key_lesson": "AMSI integration with SIEM provides critical visibility into script-based attacks; browser extension allowlisting should be enforced",
+      "date": "2026-03-25"
+    }
+  },
+  {
+    "id": "aar_028",
+    "text": "Certificate authority compromise simulation during red team engagement revealed that the internal PKI root CA server had insufficient access controls. Red team was able to issue rogue certificates for internal domains within 6 hours of gaining initial access. Detection did not occur until the red team self-reported at the 48-hour mark. Findings led to emergency hardening of PKI infrastructure.",
+    "metadata": {
+      "aar_id": "AAR-2026-009",
+      "incident_reference": "CASE-2026-048",
+      "incident_type": "red_team_exercise",
+      "severity": "critical",
+      "mttd_hours": 48.0,
+      "mttc_hours": 48.0,
+      "outcome": "breached",
+      "key_lesson": "Internal PKI infrastructure requires dedicated monitoring, HSM-backed key storage, and certificate transparency logging",
+      "date": "2026-03-30"
+    }
+  },
+  {
+    "id": "aar_029",
+    "text": "API abuse incident where an authenticated user exploited a broken object level authorization vulnerability to access other customers' order data. Rate limiting masked the activity as requests were within normal volume thresholds. Detection occurred 10 days later during a security code review that identified the BOLA vulnerability. Analysis of API logs confirmed 4,200 unauthorized data accesses.",
+    "metadata": {
+      "aar_id": "AAR-2026-010",
+      "incident_reference": "CASE-2026-053",
+      "incident_type": "api_abuse",
+      "severity": "high",
+      "mttd_hours": 240.0,
+      "mttc_hours": 244.0,
+      "outcome": "breached",
+      "key_lesson": "API security testing must include authorization boundary testing; implement object-level authorization checks in API middleware",
+      "date": "2026-04-02"
+    }
+  },
+  {
+    "id": "aar_030",
+    "text": "Successful incident response to a wiper malware attack targeting industrial control systems in the manufacturing plant. Malware was delivered via a compromised engineering workstation with dual-homed network access. OT security monitoring detected anomalous Modbus TCP traffic within 8 minutes. IT/OT network bridge was severed within 15 minutes. No PLC firmware was affected. Production downtime was limited to 4 hours for verification and restoration.",
+    "metadata": {
+      "aar_id": "AAR-2026-011",
+      "incident_reference": "CASE-2026-057",
+      "incident_type": "ics_attack",
+      "severity": "critical",
+      "mttd_hours": 0.13,
+      "mttc_hours": 0.25,
+      "outcome": "contained",
+      "key_lesson": "OT network monitoring with protocol-aware detection is essential; dual-homed engineering workstations must be eliminated",
+      "date": "2026-04-07"
+    }
+  },
+  {
+    "id": "aar_031",
+    "text": "AWS Lambda function compromise through a dependency confusion attack. A malicious package with the same name as an internal library was published to the public PyPI registry and pulled during the build process. The package exfiltrated environment variables including database connection strings to an external endpoint. Detection occurred 36 hours later when CloudWatch anomaly detection flagged unusual outbound connections from the Lambda execution environment. All secrets were rotated and the internal package registry was configured as the sole source.",
+    "metadata": {
+      "aar_id": "AAR-2026-012",
+      "incident_reference": "CASE-2026-061",
+      "incident_type": "supply_chain_compromise",
+      "severity": "critical",
+      "mttd_hours": 36.0,
+      "mttc_hours": 38.0,
+      "outcome": "partial_breach",
+      "key_lesson": "Internal package names must be reserved on public registries and build pipelines must enforce private registry-only resolution",
+      "date": "2024-06-12"
+    }
+  },
+  {
+    "id": "aar_032",
+    "text": "Near-miss incident where a CSPM tool flagged an Azure Storage Account with a SAS token granting full read-write access and an expiry set 10 years in the future. The token was embedded in a public GitHub repository committed by a contractor 3 days prior. No unauthorized access was observed in storage analytics logs. SAS token was revoked by rotating the storage account key, and the repository was scrubbed using BFG Repo-Cleaner.",
+    "metadata": {
+      "aar_id": "AAR-2026-013",
+      "incident_reference": "CASE-2026-064",
+      "incident_type": "cloud_misconfiguration",
+      "severity": "high",
+      "mttd_hours": 72.0,
+      "mttc_hours": 72.5,
+      "outcome": "contained",
+      "key_lesson": "Secret scanning in CI/CD and public repository monitoring must cover cloud storage tokens including SAS and pre-signed URLs",
+      "date": "2024-08-25"
+    }
+  },
+  {
+    "id": "aar_033",
+    "text": "Insider threat discovered during annual access certification review. A finance analyst had been accessing restricted M&A deal room documents for 7 months without a legitimate business need. Access was granted through a group membership error during a role change. Investigation revealed the employee had shared summary information with a personal contact at a competing firm. Legal proceedings initiated and SEC notified due to potential insider trading implications.",
+    "metadata": {
+      "aar_id": "AAR-2026-014",
+      "incident_reference": "CASE-2026-068",
+      "incident_type": "insider_threat",
+      "severity": "critical",
+      "mttd_hours": 500.0,
+      "mttc_hours": 510.0,
+      "outcome": "breached",
+      "key_lesson": "Role change access recertification must be immediate and automated; sensitive deal rooms require continuous access monitoring with manager attestation",
+      "date": "2024-11-03"
+    }
+  },
+  {
+    "id": "aar_034",
+    "text": "Cloud-hosted Kubernetes cluster compromise via an exposed etcd API on a management node. Attacker retrieved cluster secrets including database passwords and API keys. Detection occurred 8 hours after initial access when a threat hunting query flagged the exposed etcd port in external scan data. All cluster secrets were rotated, affected pods redeployed, and network policies enforced to restrict etcd access to the control plane CIDR only.",
+    "metadata": {
+      "aar_id": "AAR-2026-015",
+      "incident_reference": "CASE-2026-072",
+      "incident_type": "cloud_compromise",
+      "severity": "critical",
+      "mttd_hours": 8.0,
+      "mttc_hours": 14.0,
+      "outcome": "partial_breach",
+      "key_lesson": "Kubernetes etcd must never be network-accessible outside the control plane; enforce network policies and enable etcd encryption at rest",
+      "date": "2025-01-20"
+    }
+  },
+  {
+    "id": "aar_035",
+    "text": "Regulatory notification required after a misconfigured log aggregation pipeline inadvertently wrote 45,000 customer email addresses and hashed passwords to a debug log stored in an unencrypted S3 bucket. The misconfiguration existed for 14 days before a data engineering team member reported it during a code review. GDPR Article 33 notification was submitted to the ICO within 68 hours. No evidence of external access during exposure window.",
+    "metadata": {
+      "aar_id": "AAR-2026-016",
+      "incident_reference": "CASE-2026-076",
+      "incident_type": "accidental_exposure",
+      "severity": "high",
+      "mttd_hours": 336.0,
+      "mttc_hours": 338.0,
+      "outcome": "contained",
+      "key_lesson": "Log pipelines must include PII redaction filters and debug logging must never target unencrypted storage destinations",
+      "date": "2025-03-08"
+    }
+  },
+  {
+    "id": "aar_036",
+    "text": "SaaS supply chain incident where an OAuth integration token for the corporate Slack workspace was compromised via a breached third-party bot provider. Attacker used the token to read messages in 12 public channels over a 5-day period. Detection occurred when the bot provider issued a breach notification. Token was revoked within 30 minutes of notification. Channel message audit confirmed no Restricted-classified data was exposed.",
+    "metadata": {
+      "aar_id": "AAR-2026-017",
+      "incident_reference": "CASE-2026-080",
+      "incident_type": "supply_chain_compromise",
+      "severity": "medium",
+      "mttd_hours": 120.0,
+      "mttc_hours": 120.5,
+      "outcome": "partial_breach",
+      "key_lesson": "SaaS OAuth integrations must follow least-privilege scoping and be inventoried with automated monitoring for third-party breach notifications",
+      "date": "2025-05-01"
+    }
+  },
+  {
+    "id": "aar_037",
+    "text": "Near-miss caught by a junior analyst who noticed an anomalous scheduled task on a domain controller during routine health checks. The task was configured to execute a Base64-encoded PowerShell script at 2 AM daily, consistent with a persistence mechanism from a previous compromise that had been incompletely remediated 4 months earlier. Full re-investigation of the original incident was initiated. No evidence of continued attacker access since the original remediation.",
+    "metadata": {
+      "aar_id": "AAR-2026-018",
+      "incident_reference": "CASE-2026-083",
+      "incident_type": "apt_intrusion",
+      "severity": "high",
+      "mttd_hours": 0.5,
+      "mttc_hours": 4.0,
+      "outcome": "contained",
+      "key_lesson": "Post-incident remediation must include comprehensive persistence mechanism sweeps and verification audits at 30, 60, and 90 day intervals",
+      "date": "2025-06-18"
+    }
+  },
+  {
+    "id": "aar_038",
+    "text": "GCP project compromise via a leaked service account key in a Docker image layer pushed to a public container registry. The service account had Owner-level permissions on a production project containing BigQuery datasets with customer analytics. Detection occurred 4 days later when the security team was alerted by a researcher through the bug bounty program. No unauthorized BigQuery jobs were found in audit logs. Service account key was deleted and replaced with Workload Identity Federation.",
+    "metadata": {
+      "aar_id": "AAR-2026-019",
+      "incident_reference": "CASE-2026-087",
+      "incident_type": "cloud_compromise",
+      "severity": "critical",
+      "mttd_hours": 96.0,
+      "mttc_hours": 97.0,
+      "outcome": "contained",
+      "key_lesson": "Container images must be scanned for embedded secrets before push; service account keys should be replaced with workload identity wherever possible",
+      "date": "2025-08-22"
+    }
+  },
+  {
+    "id": "aar_039",
+    "text": "Incident requiring HIPAA breach notification after a healthcare data analytics database was accessed by an unauthorized third party through a SQL injection vulnerability in a reporting dashboard. The attacker accessed 8,200 patient records including names, dates of birth, and diagnosis codes over a 6-hour session. Detection occurred within 1 hour of the intrusion via database activity monitoring alerts. HHS OCR was notified within 58 days and affected individuals within 60 days as required.",
+    "metadata": {
+      "aar_id": "AAR-2026-020",
+      "incident_reference": "CASE-2026-091",
+      "incident_type": "data_exfiltration",
+      "severity": "critical",
+      "mttd_hours": 1.0,
+      "mttc_hours": 2.5,
+      "outcome": "breached",
+      "key_lesson": "Healthcare data processing applications require WAF protection and parameterized query enforcement; regulatory notification timelines must be tracked in the GRC platform",
+      "date": "2025-10-14"
+    }
+  },
+  {
+    "id": "aar_040",
+    "text": "Insider data theft discovered 5 months after the employee's departure when proprietary algorithm source code appeared in a competitor's patent filing. Digital forensics of the former employee's archived workstation image revealed systematic code exfiltration via personal email over a 3-month period. DLP alerts had been generated but were incorrectly triaged as false positives by a L1 analyst. Civil litigation initiated.",
+    "metadata": {
+      "aar_id": "AAR-2026-021",
+      "incident_reference": "CASE-2026-095",
+      "incident_type": "insider_threat",
+      "severity": "critical",
+      "mttd_hours": 480.0,
+      "mttc_hours": 500.0,
+      "outcome": "breached",
+      "key_lesson": "DLP alert triage for departing employees must be elevated to L2 analysts; forensic workstation images should be retained for 12 months post-departure for high-risk roles",
+      "date": "2025-11-30"
+    }
+  },
+  {
+    "id": "aar_041",
+    "text": "Azure AD conditional access bypass incident where an attacker exploited a legacy authentication protocol (IMAP) that was not covered by conditional access policies. The attacker used compromised credentials to access a VP's mailbox via IMAP for 12 hours, exporting 340 emails containing board meeting minutes. Detection occurred when Azure AD Identity Protection flagged an impossible travel alert from the attacker's IP. Legacy authentication was disabled globally within 2 hours of detection.",
+    "metadata": {
+      "aar_id": "AAR-2026-022",
+      "incident_reference": "CASE-2026-099",
+      "incident_type": "account_takeover",
+      "severity": "high",
+      "mttd_hours": 12.0,
+      "mttc_hours": 14.0,
+      "outcome": "breached",
+      "key_lesson": "Legacy authentication protocols must be blocked at the identity provider level; conditional access policies must explicitly deny non-modern auth flows",
+      "date": "2026-01-05"
+    }
+  },
+  {
+    "id": "aar_042",
+    "text": "CI/CD pipeline compromise where a malicious pull request to an internal GitHub Enterprise repository modified the Jenkinsfile to inject a reverse shell during the build process. The PR was auto-merged due to a misconfigured branch protection rule that did not require reviews for the CI service account. Detection occurred 2 hours later when network monitoring flagged outbound connections from the Jenkins build agent to a VPS. Build pipeline was suspended and all recent artifacts were quarantined for analysis.",
+    "metadata": {
+      "aar_id": "AAR-2026-023",
+      "incident_reference": "CASE-2026-103",
+      "incident_type": "supply_chain_compromise",
+      "severity": "critical",
+      "mttd_hours": 2.0,
+      "mttc_hours": 4.0,
+      "outcome": "contained",
+      "key_lesson": "CI/CD pipeline definitions must require human approval for changes; build environments must have egress filtering and runtime monitoring",
+      "date": "2026-01-18"
+    }
+  },
+  {
+    "id": "aar_043",
+    "text": "Near-miss where the SOC caught a misconfigured AWS Security Group that opened port 3389 (RDP) to 0.0.0.0/0 on 4 production Windows EC2 instances. The change was made by a developer using Terraform and was not caught by the IaC scanning pipeline because the security group was defined dynamically via a variable. CSPM alert triggered within 35 minutes. The security group was corrected before any connection attempts were observed in VPC flow logs.",
+    "metadata": {
+      "aar_id": "AAR-2026-024",
+      "incident_reference": "CASE-2026-106",
+      "incident_type": "cloud_misconfiguration",
+      "severity": "high",
+      "mttd_hours": 0.58,
+      "mttc_hours": 1.0,
+      "outcome": "contained",
+      "key_lesson": "IaC scanning must resolve dynamic variables and evaluate final resource state; CSPM provides essential runtime validation layer",
+      "date": "2026-02-02"
+    }
+  },
+  {
+    "id": "aar_044",
+    "text": "PCI DSS incident requiring acquirer notification after a web skimmer (Magecart-style) was injected into the checkout page of the e-commerce platform via a compromised third-party JavaScript library. The skimmer harvested payment card data for 11 days before detection by an integrity monitoring scan that identified unauthorized DOM modifications. Approximately 2,300 card numbers were potentially compromised. PCI Forensic Investigator engaged within 24 hours.",
+    "metadata": {
+      "aar_id": "AAR-2026-025",
+      "incident_reference": "CASE-2026-110",
+      "incident_type": "web_application_attack",
+      "severity": "critical",
+      "mttd_hours": 264.0,
+      "mttc_hours": 268.0,
+      "outcome": "breached",
+      "key_lesson": "Subresource integrity checks and Content Security Policy must be enforced for all third-party scripts on payment pages; real-time DOM integrity monitoring is essential",
+      "date": "2026-02-14"
+    }
+  },
+  {
+    "id": "aar_045",
+    "text": "Multi-cloud incident where an attacker leveraged a compromised developer laptop to access both AWS and Azure environments simultaneously using cached CLI credentials. The attacker created IAM users in AWS and service principals in Azure for persistent access. Detection occurred within 45 minutes when Azure Sentinel correlated unusual multi-region sign-ins with impossible travel detection. Both cloud environments were contained within 90 minutes through coordinated credential rotation.",
+    "metadata": {
+      "aar_id": "AAR-2026-026",
+      "incident_reference": "CASE-2026-114",
+      "incident_type": "cloud_compromise",
+      "severity": "critical",
+      "mttd_hours": 0.75,
+      "mttc_hours": 1.5,
+      "outcome": "contained",
+      "key_lesson": "Developer workstations must use short-lived cloud credentials with hardware-bound key storage; cross-cloud correlation rules are essential for multi-cloud environments",
+      "date": "2026-02-25"
+    }
+  },
+  {
+    "id": "aar_046",
+    "text": "Data breach requiring CCPA notification after a misconfigured Elasticsearch cluster exposed a customer search index containing names, email addresses, and purchase history for 67,000 California residents. The cluster had been publicly accessible for 23 days following a version upgrade that reset network binding configuration. Discovered by an external security researcher who responsibly disclosed via the bug bounty program. California AG notification submitted within 15 days of discovery.",
+    "metadata": {
+      "aar_id": "AAR-2026-027",
+      "incident_reference": "CASE-2026-118",
+      "incident_type": "accidental_exposure",
+      "severity": "high",
+      "mttd_hours": 480.0,
+      "mttc_hours": 481.0,
+      "outcome": "breached",
+      "key_lesson": "Post-upgrade configuration validation must include network exposure checks; infrastructure should have automated guardrails preventing public-facing database services",
+      "date": "2026-03-05"
+    }
+  },
+  {
+    "id": "aar_047",
+    "text": "Successful interception of a deepfake voice call targeting the CFO. The attacker used AI-generated voice cloning to impersonate the CEO and request an urgent wire transfer of $1.2 million. The CFO followed the new out-of-band verification protocol and called the CEO on a known personal number, confirming the request was fraudulent. No financial loss occurred. Recording of the deepfake call was preserved for law enforcement.",
+    "metadata": {
+      "aar_id": "AAR-2026-028",
+      "incident_reference": "CASE-2026-121",
+      "incident_type": "business_email_compromise",
+      "severity": "high",
+      "mttd_hours": 0.5,
+      "mttc_hours": 0.75,
+      "outcome": "contained",
+      "key_lesson": "Out-of-band verification protocols for financial transactions are critical; organizations must train executives on AI-based social engineering including voice and video deepfakes",
+      "date": "2026-03-12"
+    }
+  },
+  {
+    "id": "aar_048",
+    "text": "Supply chain compromise via a compromised code signing certificate used by a software vendor to sign a trojanized update for an endpoint management tool deployed to 420 endpoints. The signed malware bypassed application whitelisting and EDR signature checks. Detection occurred 96 hours later through behavioral analytics flagging unusual scheduled task creation patterns across multiple hosts. Full containment required 72 hours of coordinated remediation with the vendor.",
+    "metadata": {
+      "aar_id": "AAR-2026-029",
+      "incident_reference": "CASE-2026-125",
+      "incident_type": "supply_chain_compromise",
+      "severity": "critical",
+      "mttd_hours": 96.0,
+      "mttc_hours": 168.0,
+      "outcome": "partial_breach",
+      "key_lesson": "Code signing certificate compromise negates signature-based trust; behavioral detection and anomaly baselining are essential for detecting trusted-but-compromised software",
+      "date": "2026-03-20"
+    }
+  },
+  {
+    "id": "aar_049",
+    "text": "Near-miss during an Azure DevOps pipeline migration where a service connection with Contributor access to the production subscription was inadvertently shared with a development project. A developer used the production service connection to deploy test infrastructure, creating 14 VMs with public IPs in the production VNet. Cloud security automation detected the unauthorized resources within 18 minutes and auto-quarantined them by removing public IPs and applying restrictive NSGs. No external access occurred.",
+    "metadata": {
+      "aar_id": "AAR-2026-030",
+      "incident_reference": "CASE-2026-128",
+      "incident_type": "cloud_misconfiguration",
+      "severity": "medium",
+      "mttd_hours": 0.3,
+      "mttc_hours": 0.5,
+      "outcome": "contained",
+      "key_lesson": "CI/CD service connections must be scoped to specific environments with RBAC enforcement; automated guardrails should prevent production deployments from non-production pipelines",
+      "date": "2026-03-28"
+    }
+  },
+  {
+    "id": "aar_050",
+    "text": "Ransomware incident where the backup infrastructure was specifically targeted before encrypting production systems. The attacker gained access via a phishing email, escalated to domain admin over 5 days, then systematically deleted Veeam backup jobs, corrupted the backup repository, and disabled the cloud backup replication agent before detonating ransomware across 180 endpoints and 12 servers. Recovery required 9 days using tertiary offline tape backups stored at an Iron Mountain facility. Total business impact estimated at $3.2 million including downtime, recovery costs, and regulatory penalties.",
+    "metadata": {
+      "aar_id": "AAR-2026-031",
+      "incident_reference": "CASE-2026-132",
+      "incident_type": "ransomware",
+      "severity": "critical",
+      "mttd_hours": 120.0,
+      "mttc_hours": 336.0,
+      "outcome": "breached",
+      "key_lesson": "Backup infrastructure must be isolated from the domain with separate credentials; immutable backup copies with air-gapped tertiary storage are essential for ransomware resilience",
+      "date": "2026-04-05"
+    }
+  }
+]

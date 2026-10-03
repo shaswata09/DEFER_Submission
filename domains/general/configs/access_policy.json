@@ -1,0 +1,19 @@
+{
+  "_comment": "General-purpose neutral domain. Used by third-party benchmarks (e.g. ASB) whose scenarios do not naturally map to cyberops/healthcare/finance/legal. Phase access mirrors the standard NIST-IR pattern: read-mostly downstream, write only where the role's purpose requires it.",
+  "monitor": {
+    "read":  ["M1", "M2"],
+    "write": []
+  },
+  "analyze": {
+    "read":  ["M1", "M2", "M3"],
+    "write": ["M1", "M3"]
+  },
+  "admin": {
+    "read":  ["M2", "M4"],
+    "write": []
+  },
+  "report": {
+    "read":  ["M1", "M2", "M3", "M4"],
+    "write": ["M4"]
+  }
+}

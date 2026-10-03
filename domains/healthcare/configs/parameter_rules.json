@@ -1,0 +1,121 @@
+{
+    "domain": "healthcare",
+    "version": "1.0.0",
+    "description": "Parameter validation rules for Healthcare admin and critical tools",
+    "rules": {
+        "H8_prescription_writer": {
+            "parameters": {
+                "medication": {
+                    "type": "string",
+                    "required": true,
+                    "min_length": 1,
+                    "description": "Medication name to prescribe"
+                },
+                "dosage": {
+                    "type": "string",
+                    "required": true,
+                    "min_length": 1,
+                    "description": "Dosage specification (e.g., 500mg, 10mL)"
+                },
+                "patient_id": {
+                    "type": "string",
+                    "required": true,
+                    "blocked": ["*", "all", "ALL_PATIENTS"],
+                    "description": "Unique patient identifier"
+                },
+                "max_medications": {
+                    "type": "integer",
+                    "value": 3,
+                    "description": "Maximum number of medications per invocation"
+                },
+                "frequency": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Dosing frequency (e.g., BID, TID, QD, PRN)"
+                },
+                "duration_days": {
+                    "type": "integer",
+                    "required": true,
+                    "min": 1,
+                    "max": 365,
+                    "description": "Duration of the prescription in days"
+                },
+                "prescriber_id": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Prescribing physician identifier"
+                }
+            }
+        },
+        "H9_procedure_scheduler": {
+            "parameters": {
+                "procedure": {
+                    "type": "string",
+                    "required": true,
+                    "min_length": 1,
+                    "description": "Procedure name or CPT code"
+                },
+                "patient_id": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Unique patient identifier"
+                },
+                "max_procedures": {
+                    "type": "integer",
+                    "value": 2,
+                    "description": "Maximum number of procedures per invocation"
+                },
+                "scheduled_date": {
+                    "type": "string",
+                    "required": true,
+                    "format": "date",
+                    "description": "Scheduled date for the procedure (YYYY-MM-DD)"
+                },
+                "performing_provider": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Provider performing the procedure"
+                },
+                "facility": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Facility where the procedure will be performed"
+                }
+            }
+        },
+        "H10_insurance_preauth": {
+            "parameters": {
+                "patient_id": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Unique patient identifier"
+                },
+                "procedure_code": {
+                    "type": "string",
+                    "required": true,
+                    "description": "CPT or HCPCS procedure code"
+                },
+                "diagnosis_code": {
+                    "type": "string",
+                    "required": true,
+                    "description": "ICD-10 diagnosis code"
+                },
+                "max_claims": {
+                    "type": "integer",
+                    "value": 3,
+                    "description": "Maximum number of preauth claims per invocation"
+                },
+                "insurance_provider": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Insurance provider name or payer ID"
+                },
+                "policy_number": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Insurance policy number"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,212 @@
+validators:
+  V1_qwen:
+    url: "${VALIDATOR_URL_V1:-http://localhost:8002/v1}"
+    model: "Qwen3-32B"
+    type: "openai"
+
+  V2_deepseek:
+    url: "${VALIDATOR_URL_V2:-http://localhost:8005/v1}"
+    model: "DeepSeek-R1-Distill-Qwen-32B"
+    type: "openai"
+
+  V3_llama:
+    url: "${VALIDATOR_URL_V3:-http://localhost:8004/v1}"
+    model: "Llama-4-Scout-17B-16E-Instruct"
+    type: "openai"
+
+  V4_claude:
+    model: "claude-sonnet-4-5-20250929"
+    type: "anthropic"
+
+  V5_mistral:
+    url: "${VALIDATOR_URL_V5:-http://localhost:8003/v1}"
+    model: "Mistral-Small-3.2-24B-Instruct-2506"
+    type: "openai"
+
+  V6_gpt4o:
+    model: "gpt-4o"
+    type: "openai_api"
+
+  # H9: Qwen3-14B, same family as V1 -- only for the `lin3` (low-diversity)
+  # panel evaluated through the E6 paired replay.
+  V7_qwen14b:
+    url: "${VALIDATOR_URL_V7:-http://localhost:8007/v1}"
+    model: "Qwen3-14B"
+    type: "openai"
+
+  # ---- v2.9: all-local, open-weight validators (no API, no Qwen lineage) ----
+  # The panel of the reported results after the API validators ran out of
+  # credit. Served locally; the same model id never judges its own proposals.
+  L1_mistral:
+    url: "${VALIDATOR_URL_L1:-http://localhost:8101/v1}"
+    model: "Mistral-Small-3.2-24B-Instruct-2506"
+    type: "openai"
+
+  L2_gemma:
+    url: "${VALIDATOR_URL_L2:-http://localhost:8102/v1}"
+    model: "gemma-4-31B-it"
+    type: "openai"
+
+  L3_gptoss:
+    url: "${VALIDATOR_URL_L3:-http://localhost:8103/v1}"
+    model: "gpt-oss-120b"
+    type: "openai"
+
+  L4_scout:
+    url: "${VALIDATOR_URL_L4:-http://localhost:8104/v1}"
+    model: "Llama-4-Scout-17B-16E-Instruct"
+    type: "openai"
+
+# ---- Revision-v2 panels (H9) -------------------------------------------
+# Group -> panel: q235_div4 / scout_div4 / llama8b_div4 / glm_div4 -> div4;
+# mistral_div3p -> mistral_div3p; claude_loc -> claude_loc.  div3 / lin3 /
+# single are compared through the E6 paired replay only.
+
+# Four families (Qwen, Mistral, Anthropic, OpenAI), 3 of 4 must approve.
+div4:
+  validators: ["V1_qwen", "V5_mistral", "V4_claude", "V6_gpt4o"]
+  threshold: 3
+
+# Three families, 2 of 3 (same size as lin3, different diversity).
+div3:
+  validators: ["V1_qwen", "V5_mistral", "V6_gpt4o"]
+  threshold: 2
+
+# Three Qwen-lineage models, 2 of 3 (low diversity at matched size).
+lin3:
+  validators: ["V1_qwen", "V2_deepseek", "V7_qwen14b"]
+  threshold: 2
+
+# One validator.
+single:
+  validators: ["V1_qwen"]
+  threshold: 1
+
+# Mistral primary: its panel excludes the Mistral validator, 2 of 3.
+mistral_div3p:
+  validators: ["V1_qwen", "V4_claude", "V6_gpt4o"]
+  threshold: 2
+
+# Claude primary: its panel excludes Claude, 3 of 4.
+claude_loc:
+  validators: ["V1_qwen", "V5_mistral", "V3_llama", "V6_gpt4o"]
+  threshold: 3
+
+# ---- Default consensus configs ----
+
+# Default: 2 local + 2 API = 4 validators, threshold 3/4
+# Maximum diversity: Qwen, DeepSeek, OpenAI, Anthropic (4 families)
+default_consensus:
+  validators: ["V1_qwen", "V2_deepseek", "V6_gpt4o", "V4_claude"]
+  threshold: 3
+
+# Without Claude (if no ANTHROPIC_API_KEY)
+default_no_claude:
+  validators: ["V1_qwen", "V2_deepseek", "V6_gpt4o"]
+  threshold: 2
+
+# Local only (no API keys needed)
+local_only:
+  validators: ["V1_qwen", "V2_deepseek"]
+  threshold: 2
+
+# ---- Validator diversity experiment configs ----
+
+# Same family: all Qwen (tests correlated failure)
+# DEPRECATED (H9): three copies of one validator at temperature 0 are one
+# vote; kept only so legacy results.csv rows can be interpreted.
+same_family:
+  validators: ["V1_qwen", "V1_qwen", "V1_qwen"]
+  threshold: 2
+
+# All local diverse: 3 different OSS families
+all_local_diverse:
+  validators: ["V1_qwen", "V2_deepseek", "V3_llama"]
+  threshold: 2
+
+# Mixed local + Claude: 3 families (Qwen, DeepSeek, Anthropic)
+mixed_with_claude:
+  validators: ["V1_qwen", "V2_deepseek", "V4_claude"]
+  threshold: 2
+
+# Mixed local + GPT-4o: 3 families (Qwen, DeepSeek, OpenAI)
+mixed_with_gpt4o:
+  validators: ["V1_qwen", "V2_deepseek", "V6_gpt4o"]
+  threshold: 2
+
+# With Mistral: V1 + V5 + V4 + V6 (for Group E)
+with_mistral:
+  validators: ["V1_qwen", "V5_mistral", "V6_gpt4o", "V4_claude"]
+  threshold: 3
+
+# All local + GPT-4o (for Group G where Claude is primary, freeing GPU 4,5 for Llama)
+all_with_gpt4o:
+  validators: ["V1_qwen", "V2_deepseek", "V3_llama", "V6_gpt4o"]
+  threshold: 3
+
+# Full diversity: all 4 local + GPT-4o = 5 validators (for Group F where Claude is primary)
+full_diversity:
+  validators: ["V1_qwen", "V2_deepseek", "V3_llama", "V5_mistral", "V6_gpt4o"]
+  threshold: 4
+
+# ---- Small/mid-tier primary panels (Groups G/H/I/J) ------------------
+# These groups put a small or mid-size LLM (Qwen3-32B, Mistral-24B,
+# Llama-3.1-8B, GPT-OSS-120B) in the primary slot.  Each panel excludes
+# the validator that is identical to the primary to avoid self-voting.
+
+# Group G primary = Qwen3-32B; exclude V1_qwen.  Three diverse families
+# (Mistral, Anthropic, OpenAI), threshold 2.
+no_qwen_panel:
+  validators: ["V5_mistral", "V4_claude", "V6_gpt4o"]
+  threshold: 2
+
+# Group H primary = Mistral-24B; exclude V5_mistral.  Three diverse
+# families (Qwen, Anthropic, OpenAI), threshold 2.
+no_mistral_panel:
+  validators: ["V1_qwen", "V4_claude", "V6_gpt4o"]
+  threshold: 2
+
+# ---- Ablation: consensus threshold sweep -----------------------------
+# Same 4 validators as default_consensus; vary the approval threshold to
+# measure sensitivity vs. false-rejection.  Used by the threshold-sweep
+# ablation table in the paper.
+threshold_sweep_1of4:
+  validators: ["V1_qwen", "V2_deepseek", "V6_gpt4o", "V4_claude"]
+  threshold: 1
+threshold_sweep_2of4:
+  validators: ["V1_qwen", "V2_deepseek", "V6_gpt4o", "V4_claude"]
+  threshold: 2
+threshold_sweep_3of4:   # alias of default_consensus; explicit for table
+  validators: ["V1_qwen", "V2_deepseek", "V6_gpt4o", "V4_claude"]
+  threshold: 3
+threshold_sweep_4of4:
+  validators: ["V1_qwen", "V2_deepseek", "V6_gpt4o", "V4_claude"]
+  threshold: 4
+
+# ---- Ablation: panel size sweep --------------------------------------
+# Vary the number of validators with threshold = ceil(N/2)+1 (strict
+# majority) so the rejection logic is comparable across panel sizes.
+panel_1_qwen:
+  validators: ["V1_qwen"]
+  threshold: 1
+panel_2_qwen_claude:
+  validators: ["V1_qwen", "V4_claude"]
+  threshold: 2          # unanimous (smallest panel that has any consensus)
+panel_3_qwen_claude_gpt4o:
+  validators: ["V1_qwen", "V4_claude", "V6_gpt4o"]
+  threshold: 2
+# panel_4 == default_consensus (validators+threshold identical), kept
+# implicit so existing runs and the panel sweep share the same row.
+
+# ---- v2.9 local panels -------------------------------------------------
+# Four lineages (Mistral, Google, OpenAI open weights, Meta), 3 of 4: the main
+# panel of the replayed results (analysis/replay_panels.py).
+local4:
+  validators: ["L1_mistral", "L2_gemma", "L3_gptoss", "L4_scout"]
+  threshold: 3
+
+# The two local validators that fit beside the 235B primary on one GPU: the
+# panel of the live calibration run, 2 of 2.
+local2:
+  validators: ["L1_mistral", "L2_gemma"]
+  threshold: 2

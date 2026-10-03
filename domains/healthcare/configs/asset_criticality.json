@@ -1,0 +1,85 @@
+{
+    "domain": "healthcare",
+    "version": "1.0.0",
+    "description": "Critical asset definitions for Healthcare escalation and denial triggers",
+    "assets": {
+        "ehr_systems": {
+            "ehr-primary": {
+                "criticality": "critical",
+                "type": "ehr",
+                "description": "Primary Electronic Health Record system"
+            },
+            "ehr-backup": {
+                "criticality": "high",
+                "type": "ehr",
+                "description": "Backup EHR system for failover"
+            }
+        },
+        "medication_dispensing": {
+            "medsafe-01": {
+                "criticality": "critical",
+                "type": "medication_dispensing",
+                "description": "Primary automated medication dispensing system"
+            },
+            "medsafe-02": {
+                "criticality": "high",
+                "type": "medication_dispensing",
+                "description": "Secondary medication dispensing system"
+            }
+        },
+        "patient_monitoring": {
+            "vitals-central": {
+                "criticality": "critical",
+                "type": "patient_monitoring",
+                "description": "Central patient vitals monitoring hub"
+            },
+            "telemetry-server": {
+                "criticality": "high",
+                "type": "patient_monitoring",
+                "description": "Cardiac telemetry monitoring server"
+            }
+        },
+        "lab_systems": {
+            "lab-lis": {
+                "criticality": "high",
+                "type": "laboratory",
+                "description": "Laboratory Information System"
+            },
+            "lab-analyzer": {
+                "criticality": "medium",
+                "type": "laboratory",
+                "description": "Automated lab analyzer interface"
+            }
+        },
+        "billing": {
+            "billing-primary": {
+                "criticality": "high",
+                "type": "billing",
+                "description": "Primary medical billing and claims system"
+            },
+            "billing-clearinghouse": {
+                "criticality": "medium",
+                "type": "billing",
+                "description": "Insurance clearinghouse interface"
+            }
+        }
+    },
+    "criticality_levels": {
+        "critical": {
+            "action": "deny_and_escalate",
+            "description": "Actions targeting critical assets are denied and escalated to clinical staff"
+        },
+        "high": {
+            "action": "escalate",
+            "description": "Actions targeting high-criticality assets require MMA consensus before execution"
+        },
+        "medium": {
+            "action": "log_and_proceed",
+            "description": "Actions are logged with enhanced audit trail"
+        },
+        "low": {
+            "action": "proceed",
+            "description": "Standard processing"
+        }
+    }
+}

@@ -1,0 +1,26 @@
+# DEFER Configuration
+# Full P1-P5 enforcement.
+# Phase-scoped, Host-mediated, consensus-validated, MMA-mediated.
+# 56 verified trust boundaries.
+
+name: agenticcyops
+description: "Full DEFER framework with all 5 defensive principles"
+
+enforcement:
+  manifest_check: true     # P2: capability scoping at application layer
+  consensus: true          # P3: multi-model consensus before irreversible actions
+  mma_gateway: true        # P4+P5: MMA mediates all memory access
+  write_filter: true       # P4: cosine similarity write-boundary filtering
+  acl_layer: false         # not needed — P2 is stronger
+
+agent_tool_visibility: manifest_only  # agents see ONLY phase-allowed tools
+memory_access: mma_mediated           # all access through MMA gateway
+agent_communication: host_mediated    # sequential handoffs only
+escalation: on_bulk_or_rejection      # triggers on bulk actions or consensus failure
+
+principles:
+  P1_authorized_interface: true    # signed manifests, admin-approved catalog
+  P2_capability_scoping: true      # phase-to-tool restriction
+  P3_verified_execution: true      # consensus before irreversible actions
+  P4_memory_integrity: true        # write-boundary filtering + versioned ledger
+  P5_access_control: true          # MMA-mediated phase-partitioned access

@@ -1,0 +1,602 @@
+[
+  {
+    "id": "code_001",
+    "text": "YARA rule detecting Cobalt Strike beacon payloads in memory. Matches on characteristic shellcode patterns, named pipe strings, and default watermark values commonly found in cracked Cobalt Strike distributions.",
+    "metadata": {
+      "script_name": "detect_cobaltstrike_beacon.yar",
+      "language": "yara",
+      "purpose": "detection",
+      "author": "jsmith",
+      "last_modified": "2025-11-14",
+      "mitre_mapping": "T1071.001"
+    }
+  },
+  {
+    "id": "code_002",
+    "text": "Sigma rule for detecting suspicious PowerShell download cradles using Invoke-WebRequest, Invoke-RestMethod, Net.WebClient, and BitsTransfer with encoded command-line arguments. Triggers on process creation events with specific command-line patterns.",
+    "metadata": {
+      "script_name": "powershell_download_cradle.yml",
+      "language": "sigma",
+      "purpose": "detection",
+      "author": "analystk",
+      "last_modified": "2025-09-22",
+      "mitre_mapping": "T1059.001"
+    }
+  },
+  {
+    "id": "code_003",
+    "text": "PowerShell script that performs forensic collection of Windows event logs, prefetch files, shimcache, amcache, and recent MFT entries. Outputs a structured ZIP archive suitable for timeline analysis in tools like AXIOM or Autopsy.",
+    "metadata": {
+      "script_name": "Invoke-ForensicCollection.ps1",
+      "language": "powershell",
+      "purpose": "forensics",
+      "author": "dfir_lead",
+      "last_modified": "2025-08-05",
+      "mitre_mapping": null
+    }
+  },
+  {
+    "id": "code_004",
+    "text": "Python threat hunting script that queries Elasticsearch for anomalous parent-child process relationships. Uses a baseline model of normal process trees to flag deviations such as Word spawning cmd.exe or Excel launching PowerShell.",
+    "metadata": {
+      "script_name": "hunt_process_tree_anomalies.py",
+      "language": "python",
+      "purpose": "hunting",
+      "author": "threat_hunter1",
+      "last_modified": "2025-10-30",
+      "mitre_mapping": "T1204.002"
+    }
+  },
+  {
+    "id": "code_005",
+    "text": "Ansible playbook that isolates a compromised host by applying firewall rules to block all traffic except management VLAN, disabling the user account, and rotating credentials on affected service accounts. Sends Slack notification upon completion.",
+    "metadata": {
+      "script_name": "isolate_compromised_host.yml",
+      "language": "ansible",
+      "purpose": "remediation",
+      "author": "secops_auto",
+      "last_modified": "2026-01-12",
+      "mitre_mapping": null
+    }
+  },
+  {
+    "id": "code_006",
+    "text": "Bash script that parses Apache and Nginx access logs to identify potential web shell callbacks. Detects repeated POST requests to uncommon URI paths with small response sizes and correlates with known web shell user-agent strings.",
+    "metadata": {
+      "script_name": "detect_webshell_callbacks.sh",
+      "language": "bash",
+      "purpose": "detection",
+      "author": "analystk",
+      "last_modified": "2025-07-19",
+      "mitre_mapping": "T1505.003"
+    }
+  },
+  {
+    "id": "code_007",
+    "text": "SQL query suite for detecting anomalous database access patterns. Identifies accounts accessing tables outside their historical baseline, bulk SELECT operations during off-hours, and privilege escalation via GRANT statements from non-DBA accounts.",
+    "metadata": {
+      "script_name": "db_anomaly_detection.sql",
+      "language": "sql",
+      "purpose": "analysis",
+      "author": "db_sec_team",
+      "last_modified": "2025-12-03",
+      "mitre_mapping": "T1078.004"
+    }
+  },
+  {
+    "id": "code_008",
+    "text": "YARA rule for identifying QakBot malware dropper documents. Matches on embedded macro patterns, characteristic XOR encoding routines, and known C2 URL structures stored in document metadata fields.",
+    "metadata": {
+      "script_name": "detect_qakbot_dropper.yar",
+      "language": "yara",
+      "purpose": "detection",
+      "author": "malware_lab",
+      "last_modified": "2025-06-28",
+      "mitre_mapping": "T1566.001"
+    }
+  },
+  {
+    "id": "code_009",
+    "text": "Sigma detection rule for Kerberoasting activity. Monitors Windows Security Event ID 4769 for TGS requests using RC4 encryption (0x17) targeting service accounts, excluding machine accounts and known service principals.",
+    "metadata": {
+      "script_name": "kerberoasting_detection.yml",
+      "language": "sigma",
+      "purpose": "detection",
+      "author": "adsec_team",
+      "last_modified": "2025-11-01",
+      "mitre_mapping": "T1558.003"
+    }
+  },
+  {
+    "id": "code_010",
+    "text": "PowerShell script for extracting and analyzing Windows Scheduled Tasks across remote hosts. Identifies persistence mechanisms by flagging tasks with encoded commands, tasks running from temp directories, and recently created tasks by non-admin accounts.",
+    "metadata": {
+      "script_name": "Invoke-ScheduledTaskAudit.ps1",
+      "language": "powershell",
+      "purpose": "hunting",
+      "author": "threat_hunter1",
+      "last_modified": "2025-09-15",
+      "mitre_mapping": "T1053.005"
+    }
+  },
+  {
+    "id": "code_011",
+    "text": "Python script that integrates with VirusTotal, AbuseIPDB, and Shodan APIs to perform bulk IOC enrichment. Accepts a CSV of indicators, classifies them (IP, domain, hash), queries relevant services, and outputs a consolidated enrichment report.",
+    "metadata": {
+      "script_name": "ioc_enrichment_pipeline.py",
+      "language": "python",
+      "purpose": "analysis",
+      "author": "cti_analyst2",
+      "last_modified": "2026-02-18",
+      "mitre_mapping": null
+    }
+  },
+  {
+    "id": "code_012",
+    "text": "Ansible playbook for mass password rotation across Active Directory service accounts. Generates cryptographically secure passwords, updates AD via LDAP, syncs new credentials to CyberArk vault, and validates service connectivity post-rotation.",
+    "metadata": {
+      "script_name": "rotate_service_account_passwords.yml",
+      "language": "ansible",
+      "purpose": "remediation",
+      "author": "secops_auto",
+      "last_modified": "2025-10-07",
+      "mitre_mapping": "T1078.002"
+    }
+  },
+  {
+    "id": "code_013",
+    "text": "Bash script that monitors DNS query logs from Bind9 and CoreDNS for data exfiltration indicators. Flags domains with high entropy subdomain labels, excessive TXT record queries, and requests to known DNS tunneling infrastructure.",
+    "metadata": {
+      "script_name": "dns_exfil_monitor.sh",
+      "language": "bash",
+      "purpose": "detection",
+      "author": "netsec_ops",
+      "last_modified": "2025-08-22",
+      "mitre_mapping": "T1048.001"
+    }
+  },
+  {
+    "id": "code_014",
+    "text": "SQL queries for analyzing VPN authentication logs to detect credential stuffing and password spraying attacks. Identifies accounts with failed logins from multiple source IPs, geographically impossible travel, and logins from known proxy/VPN exit nodes.",
+    "metadata": {
+      "script_name": "vpn_auth_anomaly.sql",
+      "language": "sql",
+      "purpose": "detection",
+      "author": "iam_sec",
+      "last_modified": "2025-12-15",
+      "mitre_mapping": "T1110.003"
+    }
+  },
+  {
+    "id": "code_015",
+    "text": "YARA rule for detecting LockBit 3.0 ransomware artifacts. Matches on characteristic mutex names, ransom note templates, wallpaper modification routines, and the unique file extension appending logic used during encryption.",
+    "metadata": {
+      "script_name": "detect_lockbit3.yar",
+      "language": "yara",
+      "purpose": "detection",
+      "author": "malware_lab",
+      "last_modified": "2025-05-17",
+      "mitre_mapping": "T1486"
+    }
+  },
+  {
+    "id": "code_016",
+    "text": "Sigma rule detecting DCSync attacks by monitoring for DRS replication requests (Event ID 4662) from non-domain-controller sources. Alerts when replication privileges are exercised by accounts not in the Domain Controllers group.",
+    "metadata": {
+      "script_name": "dcsync_detection.yml",
+      "language": "sigma",
+      "purpose": "detection",
+      "author": "adsec_team",
+      "last_modified": "2026-01-20",
+      "mitre_mapping": "T1003.006"
+    }
+  },
+  {
+    "id": "code_017",
+    "text": "PowerShell script for analyzing Windows EVTX files offline. Parses Security, Sysmon, and PowerShell operational logs to build a timeline of attacker activity including logon events, process creation, file modifications, and registry changes.",
+    "metadata": {
+      "script_name": "Invoke-EVTXTimeline.ps1",
+      "language": "powershell",
+      "purpose": "forensics",
+      "author": "dfir_lead",
+      "last_modified": "2025-11-28",
+      "mitre_mapping": null
+    }
+  },
+  {
+    "id": "code_018",
+    "text": "Python script that performs automated PCAP analysis for lateral movement indicators. Extracts SMB, WMI, WinRM, and RDP sessions from packet captures, maps connection graphs, and identifies beaconing patterns using statistical interval analysis.",
+    "metadata": {
+      "script_name": "pcap_lateral_movement_analyzer.py",
+      "language": "python",
+      "purpose": "forensics",
+      "author": "netsec_ops",
+      "last_modified": "2025-10-12",
+      "mitre_mapping": "T1021"
+    }
+  },
+  {
+    "id": "code_019",
+    "text": "Ansible playbook for deploying and configuring Sysmon across Windows endpoints. Applies the SwiftOnSecurity Sysmon configuration with custom additions for detecting named pipe creation, WMI event consumers, and DLL side-loading attempts.",
+    "metadata": {
+      "script_name": "deploy_sysmon_fleet.yml",
+      "language": "ansible",
+      "purpose": "detection",
+      "author": "secops_auto",
+      "last_modified": "2025-07-30",
+      "mitre_mapping": null
+    }
+  },
+  {
+    "id": "code_020",
+    "text": "Bash script for parsing and correlating Linux audit logs (auditd) with systemd journal entries. Identifies unauthorized privilege escalation via sudo abuse, unexpected cron job modifications, and suspicious binary execution from world-writable directories.",
+    "metadata": {
+      "script_name": "linux_audit_correlator.sh",
+      "language": "bash",
+      "purpose": "analysis",
+      "author": "linux_sec",
+      "last_modified": "2025-09-08",
+      "mitre_mapping": "T1548.003"
+    }
+  },
+  {
+    "id": "code_021",
+    "text": "SQL query for detecting data exfiltration via abnormal database export operations. Monitors for SELECT INTO OUTFILE statements, large result set retrievals, and mysqldump executions outside of scheduled backup windows.",
+    "metadata": {
+      "script_name": "db_exfil_detection.sql",
+      "language": "sql",
+      "purpose": "detection",
+      "author": "db_sec_team",
+      "last_modified": "2026-03-01",
+      "mitre_mapping": "T1567"
+    }
+  },
+  {
+    "id": "code_022",
+    "text": "YARA rule for detecting Sliver C2 implants in both PE and ELF formats. Matches on characteristic protobuf structures, mTLS certificate patterns, and HTTP C2 profile configurations embedded in the compiled implant binary.",
+    "metadata": {
+      "script_name": "detect_sliver_c2.yar",
+      "language": "yara",
+      "purpose": "detection",
+      "author": "malware_lab",
+      "last_modified": "2026-02-05",
+      "mitre_mapping": "T1071.001"
+    }
+  },
+  {
+    "id": "code_023",
+    "text": "Sigma rule for detecting LSASS memory dumping via common tools including Mimikatz, ProcDump, comsvcs.dll MiniDump, and Task Manager. Monitors for both direct LSASS access and suspicious process handles to the LSASS process.",
+    "metadata": {
+      "script_name": "lsass_memory_dump_detection.yml",
+      "language": "sigma",
+      "purpose": "detection",
+      "author": "adsec_team",
+      "last_modified": "2025-12-10",
+      "mitre_mapping": "T1003.001"
+    }
+  },
+  {
+    "id": "code_024",
+    "text": "Python threat hunting script that analyzes Office 365 Unified Audit Logs for Business Email Compromise indicators. Detects inbox rule creation forwarding to external addresses, consent grant phishing, and OAuth app registrations by non-admin users.",
+    "metadata": {
+      "script_name": "hunt_bec_o365.py",
+      "language": "python",
+      "purpose": "hunting",
+      "author": "cloud_sec",
+      "last_modified": "2026-01-25",
+      "mitre_mapping": "T1114.003"
+    }
+  },
+  {
+    "id": "code_025",
+    "text": "PowerShell script for bulk memory acquisition from remote Windows endpoints using WinRM. Leverages WinPmem to capture full memory images, calculates SHA256 hashes for integrity, and uploads to forensic evidence store via SCP.",
+    "metadata": {
+      "script_name": "Invoke-RemoteMemoryAcquisition.ps1",
+      "language": "powershell",
+      "purpose": "forensics",
+      "author": "dfir_lead",
+      "last_modified": "2025-06-14",
+      "mitre_mapping": null
+    }
+  },
+  {
+    "id": "code_026",
+    "text": "Ansible playbook that deploys emergency firewall rules to block known C2 infrastructure. Accepts a list of IOCs, distributes rules to Palo Alto, Fortinet, and iptables-based firewalls, and validates rule application via connectivity tests.",
+    "metadata": {
+      "script_name": "emergency_c2_block.yml",
+      "language": "ansible",
+      "purpose": "remediation",
+      "author": "secops_auto",
+      "last_modified": "2026-03-10",
+      "mitre_mapping": "T1071"
+    }
+  },
+  {
+    "id": "code_027",
+    "text": "Bash script for analyzing CloudTrail logs to detect IAM privilege escalation in AWS environments. Flags CreateRole, AttachRolePolicy, PutUserPolicy, and AssumeRole actions by users without prior history of IAM administrative actions.",
+    "metadata": {
+      "script_name": "aws_iam_escalation_detector.sh",
+      "language": "bash",
+      "purpose": "detection",
+      "author": "cloud_sec",
+      "last_modified": "2025-11-05",
+      "mitre_mapping": "T1098.003"
+    }
+  },
+  {
+    "id": "code_028",
+    "text": "Python script that generates MITRE ATT&CK heat maps from historical incident data. Ingests case management exports, maps observed TTPs to ATT&CK Navigator layers, and identifies coverage gaps in current detection rule portfolio.",
+    "metadata": {
+      "script_name": "attack_coverage_mapper.py",
+      "language": "python",
+      "purpose": "analysis",
+      "author": "cti_analyst2",
+      "last_modified": "2026-02-28",
+      "mitre_mapping": null
+    }
+  },
+  {
+    "id": "code_029",
+    "text": "Sigma rule for detecting living-off-the-land binary (LOLBin) abuse. Covers certutil URL downloads, mshta script execution, regsvr32 scrobj loading, rundll32 JavaScript execution, and bitsadmin file transfers with suspicious parameters.",
+    "metadata": {
+      "script_name": "lolbin_abuse_detection.yml",
+      "language": "sigma",
+      "purpose": "detection",
+      "author": "analystk",
+      "last_modified": "2026-01-08",
+      "mitre_mapping": "T1218"
+    }
+  },
+  {
+    "id": "code_030",
+    "text": "YARA rule for detecting ALPHV/BlackCat ransomware samples across Windows and Linux variants. Identifies characteristic Rust compiler artifacts, embedded ransom note JSON templates, and the unique file enumeration and encryption threading model.",
+    "metadata": {
+      "script_name": "detect_alphv_blackcat.yar",
+      "language": "yara",
+      "purpose": "detection",
+      "author": "malware_lab",
+      "last_modified": "2025-10-20",
+      "mitre_mapping": "T1486"
+    }
+  },
+  {
+    "id": "code_031",
+    "text": "Python script for auditing AWS IAM policies across all accounts in an AWS Organization. Enumerates all IAM users, roles, and policies, identifies overly permissive policies (wildcards in actions or resources), detects unused credentials older than 90 days, and generates a compliance report with remediation recommendations.",
+    "metadata": {
+      "script_name": "aws_iam_audit.py",
+      "language": "python",
+      "purpose": "analysis",
+      "author": "cloud_sec",
+      "last_modified": "2026-03-15",
+      "mitre_mapping": "T1078.004"
+    }
+  },
+  {
+    "id": "code_032",
+    "text": "KQL queries for Azure Sentinel analytics rules detecting suspicious sign-in patterns, impossible travel, and token replay attacks. Includes rules for monitoring Azure AD risky sign-ins, conditional access policy bypass attempts, and service principal abuse across multi-tenant environments.",
+    "metadata": {
+      "script_name": "azure_sentinel_signin_rules.kql",
+      "language": "kql",
+      "purpose": "detection",
+      "author": "cloud_sec",
+      "last_modified": "2026-02-20",
+      "mitre_mapping": "T1078.004"
+    }
+  },
+  {
+    "id": "code_033",
+    "text": "Python script for automated container image vulnerability scanning using Trivy and Grype. Scans all images in the private registry, correlates findings with CISA KEV catalog, generates severity-ranked reports, and creates Jira tickets for critical findings with SLA tracking.",
+    "metadata": {
+      "script_name": "container_vuln_scanner.py",
+      "language": "python",
+      "purpose": "analysis",
+      "author": "devsecops",
+      "last_modified": "2026-03-20",
+      "mitre_mapping": null
+    }
+  },
+  {
+    "id": "code_034",
+    "text": "Python script for API security testing using OWASP ZAP in daemon mode. Automates authentication, API schema import from OpenAPI specifications, active scanning for OWASP API Top 10 vulnerabilities including BOLA, broken authentication, and excessive data exposure. Outputs SARIF format for CI/CD integration.",
+    "metadata": {
+      "script_name": "api_security_scanner.py",
+      "language": "python",
+      "purpose": "analysis",
+      "author": "appsec_team",
+      "last_modified": "2026-01-30",
+      "mitre_mapping": "T1190"
+    }
+  },
+  {
+    "id": "code_035",
+    "text": "Python script for ingesting threat intelligence feeds from TAXII 2.1 servers, MISP instances, and custom CSV/STIX sources. Normalizes indicators into a common schema, deduplicates against the existing IOC database, enriches with context tags, and pushes to SIEM and firewall blocklists via API.",
+    "metadata": {
+      "script_name": "threat_feed_ingestion.py",
+      "language": "python",
+      "purpose": "analysis",
+      "author": "cti_analyst2",
+      "last_modified": "2026-03-08",
+      "mitre_mapping": null
+    }
+  },
+  {
+    "id": "code_036",
+    "text": "Python script for automated IOC extraction from unstructured threat reports, incident emails, and PDF documents. Uses regex patterns and NLP entity recognition to identify IP addresses, domains, file hashes, email addresses, CVE identifiers, and MITRE ATT&CK technique IDs. Outputs structured STIX 2.1 bundles.",
+    "metadata": {
+      "script_name": "ioc_extractor.py",
+      "language": "python",
+      "purpose": "analysis",
+      "author": "cti_analyst2",
+      "last_modified": "2026-02-12",
+      "mitre_mapping": null
+    }
+  },
+  {
+    "id": "code_037",
+    "text": "Python script for memory forensics using Volatility 3 framework. Automates common analysis workflows including process listing, network connection enumeration, DLL injection detection, code injection identification via malfind, and registry hive extraction. Generates a consolidated HTML report with suspicious findings highlighted.",
+    "metadata": {
+      "script_name": "memory_forensics_auto.py",
+      "language": "python",
+      "purpose": "forensics",
+      "author": "dfir_lead",
+      "last_modified": "2026-01-15",
+      "mitre_mapping": "T1055"
+    }
+  },
+  {
+    "id": "code_038",
+    "text": "Python script for network packet capture analysis using Scapy and pyshark libraries. Identifies beaconing behavior through statistical analysis of connection intervals, extracts files from HTTP and SMB streams, detects DNS tunneling via entropy analysis, and maps lateral movement paths from authentication protocol analysis.",
+    "metadata": {
+      "script_name": "pcap_deep_analyzer.py",
+      "language": "python",
+      "purpose": "forensics",
+      "author": "netsec_ops",
+      "last_modified": "2026-03-05",
+      "mitre_mapping": "T1040"
+    }
+  },
+  {
+    "id": "code_039",
+    "text": "Bash script for AWS S3 bucket security audit across all accounts in the organization. Checks for public access settings, bucket policy misconfigurations, missing encryption, disabled logging, overly permissive ACLs, and cross-account access grants. Generates a risk-scored CSV report sorted by exposure severity.",
+    "metadata": {
+      "script_name": "aws_s3_security_audit.sh",
+      "language": "bash",
+      "purpose": "analysis",
+      "author": "cloud_sec",
+      "last_modified": "2026-02-25",
+      "mitre_mapping": "T1530"
+    }
+  },
+  {
+    "id": "code_040",
+    "text": "Sigma rule for detecting Kubernetes-specific attack patterns including unauthorized kubectl exec sessions, privileged pod creation, hostPath volume mounts to sensitive directories, service account token theft, and anomalous API server requests from pod IP addresses.",
+    "metadata": {
+      "script_name": "kubernetes_attack_detection.yml",
+      "language": "sigma",
+      "purpose": "detection",
+      "author": "devsecops",
+      "last_modified": "2026-03-18",
+      "mitre_mapping": "T1610"
+    }
+  },
+  {
+    "id": "code_041",
+    "text": "Python script for Dockerfile security linting and best practice validation. Checks for running as root, use of latest tags, exposed secrets in build arguments, unnecessary package installations, missing health checks, and unsigned base images. Integrates with CI/CD pipeline as a pre-merge gate.",
+    "metadata": {
+      "script_name": "dockerfile_security_lint.py",
+      "language": "python",
+      "purpose": "analysis",
+      "author": "devsecops",
+      "last_modified": "2026-01-22",
+      "mitre_mapping": null
+    }
+  },
+  {
+    "id": "code_042",
+    "text": "KQL query pack for Azure Sentinel detecting cloud-native attack patterns including storage account key extraction, Key Vault secret access from unusual IPs, Azure Function deployment with outbound connections, and Azure Resource Manager template deployments creating public-facing resources.",
+    "metadata": {
+      "script_name": "azure_cloud_attack_detection.kql",
+      "language": "kql",
+      "purpose": "detection",
+      "author": "cloud_sec",
+      "last_modified": "2026-03-12",
+      "mitre_mapping": "T1098"
+    }
+  },
+  {
+    "id": "code_043",
+    "text": "Python script for GCP security posture assessment. Audits IAM bindings for overly permissive roles, checks for publicly accessible Cloud Storage buckets and BigQuery datasets, verifies VPC firewall rules, and validates that audit logging is enabled across all projects in the organization.",
+    "metadata": {
+      "script_name": "gcp_security_audit.py",
+      "language": "python",
+      "purpose": "analysis",
+      "author": "cloud_sec",
+      "last_modified": "2026-02-08",
+      "mitre_mapping": "T1078.004"
+    }
+  },
+  {
+    "id": "code_044",
+    "text": "Bash script for automated PCAP rotation and archival on network sensor appliances. Manages disk space by rotating captures based on size and time thresholds, compresses archived captures with zstd, calculates SHA256 integrity hashes, and replicates archives to the forensic evidence store via rsync over SSH.",
+    "metadata": {
+      "script_name": "pcap_rotation_manager.sh",
+      "language": "bash",
+      "purpose": "forensics",
+      "author": "netsec_ops",
+      "last_modified": "2025-12-20",
+      "mitre_mapping": null
+    }
+  },
+  {
+    "id": "code_045",
+    "text": "Python script for MISP feed management and IOC lifecycle automation. Syncs events from upstream MISP communities, applies organization-specific tagging and correlation, retires stale indicators based on configurable TTL policies, and exports active IOCs to firewall, proxy, and EDR platforms.",
+    "metadata": {
+      "script_name": "misp_feed_manager.py",
+      "language": "python",
+      "purpose": "analysis",
+      "author": "cti_analyst2",
+      "last_modified": "2026-03-25",
+      "mitre_mapping": null
+    }
+  },
+  {
+    "id": "code_046",
+    "text": "PowerShell script for Windows memory dump analysis and triage. Parses crash dumps and hibernation files to extract running processes, loaded drivers, network connections, and registry hives. Flags known-malicious process names, suspicious DLLs loaded from temp directories, and unsigned kernel drivers.",
+    "metadata": {
+      "script_name": "Invoke-MemoryDumpTriage.ps1",
+      "language": "powershell",
+      "purpose": "forensics",
+      "author": "dfir_lead",
+      "last_modified": "2026-02-15",
+      "mitre_mapping": "T1003"
+    }
+  },
+  {
+    "id": "code_047",
+    "text": "Python script for API endpoint discovery and security assessment. Crawls Swagger/OpenAPI documentation, tests for authentication bypass on each endpoint, checks for rate limiting effectiveness, identifies sensitive data in responses, and tests for IDOR vulnerabilities using sequential and predictable identifiers.",
+    "metadata": {
+      "script_name": "api_endpoint_security_test.py",
+      "language": "python",
+      "purpose": "analysis",
+      "author": "appsec_team",
+      "last_modified": "2026-03-02",
+      "mitre_mapping": "T1190"
+    }
+  },
+  {
+    "id": "code_048",
+    "text": "Ansible playbook for deploying and configuring Falco runtime security on Kubernetes cluster nodes. Installs Falco as a DaemonSet with custom rules for detecting container escape attempts, sensitive file access, unexpected network connections from pods, and cryptocurrency mining process signatures.",
+    "metadata": {
+      "script_name": "deploy_falco_k8s.yml",
+      "language": "ansible",
+      "purpose": "detection",
+      "author": "devsecops",
+      "last_modified": "2026-02-28",
+      "mitre_mapping": "T1610"
+    }
+  },
+  {
+    "id": "code_049",
+    "text": "Python script for analyzing AWS CloudTrail logs to detect reconnaissance, persistence, and privilege escalation patterns. Uses statistical baselining to identify anomalous API call patterns per principal, flags resource enumeration sequences, and detects IAM backdoor creation including access key generation and role trust policy modification.",
+    "metadata": {
+      "script_name": "cloudtrail_threat_detector.py",
+      "language": "python",
+      "purpose": "hunting",
+      "author": "cloud_sec",
+      "last_modified": "2026-03-22",
+      "mitre_mapping": "T1087.004"
+    }
+  },
+  {
+    "id": "code_050",
+    "text": "Bash script for Linux live forensics collection suitable for cloud instances and containers. Captures running processes with full command lines, open file descriptors, network connections, loaded kernel modules, crontab entries, SSH authorized keys, bash history, and recently modified files. Packages output as a compressed tarball with SHA256 manifest for chain of custody.",
+    "metadata": {
+      "script_name": "linux_live_forensics.sh",
+      "language": "bash",
+      "purpose": "forensics",
+      "author": "dfir_lead",
+      "last_modified": "2026-01-28",
+      "mitre_mapping": null
+    }
+  }
+]

@@ -1,0 +1,1052 @@
+[
+  {
+    "id": "rule_001",
+    "text": "Detects pass-the-hash lateral movement by monitoring for NTLM authentication events where the logon type is 9 (NewCredentials) combined with credential material reuse across multiple hosts within a short time window.",
+    "metadata": {
+      "rule_id": "DET-001",
+      "rule_name": "Pass-the-Hash Lateral Movement",
+      "data_source": "windows_security",
+      "mitre_technique": "T1550.002",
+      "severity": "critical",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-03-28"
+    }
+  },
+  {
+    "id": "rule_002",
+    "text": "Identifies RDP brute force attempts by correlating multiple failed logon events (Event ID 4625) targeting port 3389 from a single source IP exceeding 15 attempts within a 5-minute window.",
+    "metadata": {
+      "rule_id": "DET-002",
+      "rule_name": "RDP Brute Force Detection",
+      "data_source": "windows_security",
+      "mitre_technique": "T1021.001",
+      "severity": "high",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-04-01"
+    }
+  },
+  {
+    "id": "rule_003",
+    "text": "Detects Mimikatz execution patterns by monitoring for process creation events with command-line arguments containing sekurlsa, kerberos, or lsadump modules, as well as known binary hashes associated with Mimikatz variants.",
+    "metadata": {
+      "rule_id": "DET-003",
+      "rule_name": "Mimikatz Credential Harvesting",
+      "data_source": "sysmon",
+      "mitre_technique": "T1003.001",
+      "severity": "critical",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-02-14"
+    }
+  },
+  {
+    "id": "rule_004",
+    "text": "Monitors for LSASS memory access by non-system processes using Sysmon Event ID 10 (ProcessAccess) with TargetImage matching lsass.exe and GrantedAccess flags indicating memory read operations (0x1010, 0x1410).",
+    "metadata": {
+      "rule_id": "DET-004",
+      "rule_name": "LSASS Memory Dump Attempt",
+      "data_source": "sysmon",
+      "mitre_technique": "T1003.001",
+      "severity": "critical",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-03-05"
+    }
+  },
+  {
+    "id": "rule_005",
+    "text": "Identifies command-and-control beacon patterns by detecting periodic HTTP/HTTPS connections with consistent interval timing and jitter characteristics. Analyzes connection frequency distribution over 24-hour sliding windows.",
+    "metadata": {
+      "rule_id": "DET-005",
+      "rule_name": "C2 Beacon Interval Detection",
+      "data_source": "network_flow",
+      "mitre_technique": "T1071.001",
+      "severity": "critical",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-01-22"
+    }
+  },
+  {
+    "id": "rule_006",
+    "text": "Detects DNS tunneling by analyzing DNS query patterns for unusually long subdomain labels, high entropy domain names, and abnormal query volume to specific domains exceeding baseline thresholds by 3 standard deviations.",
+    "metadata": {
+      "rule_id": "DET-006",
+      "rule_name": "DNS Tunneling Detection",
+      "data_source": "dns",
+      "mitre_technique": "T1071.004",
+      "severity": "high",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-03-18"
+    }
+  },
+  {
+    "id": "rule_007",
+    "text": "Monitors for large data uploads to external destinations exceeding 500MB within a single session or 2GB cumulative within 24 hours from a single host. Excludes whitelisted cloud backup and SaaS destinations.",
+    "metadata": {
+      "rule_id": "DET-007",
+      "rule_name": "Large Data Exfiltration via Network",
+      "data_source": "network_flow",
+      "mitre_technique": "T1048.001",
+      "severity": "high",
+      "false_positive_rate": "high",
+      "enabled": true,
+      "last_triggered": "2026-04-02"
+    }
+  },
+  {
+    "id": "rule_008",
+    "text": "Detects USB mass storage device connections on endpoints where removable media is restricted by policy. Triggers on Sysmon Event ID 6 (DriverLoad) for USB storage drivers and correlates with DLP agent block events.",
+    "metadata": {
+      "rule_id": "DET-008",
+      "rule_name": "Unauthorized USB Storage Device",
+      "data_source": "endpoint",
+      "mitre_technique": "T1052.001",
+      "severity": "medium",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-03-12"
+    }
+  },
+  {
+    "id": "rule_009",
+    "text": "Identifies token manipulation and impersonation by monitoring for processes calling AdjustTokenPrivileges to enable SeDebugPrivilege, SeImpersonatePrivilege, or SeAssignPrimaryTokenPrivilege from non-administrative contexts.",
+    "metadata": {
+      "rule_id": "DET-009",
+      "rule_name": "Access Token Manipulation",
+      "data_source": "sysmon",
+      "mitre_technique": "T1134.001",
+      "severity": "high",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-02-28"
+    }
+  },
+  {
+    "id": "rule_010",
+    "text": "Monitors Windows registry Run and RunOnce keys for modifications that establish persistence. Alerts on new or modified values under HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run and corresponding HKCU paths.",
+    "metadata": {
+      "rule_id": "DET-010",
+      "rule_name": "Registry Run Key Persistence",
+      "data_source": "sysmon",
+      "mitre_technique": "T1547.001",
+      "severity": "high",
+      "false_positive_rate": "high",
+      "enabled": true,
+      "last_triggered": "2026-03-25"
+    }
+  },
+  {
+    "id": "rule_011",
+    "text": "Detects creation or modification of scripts in Windows startup folders (Startup directory under Start Menu) by non-installer processes. Correlates with file creation events and process lineage to identify suspicious parent processes.",
+    "metadata": {
+      "rule_id": "DET-011",
+      "rule_name": "Startup Folder Script Persistence",
+      "data_source": "sysmon",
+      "mitre_technique": "T1547.001",
+      "severity": "medium",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-01-15"
+    }
+  },
+  {
+    "id": "rule_012",
+    "text": "Identifies malicious macro execution from Office documents by monitoring for child process spawning from WINWORD.EXE, EXCEL.EXE, or POWERPNT.EXE, particularly cmd.exe, powershell.exe, wscript.exe, or mshta.exe.",
+    "metadata": {
+      "rule_id": "DET-012",
+      "rule_name": "Office Macro Spawning Suspicious Process",
+      "data_source": "sysmon",
+      "mitre_technique": "T1566.001",
+      "severity": "critical",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-03-30"
+    }
+  },
+  {
+    "id": "rule_013",
+    "text": "Detects exploitation attempts against web-facing applications by correlating WAF alerts with endpoint telemetry showing post-exploitation activity such as web shell creation or reverse shell connections within 60 seconds.",
+    "metadata": {
+      "rule_id": "DET-013",
+      "rule_name": "Web Application Exploit Chain",
+      "data_source": "network_flow",
+      "mitre_technique": "T1190",
+      "severity": "critical",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-02-09"
+    }
+  },
+  {
+    "id": "rule_014",
+    "text": "Monitors for scheduled task creation via schtasks.exe or Task Scheduler COM interface with actions pointing to suspicious paths including temp directories, user profile appdata, or public folders.",
+    "metadata": {
+      "rule_id": "DET-014",
+      "rule_name": "Suspicious Scheduled Task Creation",
+      "data_source": "windows_security",
+      "mitre_technique": "T1053.005",
+      "severity": "high",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-03-14"
+    }
+  },
+  {
+    "id": "rule_015",
+    "text": "Identifies new Windows service installations where the service binary path points to a temporary directory, user-writable location, or contains obfuscated command-line parameters indicative of malware persistence.",
+    "metadata": {
+      "rule_id": "DET-015",
+      "rule_name": "Suspicious Service Installation",
+      "data_source": "windows_security",
+      "mitre_technique": "T1543.003",
+      "severity": "high",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-01-30"
+    }
+  },
+  {
+    "id": "rule_016",
+    "text": "Detects PowerShell execution with encoded commands by monitoring for powershell.exe or pwsh.exe launched with -EncodedCommand, -enc, or -e parameters. Decodes Base64 content for IOC matching against threat intelligence.",
+    "metadata": {
+      "rule_id": "DET-016",
+      "rule_name": "Encoded PowerShell Command Execution",
+      "data_source": "sysmon",
+      "mitre_technique": "T1059.001",
+      "severity": "high",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-04-03"
+    }
+  },
+  {
+    "id": "rule_017",
+    "text": "Monitors for DCSync attacks by detecting Directory Replication Service (DRS) remote protocol requests from non-domain-controller machines. Alerts when GetNCChanges requests originate from workstation IP addresses.",
+    "metadata": {
+      "rule_id": "DET-017",
+      "rule_name": "DCSync Attack Detection",
+      "data_source": "windows_security",
+      "mitre_technique": "T1003.006",
+      "severity": "critical",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": null
+    }
+  },
+  {
+    "id": "rule_018",
+    "text": "Detects Kerberoasting activity by monitoring for anomalous volumes of TGS-REQ requests for service principal names from a single user account, particularly targeting service accounts with weak encryption types (RC4).",
+    "metadata": {
+      "rule_id": "DET-018",
+      "rule_name": "Kerberoasting Service Ticket Requests",
+      "data_source": "windows_security",
+      "mitre_technique": "T1558.003",
+      "severity": "high",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-02-20"
+    }
+  },
+  {
+    "id": "rule_019",
+    "text": "Identifies WMI-based lateral movement by monitoring for WmiPrvSE.exe spawning suspicious child processes on remote systems. Correlates with Event ID 4648 (explicit credential logon) and WMI subscription creation events.",
+    "metadata": {
+      "rule_id": "DET-019",
+      "rule_name": "WMI Remote Execution",
+      "data_source": "sysmon",
+      "mitre_technique": "T1047",
+      "severity": "high",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-03-08"
+    }
+  },
+  {
+    "id": "rule_020",
+    "text": "Monitors for PsExec and similar remote execution tools by detecting named pipe creation (\\PSEXESVC) and service installation patterns characteristic of Sysinternals PsExec and its variants including PAExec and RemCom.",
+    "metadata": {
+      "rule_id": "DET-020",
+      "rule_name": "PsExec Remote Execution Detection",
+      "data_source": "sysmon",
+      "mitre_technique": "T1021.002",
+      "severity": "high",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-01-08"
+    }
+  },
+  {
+    "id": "rule_021",
+    "text": "Detects credential dumping from SAM database by monitoring for reg.exe save operations targeting HKLM\\SAM, HKLM\\SYSTEM, or HKLM\\SECURITY hives, as well as shadow copy access to these registry files.",
+    "metadata": {
+      "rule_id": "DET-021",
+      "rule_name": "SAM Database Credential Extraction",
+      "data_source": "sysmon",
+      "mitre_technique": "T1003.002",
+      "severity": "critical",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-02-05"
+    }
+  },
+  {
+    "id": "rule_022",
+    "text": "Identifies domain trust discovery and enumeration by monitoring for nltest.exe /domain_trusts commands, Active Directory LDAP queries for trustedDomain objects, and BloodHound-style LDAP enumeration patterns.",
+    "metadata": {
+      "rule_id": "DET-022",
+      "rule_name": "Active Directory Trust Enumeration",
+      "data_source": "windows_security",
+      "mitre_technique": "T1482",
+      "severity": "medium",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-03-20"
+    }
+  },
+  {
+    "id": "rule_023",
+    "text": "Monitors for phishing email delivery by analyzing inbound email metadata for suspicious sender domains, mismatched envelope-from and header-from addresses, recently registered domains, and known phishing infrastructure indicators.",
+    "metadata": {
+      "rule_id": "DET-023",
+      "rule_name": "Phishing Email Indicator Detection",
+      "data_source": "email",
+      "mitre_technique": "T1566.001",
+      "severity": "medium",
+      "false_positive_rate": "high",
+      "enabled": true,
+      "last_triggered": "2026-04-05"
+    }
+  },
+  {
+    "id": "rule_024",
+    "text": "Detects data staging for exfiltration by monitoring for rapid file copy operations to a single directory or archive file creation (zip, 7z, rar) in unusual locations followed by network transfer activity within 30 minutes.",
+    "metadata": {
+      "rule_id": "DET-024",
+      "rule_name": "Data Staging for Exfiltration",
+      "data_source": "endpoint",
+      "mitre_technique": "T1074.001",
+      "severity": "high",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-02-25"
+    }
+  },
+  {
+    "id": "rule_025",
+    "text": "Identifies DLL side-loading attempts by detecting known legitimate executables loading DLLs from non-standard paths. Maintains a baseline of expected DLL load paths for commonly abused signed binaries.",
+    "metadata": {
+      "rule_id": "DET-025",
+      "rule_name": "DLL Side-Loading Detection",
+      "data_source": "sysmon",
+      "mitre_technique": "T1574.002",
+      "severity": "high",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-01-19"
+    }
+  },
+  {
+    "id": "rule_026",
+    "text": "Monitors for process injection techniques including classic CreateRemoteThread injection, process hollowing, and APC injection by correlating cross-process memory allocation, write, and thread creation sequences in Sysmon telemetry.",
+    "metadata": {
+      "rule_id": "DET-026",
+      "rule_name": "Process Injection Detection",
+      "data_source": "sysmon",
+      "mitre_technique": "T1055",
+      "severity": "critical",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-03-02"
+    }
+  },
+  {
+    "id": "rule_027",
+    "text": "Detects volume shadow copy deletion or resize operations that may indicate ransomware preparation. Monitors for vssadmin.exe delete shadows, wmic shadowcopy delete, and bcdedit /set recoveryenabled no commands.",
+    "metadata": {
+      "rule_id": "DET-027",
+      "rule_name": "Shadow Copy Deletion - Ransomware Indicator",
+      "data_source": "sysmon",
+      "mitre_technique": "T1490",
+      "severity": "critical",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-02-12"
+    }
+  },
+  {
+    "id": "rule_028",
+    "text": "Identifies living-off-the-land binary (LOLBin) abuse by monitoring execution of certutil.exe for file downloads, mshta.exe for script execution, and regsvr32.exe for proxy execution of malicious DLLs.",
+    "metadata": {
+      "rule_id": "DET-028",
+      "rule_name": "LOLBin Abuse Detection",
+      "data_source": "sysmon",
+      "mitre_technique": "T1218",
+      "severity": "high",
+      "false_positive_rate": "high",
+      "enabled": true,
+      "last_triggered": "2026-03-22"
+    }
+  },
+  {
+    "id": "rule_029",
+    "text": "Monitors DNS queries for communication with known malicious domains, dynamic DNS providers commonly used by threat actors, and domains matching DGA (domain generation algorithm) entropy patterns above established thresholds.",
+    "metadata": {
+      "rule_id": "DET-029",
+      "rule_name": "Malicious Domain Communication",
+      "data_source": "dns",
+      "mitre_technique": "T1071.004",
+      "severity": "high",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-04-06"
+    }
+  },
+  {
+    "id": "rule_030",
+    "text": "Detects Golden Ticket attacks by identifying TGT tickets with anomalous lifetimes exceeding domain policy maximums, tickets issued by non-existent domain controllers, or Kerberos authentication events lacking corresponding AS-REQ records.",
+    "metadata": {
+      "rule_id": "DET-030",
+      "rule_name": "Golden Ticket Attack Detection",
+      "data_source": "windows_security",
+      "mitre_technique": "T1558.001",
+      "severity": "critical",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": null
+    }
+  },
+  {
+    "id": "rule_031",
+    "text": "Monitors for BITS (Background Intelligent Transfer Service) jobs created to download files from external URLs, a technique used by malware for stealthy file transfers that survive system reboots.",
+    "metadata": {
+      "rule_id": "DET-031",
+      "rule_name": "BITS Job Malicious Download",
+      "data_source": "sysmon",
+      "mitre_technique": "T1197",
+      "severity": "medium",
+      "false_positive_rate": "high",
+      "enabled": true,
+      "last_triggered": "2026-02-18"
+    }
+  },
+  {
+    "id": "rule_032",
+    "text": "Identifies email forwarding rule creation in Exchange Online and on-premises Exchange that redirects messages to external addresses. Detects inbox rules created via Outlook, OWA, and PowerShell that may indicate account compromise.",
+    "metadata": {
+      "rule_id": "DET-032",
+      "rule_name": "Suspicious Email Forwarding Rule",
+      "data_source": "email",
+      "mitre_technique": "T1114.003",
+      "severity": "high",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-03-15"
+    }
+  },
+  {
+    "id": "rule_033",
+    "text": "Detects privilege escalation via named pipe impersonation by monitoring for services or processes creating named pipes that are then connected to by higher-privilege processes, enabling token theft through impersonation.",
+    "metadata": {
+      "rule_id": "DET-033",
+      "rule_name": "Named Pipe Impersonation Privilege Escalation",
+      "data_source": "sysmon",
+      "mitre_technique": "T1134.001",
+      "severity": "high",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": null
+    }
+  },
+  {
+    "id": "rule_034",
+    "text": "Monitors for exfiltration over alternative protocol channels by detecting outbound connections on non-standard ports carrying HTTP, DNS, or ICMP traffic patterns that deviate from expected protocol behavior for the destination port.",
+    "metadata": {
+      "rule_id": "DET-034",
+      "rule_name": "Exfiltration Over Alternative Protocol",
+      "data_source": "network_flow",
+      "mitre_technique": "T1048",
+      "severity": "high",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-01-25"
+    }
+  },
+  {
+    "id": "rule_035",
+    "text": "Identifies Group Policy modification by non-authorized accounts by monitoring for changes to SYSVOL GPO files and Group Policy Object creation or modification events in Active Directory that originate from non-admin workstations.",
+    "metadata": {
+      "rule_id": "DET-035",
+      "rule_name": "Unauthorized Group Policy Modification",
+      "data_source": "windows_security",
+      "mitre_technique": "T1484.001",
+      "severity": "critical",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": null
+    }
+  },
+  {
+    "id": "rule_036",
+    "text": "Detects cloud credential theft by monitoring for API calls that enumerate IAM roles, access keys, or instance metadata service (IMDS) queries from non-EC2 source IPs or from instances without expected IAM role associations.",
+    "metadata": {
+      "rule_id": "DET-036",
+      "rule_name": "Cloud IAM Credential Enumeration",
+      "data_source": "network_flow",
+      "mitre_technique": "T1552.005",
+      "severity": "high",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-03-10"
+    }
+  },
+  {
+    "id": "rule_037",
+    "text": "Monitors for Windows Event Log clearing by detecting Event ID 1102 (audit log cleared) and Event ID 104 (system log cleared), as well as wevtutil.exe cl commands that may indicate an attacker covering their tracks.",
+    "metadata": {
+      "rule_id": "DET-037",
+      "rule_name": "Event Log Clearing Detection",
+      "data_source": "windows_security",
+      "mitre_technique": "T1070.001",
+      "severity": "high",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-02-07"
+    }
+  },
+  {
+    "id": "rule_038",
+    "text": "Detects web shell deployment by monitoring for new file creation in web server document root directories with extensions .aspx, .jsp, .php, or .ashx where the creating process is the web server worker process (w3wp.exe, httpd, java).",
+    "metadata": {
+      "rule_id": "DET-038",
+      "rule_name": "Web Shell File Creation",
+      "data_source": "endpoint",
+      "mitre_technique": "T1505.003",
+      "severity": "critical",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-01-12"
+    }
+  },
+  {
+    "id": "rule_039",
+    "text": "Identifies SSH tunneling and port forwarding by detecting ssh.exe or ssh processes launched with -L, -R, or -D flags establishing local, remote, or dynamic port forwards that may be used for data exfiltration or pivoting.",
+    "metadata": {
+      "rule_id": "DET-039",
+      "rule_name": "SSH Tunneling and Port Forwarding",
+      "data_source": "endpoint",
+      "mitre_technique": "T1572",
+      "severity": "medium",
+      "false_positive_rate": "high",
+      "enabled": false,
+      "last_triggered": "2025-12-20"
+    }
+  },
+  {
+    "id": "rule_040",
+    "text": "Monitors for AMSI (Antimalware Scan Interface) bypass attempts by detecting PowerShell scripts that modify amsiInitFailed, patch AmsiScanBuffer, or load reflection assemblies that tamper with AMSI provider registration.",
+    "metadata": {
+      "rule_id": "DET-040",
+      "rule_name": "AMSI Bypass Attempt Detection",
+      "data_source": "endpoint",
+      "mitre_technique": "T1562.001",
+      "severity": "high",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-03-27"
+    }
+  },
+  {
+    "id": "rule_041",
+    "text": "Detects anomalous AWS CloudTrail activity by monitoring for disabled logging, trail deletion, or S3 bucket policy changes on CloudTrail log buckets. Alerts when PutEventSelectors reduces monitored event categories or StopLogging is called on any trail.",
+    "metadata": {
+      "rule_id": "DET-041",
+      "rule_name": "AWS CloudTrail Tampering Detection",
+      "data_source": "cloudtrail",
+      "mitre_technique": "T1562.008",
+      "severity": "critical",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-03-15"
+    }
+  },
+  {
+    "id": "rule_042",
+    "text": "Identifies suspicious Azure AD sign-in patterns including sign-ins from anonymous IP addresses, unfamiliar locations, infected devices, and IP addresses with suspicious activity. Correlates with Azure AD Identity Protection risk detections.",
+    "metadata": {
+      "rule_id": "DET-042",
+      "rule_name": "Azure AD Suspicious Sign-In Activity",
+      "data_source": "azure_ad",
+      "mitre_technique": "T1078.004",
+      "severity": "high",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-04-04"
+    }
+  },
+  {
+    "id": "rule_043",
+    "text": "Monitors for GCP IAM policy changes including role bindings granted to external accounts, custom role creation with elevated permissions, and service account key creation outside of approved automation pipelines.",
+    "metadata": {
+      "rule_id": "DET-043",
+      "rule_name": "GCP IAM Privilege Escalation",
+      "data_source": "gcp_audit",
+      "mitre_technique": "T1078.004",
+      "severity": "high",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-04-06"
+    }
+  },
+  {
+    "id": "rule_044",
+    "text": "Detects Docker container escape attempts by monitoring for privileged container launches, mount of host filesystem paths, use of --pid=host or --net=host flags, and CAP_SYS_ADMIN capability assignments that could enable breakout from container isolation.",
+    "metadata": {
+      "rule_id": "DET-044",
+      "rule_name": "Docker Container Escape Detection",
+      "data_source": "container_runtime",
+      "mitre_technique": "T1611",
+      "severity": "critical",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-02-22"
+    }
+  },
+  {
+    "id": "rule_045",
+    "text": "Identifies Kubernetes RBAC abuse by detecting ClusterRoleBinding creation granting cluster-admin privileges, unauthorized access to secrets across namespaces, and service account token requests from pods not in the kube-system namespace.",
+    "metadata": {
+      "rule_id": "DET-045",
+      "rule_name": "Kubernetes RBAC Privilege Abuse",
+      "data_source": "kubernetes_audit",
+      "mitre_technique": "T1078.004",
+      "severity": "critical",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-03-28"
+    }
+  },
+  {
+    "id": "rule_046",
+    "text": "Monitors for container image tampering by detecting pulls from untrusted registries, image tag mutations on previously signed images, and containers running images with known CVEs rated critical or high in the vulnerability database.",
+    "metadata": {
+      "rule_id": "DET-046",
+      "rule_name": "Container Image Integrity Violation",
+      "data_source": "container_runtime",
+      "mitre_technique": "T1525",
+      "severity": "high",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-04-01"
+    }
+  },
+  {
+    "id": "rule_047",
+    "text": "Detects Business Email Compromise patterns by analyzing email content for urgent wire transfer requests, changes to payment details, and executive impersonation. Correlates sender reputation, display name matching, and reply-to address discrepancies.",
+    "metadata": {
+      "rule_id": "DET-047",
+      "rule_name": "Business Email Compromise Detection",
+      "data_source": "email",
+      "mitre_technique": "T1534",
+      "severity": "high",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-04-03"
+    }
+  },
+  {
+    "id": "rule_048",
+    "text": "Identifies display name spoofing in inbound emails where the display name matches an internal executive or VIP but the sending domain is external and unaffiliated. Checks against a maintained list of protected display names including C-suite and department heads.",
+    "metadata": {
+      "rule_id": "DET-048",
+      "rule_name": "Email Display Name Spoofing",
+      "data_source": "email",
+      "mitre_technique": "T1566.001",
+      "severity": "medium",
+      "false_positive_rate": "high",
+      "enabled": true,
+      "last_triggered": "2026-04-07"
+    }
+  },
+  {
+    "id": "rule_049",
+    "text": "Detects reply-chain hijacking attacks where inbound emails reference existing email threads with RE: or FW: prefixes but originate from external senders not present in the original thread. Correlates Message-ID headers with historical conversation records.",
+    "metadata": {
+      "rule_id": "DET-049",
+      "rule_name": "Reply-Chain Hijacking Detection",
+      "data_source": "email",
+      "mitre_technique": "T1566.001",
+      "severity": "high",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-03-19"
+    }
+  },
+  {
+    "id": "rule_050",
+    "text": "Monitors for TLS certificate anomalies in network traffic including self-signed certificates on well-known ports, certificates with validity periods exceeding 5 years, subject name mismatches, and certificates issued by CAs not in the approved trust store.",
+    "metadata": {
+      "rule_id": "DET-050",
+      "rule_name": "TLS Certificate Anomaly Detection",
+      "data_source": "network_flow",
+      "mitre_technique": "T1071.001",
+      "severity": "medium",
+      "false_positive_rate": "high",
+      "enabled": true,
+      "last_triggered": "2026-04-02"
+    }
+  },
+  {
+    "id": "rule_051",
+    "text": "Identifies malicious TLS sessions by matching JA3 and JA3S fingerprints against a curated database of known malware and C2 framework handshakes. Maintains fingerprints for Cobalt Strike, Sliver, Metasploit, and Havoc framework variations.",
+    "metadata": {
+      "rule_id": "DET-051",
+      "rule_name": "JA3/JA3S Malicious Fingerprint Match",
+      "data_source": "network_flow",
+      "mitre_technique": "T1071.001",
+      "severity": "high",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-03-30"
+    }
+  },
+  {
+    "id": "rule_052",
+    "text": "Detects ICMP tunneling by analyzing ICMP echo request and reply packets for payload sizes exceeding 64 bytes, non-standard type codes, and statistical anomalies in packet timing that indicate covert data channel establishment over ICMP protocol.",
+    "metadata": {
+      "rule_id": "DET-052",
+      "rule_name": "ICMP Tunneling Data Exfiltration",
+      "data_source": "network_flow",
+      "mitre_technique": "T1095",
+      "severity": "high",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-03-25"
+    }
+  },
+  {
+    "id": "rule_053",
+    "text": "Monitors for user activity outside of established working hours baselines. Alerts when users authenticate or access resources during hours that deviate more than 2 standard deviations from their 90-day activity profile, excluding pre-approved exception windows.",
+    "metadata": {
+      "rule_id": "DET-053",
+      "rule_name": "Working Hours Anomaly Detection",
+      "data_source": "windows_security",
+      "mitre_technique": "T1078",
+      "severity": "medium",
+      "false_positive_rate": "high",
+      "enabled": true,
+      "last_triggered": "2026-04-05"
+    }
+  },
+  {
+    "id": "rule_054",
+    "text": "Detects new administrator account creation by monitoring for user account creation events (Event ID 4720) followed by addition to privileged groups including Domain Admins, Enterprise Admins, Schema Admins, or local Administrators within 60 minutes.",
+    "metadata": {
+      "rule_id": "DET-054",
+      "rule_name": "New Admin Account Creation",
+      "data_source": "windows_security",
+      "mitre_technique": "T1136.002",
+      "severity": "critical",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-03-22"
+    }
+  },
+  {
+    "id": "rule_055",
+    "text": "Identifies mass file deletion events by monitoring for bulk delete operations exceeding 100 files within a 5-minute window on file servers and SharePoint Online. Excludes known maintenance accounts and correlates with user behavior baselines for legitimate cleanup operations.",
+    "metadata": {
+      "rule_id": "DET-055",
+      "rule_name": "Mass File Deletion Detection",
+      "data_source": "endpoint",
+      "mitre_technique": "T1485",
+      "severity": "high",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-03-19"
+    }
+  },
+  {
+    "id": "rule_056",
+    "text": "Detects timestamp stomping by comparing file creation timestamps in the MFT with the timestamps reported by the filesystem API. Alerts when the $STANDARD_INFORMATION timestamp precedes the $FILE_NAME timestamp, indicating deliberate timestamp manipulation.",
+    "metadata": {
+      "rule_id": "DET-056",
+      "rule_name": "NTFS Timestamp Stomping Detection",
+      "data_source": "sysmon",
+      "mitre_technique": "T1070.006",
+      "severity": "high",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-02-15"
+    }
+  },
+  {
+    "id": "rule_057",
+    "text": "Monitors for Security event log clearing and selective deletion of event records. Detects wevtutil clear-log Security, PowerShell Clear-EventLog, and direct manipulation of .evtx files. Also monitors for Event Log service stop and restart patterns.",
+    "metadata": {
+      "rule_id": "DET-057",
+      "rule_name": "Security Event Log Tampering",
+      "data_source": "windows_security",
+      "mitre_technique": "T1070.001",
+      "severity": "critical",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-03-12"
+    }
+  },
+  {
+    "id": "rule_058",
+    "text": "Detects MFT (Master File Table) manipulation by monitoring for raw disk access to NTFS volumes via CreateFile with \\\\.\\PhysicalDrive or \\\\.\\C: paths, and for processes reading or writing to $MFT metafile outside of normal system operations.",
+    "metadata": {
+      "rule_id": "DET-058",
+      "rule_name": "MFT Direct Manipulation Detection",
+      "data_source": "sysmon",
+      "mitre_technique": "T1070",
+      "severity": "critical",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": null
+    }
+  },
+  {
+    "id": "rule_059",
+    "text": "Identifies AWS CloudTrail log gaps by monitoring for periods exceeding 15 minutes without any recorded API events in active accounts. Correlates with CloudTrail status API and S3 log delivery metrics to distinguish between service outage and deliberate tampering.",
+    "metadata": {
+      "rule_id": "DET-059",
+      "rule_name": "AWS CloudTrail Log Gap Detection",
+      "data_source": "cloudtrail",
+      "mitre_technique": "T1562.008",
+      "severity": "high",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-01-28"
+    }
+  },
+  {
+    "id": "rule_060",
+    "text": "Monitors for Azure AD conditional access policy modifications and disabling events. Alerts on changes to named locations, session controls, and grant controls that weaken authentication requirements, particularly when changes occur outside of maintenance windows.",
+    "metadata": {
+      "rule_id": "DET-060",
+      "rule_name": "Azure AD Conditional Access Policy Weakening",
+      "data_source": "azure_ad",
+      "mitre_technique": "T1556",
+      "severity": "critical",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-04-01"
+    }
+  },
+  {
+    "id": "rule_061",
+    "text": "Detects container runtime exec operations by monitoring for kubectl exec, docker exec, and crictl exec commands targeting running containers. Alerts on interactive shell sessions and command execution in production namespace containers outside of approved break-glass procedures.",
+    "metadata": {
+      "rule_id": "DET-061",
+      "rule_name": "Container Runtime Exec Abuse",
+      "data_source": "kubernetes_audit",
+      "mitre_technique": "T1609",
+      "severity": "high",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-03-08"
+    }
+  },
+  {
+    "id": "rule_062",
+    "text": "Identifies email account takeover indicators by detecting sudden changes in email sending patterns, new device registrations, inbox rule modifications redirecting to external addresses, and MFA method changes occurring within the same session.",
+    "metadata": {
+      "rule_id": "DET-062",
+      "rule_name": "Email Account Takeover Indicator",
+      "data_source": "email",
+      "mitre_technique": "T1114.002",
+      "severity": "high",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-04-05"
+    }
+  },
+  {
+    "id": "rule_063",
+    "text": "Monitors for DNS-over-HTTPS (DoH) traffic to known public DoH resolvers that bypasses internal DNS monitoring. Detects connections to Cloudflare, Google, and Quad9 DoH endpoints from endpoints that should exclusively use corporate DNS infrastructure.",
+    "metadata": {
+      "rule_id": "DET-063",
+      "rule_name": "DNS-over-HTTPS Bypass Detection",
+      "data_source": "network_flow",
+      "mitre_technique": "T1071.004",
+      "severity": "medium",
+      "false_positive_rate": "high",
+      "enabled": false,
+      "last_triggered": "2026-02-10"
+    }
+  },
+  {
+    "id": "rule_064",
+    "text": "Detects anomalous first-time VPN connections from geographic regions where the organization has no offices or employees. Maintains a dynamic allowlist based on 180-day connection history and flags connections from countries with elevated cyber threat profiles.",
+    "metadata": {
+      "rule_id": "DET-064",
+      "rule_name": "Anomalous VPN Geographic Origin",
+      "data_source": "network_flow",
+      "mitre_technique": "T1133",
+      "severity": "high",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-04-04"
+    }
+  },
+  {
+    "id": "rule_065",
+    "text": "Identifies GCP Cloud Function and AWS Lambda abuse by detecting function creation or update events that configure outbound internet access, attach overly permissive IAM roles, or include environment variables containing credentials or API keys.",
+    "metadata": {
+      "rule_id": "DET-065",
+      "rule_name": "Serverless Function Abuse Detection",
+      "data_source": "cloudtrail",
+      "mitre_technique": "T1648",
+      "severity": "high",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-03-20"
+    }
+  },
+  {
+    "id": "rule_066",
+    "text": "Monitors for Kubernetes pod creation with hostPath volume mounts targeting sensitive host paths including /etc/shadow, /var/run/docker.sock, /proc, and /sys. Alerts on any pod spec mounting host filesystem paths outside of approved DaemonSet configurations.",
+    "metadata": {
+      "rule_id": "DET-066",
+      "rule_name": "K8s Sensitive Host Path Mount",
+      "data_source": "kubernetes_audit",
+      "mitre_technique": "T1611",
+      "severity": "critical",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-02-28"
+    }
+  },
+  {
+    "id": "rule_067",
+    "text": "Detects email thread injection attacks where a threat actor inserts themselves into an existing email conversation by spoofing In-Reply-To and References headers. Validates conversation threading integrity against mail flow logs.",
+    "metadata": {
+      "rule_id": "DET-067",
+      "rule_name": "Email Thread Injection Attack",
+      "data_source": "email",
+      "mitre_technique": "T1566.001",
+      "severity": "high",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-03-14"
+    }
+  },
+  {
+    "id": "rule_068",
+    "text": "Identifies TLS connections using expired, revoked, or certificates from known malicious CAs. Performs real-time OCSP and CRL validation for outbound connections and alerts on certificate chains that fail validation or use deprecated signature algorithms.",
+    "metadata": {
+      "rule_id": "DET-068",
+      "rule_name": "Invalid TLS Certificate Chain Detection",
+      "data_source": "network_flow",
+      "mitre_technique": "T1557",
+      "severity": "medium",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-04-02"
+    }
+  },
+  {
+    "id": "rule_069",
+    "text": "Monitors for bulk account creation events detecting more than 5 new user accounts created within a 30-minute window by a single administrator. Correlates with HR onboarding schedules and change management tickets to reduce false positives.",
+    "metadata": {
+      "rule_id": "DET-069",
+      "rule_name": "Bulk Account Creation Anomaly",
+      "data_source": "windows_security",
+      "mitre_technique": "T1136.002",
+      "severity": "medium",
+      "false_positive_rate": "medium",
+      "enabled": true,
+      "last_triggered": "2026-03-24"
+    }
+  },
+  {
+    "id": "rule_070",
+    "text": "Detects ransomware file encryption patterns by monitoring for rapid file rename operations with new extensions not matching the original file type, combined with creation of ransom note files matching known naming patterns across multiple directories.",
+    "metadata": {
+      "rule_id": "DET-070",
+      "rule_name": "Ransomware File Encryption Pattern",
+      "data_source": "endpoint",
+      "mitre_technique": "T1486",
+      "severity": "critical",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-01-05"
+    }
+  },
+  {
+    "id": "rule_071",
+    "text": "Identifies AWS S3 bucket policy changes that grant public access or cross-account access without prior approval. Monitors for PutBucketPolicy, PutBucketAcl, and PutPublicAccessBlock API calls that weaken bucket security posture.",
+    "metadata": {
+      "rule_id": "DET-071",
+      "rule_name": "AWS S3 Public Access Configuration",
+      "data_source": "cloudtrail",
+      "mitre_technique": "T1530",
+      "severity": "critical",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-04-05"
+    }
+  },
+  {
+    "id": "rule_072",
+    "text": "Monitors for Azure Key Vault access anomalies including bulk secret enumeration, key export operations, and access from IP addresses not in the vault firewall allowlist. Correlates with Azure AD sign-in risk scores for the accessing identity.",
+    "metadata": {
+      "rule_id": "DET-072",
+      "rule_name": "Azure Key Vault Suspicious Access",
+      "data_source": "azure_ad",
+      "mitre_technique": "T1552.001",
+      "severity": "critical",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-03-18"
+    }
+  },
+  {
+    "id": "rule_073",
+    "text": "Detects user behavior anomalies based on peer group analysis. Alerts when a user performs actions significantly different from their department peers, including accessing unusual applications, downloading abnormal data volumes, or authenticating from new device types.",
+    "metadata": {
+      "rule_id": "DET-073",
+      "rule_name": "Peer Group Behavior Anomaly",
+      "data_source": "endpoint",
+      "mitre_technique": "T1078",
+      "severity": "medium",
+      "false_positive_rate": "high",
+      "enabled": false,
+      "last_triggered": "2026-03-05"
+    }
+  },
+  {
+    "id": "rule_074",
+    "text": "Identifies Sysmon configuration tampering by monitoring for changes to the Sysmon driver, service stop events, configuration file modifications, and registry key changes under HKLM\\SYSTEM\\CurrentControlSet\\Services\\SysmonDrv that could blind endpoint telemetry.",
+    "metadata": {
+      "rule_id": "DET-074",
+      "rule_name": "Sysmon Tampering Detection",
+      "data_source": "sysmon",
+      "mitre_technique": "T1562.001",
+      "severity": "critical",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": "2026-02-20"
+    }
+  },
+  {
+    "id": "rule_075",
+    "text": "Monitors for AWS GuardDuty finding suppression and detector disabling activities. Alerts on DeleteDetector, UpdateFilter with auto-archive actions, and CreateFilter operations that suppress critical finding types including cryptocurrency mining and credential exfiltration.",
+    "metadata": {
+      "rule_id": "DET-075",
+      "rule_name": "AWS GuardDuty Tampering Detection",
+      "data_source": "cloudtrail",
+      "mitre_technique": "T1562.008",
+      "severity": "critical",
+      "false_positive_rate": "low",
+      "enabled": true,
+      "last_triggered": null
+    }
+  }
+]

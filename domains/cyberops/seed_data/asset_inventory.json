@@ -1,0 +1,652 @@
+[
+  {
+    "id": "asset_001",
+    "text": "Primary domain controller for the corporate Active Directory forest. Handles all authentication, group policy distribution, and DNS resolution for the enterprise. Runs Windows Server 2022 with latest cumulative updates.",
+    "metadata": {
+      "hostname": "DC-PRIMARY-01",
+      "ip": "10.0.1.10",
+      "os": "Windows Server 2022",
+      "department": "IT",
+      "criticality": "critical",
+      "type": "server",
+      "services": ["Active Directory", "DNS", "Kerberos", "LDAP"]
+    }
+  },
+  {
+    "id": "asset_002",
+    "text": "Secondary domain controller providing redundancy for Active Directory services. Located in the secondary data center for disaster recovery. Replicates all AD objects from the primary domain controller.",
+    "metadata": {
+      "hostname": "DC-SECONDARY-01",
+      "ip": "10.0.1.11",
+      "os": "Windows Server 2022",
+      "department": "IT",
+      "criticality": "critical",
+      "type": "server",
+      "services": ["Active Directory", "DNS", "Kerberos", "LDAP"]
+    }
+  },
+  {
+    "id": "asset_003",
+    "text": "Primary Microsoft Exchange server handling corporate email for all 2000 employees. Runs Exchange Server 2019 CU14 with Edge Transport role for mail flow. Integrated with Azure AD for hybrid identity.",
+    "metadata": {
+      "hostname": "MAIL-EXCH-01",
+      "ip": "10.0.2.10",
+      "os": "Windows Server 2022",
+      "department": "IT",
+      "criticality": "critical",
+      "type": "server",
+      "services": ["SMTP", "IMAP", "HTTPS", "Exchange Web Services"]
+    }
+  },
+  {
+    "id": "asset_004",
+    "text": "External-facing web server hosting the corporate website and customer portal. Runs behind a WAF with TLS 1.3 termination. Application stack includes Nginx reverse proxy with Node.js backend services.",
+    "metadata": {
+      "hostname": "WEB-EXT-01",
+      "ip": "10.0.3.10",
+      "os": "Ubuntu 22.04 LTS",
+      "department": "Engineering",
+      "criticality": "high",
+      "type": "server",
+      "services": ["HTTPS", "Nginx", "Node.js"]
+    }
+  },
+  {
+    "id": "asset_005",
+    "text": "Internal web server hosting the company intranet, wiki, and HR self-service portal. Access restricted to corporate network and VPN users. Runs Apache with PHP backend.",
+    "metadata": {
+      "hostname": "WEB-INT-01",
+      "ip": "10.0.3.11",
+      "os": "Ubuntu 22.04 LTS",
+      "department": "IT",
+      "criticality": "medium",
+      "type": "server",
+      "services": ["HTTPS", "Apache", "PHP"]
+    }
+  },
+  {
+    "id": "asset_006",
+    "text": "Primary SQL Server database hosting ERP, CRM, and financial application data. Contains sensitive customer PII and financial records. Configured with Always On availability groups for high availability.",
+    "metadata": {
+      "hostname": "DB-SQL-01",
+      "ip": "10.0.4.10",
+      "os": "Windows Server 2022",
+      "department": "IT",
+      "criticality": "critical",
+      "type": "server",
+      "services": ["MSSQL", "SQL Server Agent", "SSRS"]
+    }
+  },
+  {
+    "id": "asset_007",
+    "text": "PostgreSQL database server supporting engineering applications, source code management metadata, and CI/CD pipeline data. Runs PostgreSQL 16 with streaming replication to a standby instance.",
+    "metadata": {
+      "hostname": "DB-PG-01",
+      "ip": "10.0.4.11",
+      "os": "Ubuntu 22.04 LTS",
+      "department": "Engineering",
+      "criticality": "high",
+      "type": "server",
+      "services": ["PostgreSQL", "pgBouncer"]
+    }
+  },
+  {
+    "id": "asset_008",
+    "text": "Perimeter firewall cluster providing north-south traffic inspection, VPN termination, and IPS/IDS capabilities. Configured in active-passive HA pair with automatic failover. Processes all internet-bound traffic.",
+    "metadata": {
+      "hostname": "FW-EDGE-01",
+      "ip": "10.0.0.1",
+      "os": "FortiOS 7.4",
+      "department": "IT",
+      "criticality": "critical",
+      "type": "network",
+      "services": ["Firewall", "VPN", "IPS", "Web Filter"]
+    }
+  },
+  {
+    "id": "asset_009",
+    "text": "Internal segmentation firewall separating server VLAN from user VLANs and providing east-west traffic inspection. Enforces micro-segmentation policies between departments and restricts lateral movement.",
+    "metadata": {
+      "hostname": "FW-INT-01",
+      "ip": "10.0.0.2",
+      "os": "FortiOS 7.4",
+      "department": "IT",
+      "criticality": "high",
+      "type": "network",
+      "services": ["Firewall", "IPS", "Application Control"]
+    }
+  },
+  {
+    "id": "asset_010",
+    "text": "Core network switch stack providing layer 3 routing between VLANs and aggregation for distribution switches. Supports 10GbE uplinks to servers and 1GbE distribution to access layer switches.",
+    "metadata": {
+      "hostname": "SW-CORE-01",
+      "ip": "10.0.0.10",
+      "os": "Cisco IOS-XE 17.9",
+      "department": "IT",
+      "criticality": "critical",
+      "type": "network",
+      "services": ["Routing", "VLAN", "SNMP", "802.1X"]
+    }
+  },
+  {
+    "id": "asset_011",
+    "text": "Distribution switch serving the Finance department floor. Provides PoE for VoIP phones and wireless access points. Configured with 802.1X port-based authentication and dynamic VLAN assignment.",
+    "metadata": {
+      "hostname": "SW-FIN-01",
+      "ip": "10.0.0.11",
+      "os": "Cisco IOS-XE 17.9",
+      "department": "Finance",
+      "criticality": "medium",
+      "type": "network",
+      "services": ["Switching", "PoE", "802.1X"]
+    }
+  },
+  {
+    "id": "asset_012",
+    "text": "Cisco AnyConnect VPN concentrator providing remote access for up to 500 concurrent users. Supports SAML authentication with Azure AD and enforces posture assessment before granting network access.",
+    "metadata": {
+      "hostname": "VPN-GW-01",
+      "ip": "10.0.0.5",
+      "os": "Cisco ASA 9.18",
+      "department": "IT",
+      "criticality": "critical",
+      "type": "network",
+      "services": ["SSL VPN", "IPSec", "RADIUS"]
+    }
+  },
+  {
+    "id": "asset_013",
+    "text": "Proofpoint email security gateway providing inbound and outbound email filtering, sandboxing, and DLP inspection. Processes approximately 50,000 emails daily with advanced threat protection and URL defense.",
+    "metadata": {
+      "hostname": "MAIL-GW-01",
+      "ip": "10.0.2.20",
+      "os": "Proofpoint PPS 8.20",
+      "department": "IT",
+      "criticality": "high",
+      "type": "server",
+      "services": ["SMTP Relay", "Anti-Spam", "Sandboxing", "DLP"]
+    }
+  },
+  {
+    "id": "asset_014",
+    "text": "Finance department workstation assigned to the CFO. Contains access to banking portals, financial reporting systems, and board communication tools. Encrypted with BitLocker and managed via Intune.",
+    "metadata": {
+      "hostname": "WS-FIN-CFO",
+      "ip": "10.0.10.50",
+      "os": "Windows 11 Enterprise",
+      "department": "Finance",
+      "criticality": "high",
+      "type": "workstation",
+      "services": ["Office 365", "SAP GUI", "Bloomberg Terminal"]
+    }
+  },
+  {
+    "id": "asset_015",
+    "text": "Finance department workstation used by senior accountant for accounts payable processing and vendor payments. Has access to ERP financial modules and bank wire transfer applications.",
+    "metadata": {
+      "hostname": "WS-FIN-AP01",
+      "ip": "10.0.10.51",
+      "os": "Windows 11 Enterprise",
+      "department": "Finance",
+      "criticality": "medium",
+      "type": "workstation",
+      "services": ["Office 365", "SAP GUI", "Banking Portal"]
+    }
+  },
+  {
+    "id": "asset_016",
+    "text": "HR department workstation with access to employee PII, payroll systems, and benefits administration portals. Subject to enhanced DLP policies due to handling of sensitive personal data.",
+    "metadata": {
+      "hostname": "WS-HR-01",
+      "ip": "10.0.11.10",
+      "os": "Windows 11 Enterprise",
+      "department": "HR",
+      "criticality": "medium",
+      "type": "workstation",
+      "services": ["Office 365", "Workday", "ADP"]
+    }
+  },
+  {
+    "id": "asset_017",
+    "text": "Engineering workstation used for software development activities. Runs multiple development environments, Docker containers, and has elevated local administrator privileges for development tooling.",
+    "metadata": {
+      "hostname": "WS-ENG-DEV01",
+      "ip": "10.0.12.10",
+      "os": "Ubuntu 24.04 LTS",
+      "department": "Engineering",
+      "criticality": "medium",
+      "type": "workstation",
+      "services": ["Docker", "VS Code", "Git", "SSH"]
+    }
+  },
+  {
+    "id": "asset_018",
+    "text": "Engineering workstation used by DevOps lead with access to production Kubernetes clusters, CI/CD pipelines, and cloud infrastructure management consoles. Has credentials for AWS and Azure environments.",
+    "metadata": {
+      "hostname": "WS-ENG-DEVOPS",
+      "ip": "10.0.12.11",
+      "os": "macOS 15 Sequoia",
+      "department": "Engineering",
+      "criticality": "high",
+      "type": "workstation",
+      "services": ["Docker", "kubectl", "Terraform", "AWS CLI"]
+    }
+  },
+  {
+    "id": "asset_019",
+    "text": "Executive workstation assigned to the CEO. Subject to enhanced monitoring and advanced threat protection policies. Has access to board communications, strategic planning documents, and M&A data rooms.",
+    "metadata": {
+      "hostname": "WS-EXEC-CEO",
+      "ip": "10.0.13.10",
+      "os": "macOS 15 Sequoia",
+      "department": "Executive",
+      "criticality": "critical",
+      "type": "workstation",
+      "services": ["Office 365", "Slack", "Zoom", "DocuSign"]
+    }
+  },
+  {
+    "id": "asset_020",
+    "text": "Splunk Enterprise SIEM server collecting and correlating security logs from all network devices, servers, and endpoints. Processes approximately 200 GB of logs daily with 90-day hot storage retention.",
+    "metadata": {
+      "hostname": "SIEM-SPLUNK-01",
+      "ip": "10.0.5.10",
+      "os": "RHEL 9",
+      "department": "IT",
+      "criticality": "critical",
+      "type": "server",
+      "services": ["Splunk Enterprise", "Syslog", "HEC"]
+    }
+  },
+  {
+    "id": "asset_021",
+    "text": "AWS EC2 instance hosting the customer-facing SaaS application in us-east-1. Runs containerized microservices behind an Application Load Balancer with auto-scaling group configuration.",
+    "metadata": {
+      "hostname": "aws-prod-app-01",
+      "ip": "10.0.20.10",
+      "os": "Amazon Linux 2023",
+      "department": "Engineering",
+      "criticality": "critical",
+      "type": "cloud",
+      "services": ["Docker", "Kubernetes", "HTTPS"]
+    }
+  },
+  {
+    "id": "asset_022",
+    "text": "AWS RDS PostgreSQL instance serving as the primary database for the SaaS application. Configured with Multi-AZ deployment, automated backups, and encryption at rest using AWS KMS.",
+    "metadata": {
+      "hostname": "aws-prod-rds-01",
+      "ip": "10.0.20.20",
+      "os": "Amazon RDS PostgreSQL 16",
+      "department": "Engineering",
+      "criticality": "critical",
+      "type": "cloud",
+      "services": ["PostgreSQL", "SSL"]
+    }
+  },
+  {
+    "id": "asset_023",
+    "text": "AWS EC2 staging environment instance used for pre-production testing and QA validation. Mirrors production configuration but with reduced instance size and synthetic test data.",
+    "metadata": {
+      "hostname": "aws-staging-app-01",
+      "ip": "10.0.21.10",
+      "os": "Amazon Linux 2023",
+      "department": "Engineering",
+      "criticality": "medium",
+      "type": "cloud",
+      "services": ["Docker", "Kubernetes", "HTTPS"]
+    }
+  },
+  {
+    "id": "asset_024",
+    "text": "File server providing CIFS/SMB shares for department-level document storage. Hosts shared drives for Finance, HR, Legal, and Executive departments with NTFS permission-based access control.",
+    "metadata": {
+      "hostname": "FS-CORP-01",
+      "ip": "10.0.4.20",
+      "os": "Windows Server 2022",
+      "department": "IT",
+      "criticality": "high",
+      "type": "server",
+      "services": ["SMB", "DFS", "VSS"]
+    }
+  },
+  {
+    "id": "asset_025",
+    "text": "Backup server running Veeam Backup and Replication for enterprise-wide backup operations. Manages backup jobs for all servers and critical workstations with 30-day retention and offsite replication.",
+    "metadata": {
+      "hostname": "BKP-VEEAM-01",
+      "ip": "10.0.5.20",
+      "os": "Windows Server 2022",
+      "department": "IT",
+      "criticality": "critical",
+      "type": "server",
+      "services": ["Veeam B&R", "SMB", "iSCSI"]
+    }
+  },
+  {
+    "id": "asset_026",
+    "text": "CrowdStrike Falcon console server managing endpoint detection and response for all Windows, macOS, and Linux endpoints across the enterprise. Provides real-time threat detection and automated response capabilities.",
+    "metadata": {
+      "hostname": "EDR-CS-01",
+      "ip": "10.0.5.30",
+      "os": "RHEL 9",
+      "department": "IT",
+      "criticality": "critical",
+      "type": "server",
+      "services": ["CrowdStrike Falcon", "HTTPS", "Syslog"]
+    }
+  },
+  {
+    "id": "asset_027",
+    "text": "Print server managing network printers across all floors. Hosts print queues and provides driver distribution via Point and Print. Configured with pull-printing for secure document release.",
+    "metadata": {
+      "hostname": "PRINT-01",
+      "ip": "10.0.6.10",
+      "os": "Windows Server 2022",
+      "department": "IT",
+      "criticality": "low",
+      "type": "server",
+      "services": ["Print Spooler", "SMB", "SNMP"]
+    }
+  },
+  {
+    "id": "asset_028",
+    "text": "Wireless LAN controller managing 120 access points across all office buildings. Provides WPA3-Enterprise authentication with certificate-based 802.1X and guest network isolation.",
+    "metadata": {
+      "hostname": "WLC-01",
+      "ip": "10.0.0.20",
+      "os": "Cisco WLC AireOS 8.10",
+      "department": "IT",
+      "criticality": "high",
+      "type": "network",
+      "services": ["WLAN Management", "RADIUS", "CAPWAP"]
+    }
+  },
+  {
+    "id": "asset_029",
+    "text": "IT administrator workstation with privileged access to domain admin tools, server management consoles, and network device configurations. Subject to Privileged Access Workstation security policies.",
+    "metadata": {
+      "hostname": "WS-IT-ADMIN01",
+      "ip": "10.0.9.10",
+      "os": "Windows 11 Enterprise",
+      "department": "IT",
+      "criticality": "critical",
+      "type": "workstation",
+      "services": ["RSAT", "PowerShell", "SSH", "RDP"]
+    }
+  },
+  {
+    "id": "asset_030",
+    "text": "Jenkins CI/CD build server orchestrating automated build, test, and deployment pipelines for engineering projects. Has credentials for artifact repositories, container registries, and deployment targets.",
+    "metadata": {
+      "hostname": "CI-JENKINS-01",
+      "ip": "10.0.7.10",
+      "os": "Ubuntu 22.04 LTS",
+      "department": "Engineering",
+      "criticality": "high",
+      "type": "server",
+      "services": ["Jenkins", "Docker", "SSH", "HTTPS"]
+    }
+  },
+  {
+    "id": "asset_031",
+    "text": "Azure virtual machine running Microsoft Entra Connect for hybrid identity synchronization between on-premises Active Directory and Azure AD. Handles password hash sync and pass-through authentication.",
+    "metadata": {
+      "hostname": "AZ-AADC-01",
+      "ip": "10.0.1.20",
+      "os": "Windows Server 2022",
+      "department": "IT",
+      "criticality": "critical",
+      "type": "cloud",
+      "services": ["Entra Connect", "HTTPS", "LDAP"]
+    }
+  },
+  {
+    "id": "asset_032",
+    "text": "Network monitoring server running Nagios and Grafana for infrastructure health monitoring. Collects SNMP data, syslog events, and performance metrics from all network devices and servers.",
+    "metadata": {
+      "hostname": "MON-NAGIOS-01",
+      "ip": "10.0.5.40",
+      "os": "Ubuntu 22.04 LTS",
+      "department": "IT",
+      "criticality": "medium",
+      "type": "server",
+      "services": ["Nagios", "Grafana", "SNMP", "Syslog"]
+    }
+  },
+  {
+    "id": "asset_033",
+    "text": "Executive workstation assigned to the CTO. Has access to product roadmaps, intellectual property repositories, and engineering management dashboards. Enhanced security with hardware token MFA.",
+    "metadata": {
+      "hostname": "WS-EXEC-CTO",
+      "ip": "10.0.13.11",
+      "os": "macOS 15 Sequoia",
+      "department": "Executive",
+      "criticality": "high",
+      "type": "workstation",
+      "services": ["Office 365", "GitHub Enterprise", "Jira", "Slack"]
+    }
+  },
+  {
+    "id": "asset_034",
+    "text": "Distribution switch serving the Engineering department lab and development area. Supports high-bandwidth connections for build servers and development workstations with jumbo frame support.",
+    "metadata": {
+      "hostname": "SW-ENG-01",
+      "ip": "10.0.0.12",
+      "os": "Cisco IOS-XE 17.9",
+      "department": "Engineering",
+      "criticality": "medium",
+      "type": "network",
+      "services": ["Switching", "PoE", "802.1X"]
+    }
+  },
+  {
+    "id": "asset_035",
+    "text": "Vulnerability scanning server running Tenable Nessus for scheduled and on-demand vulnerability assessments across the enterprise network. Scans all subnets weekly and critical assets daily.",
+    "metadata": {
+      "hostname": "VULN-NESSUS-01",
+      "ip": "10.0.5.50",
+      "os": "Ubuntu 22.04 LTS",
+      "department": "IT",
+      "criticality": "high",
+      "type": "server",
+      "services": ["Nessus", "HTTPS", "SSH"]
+    }
+  },
+  {
+    "id": "asset_036",
+    "text": "Kubernetes worker node in the production cluster running containerized microservices. Managed by Rancher with CIS benchmark hardening applied. Handles pod scheduling for customer-facing application workloads.",
+    "metadata": {
+      "hostname": "K8S-WORKER-01",
+      "ip": "10.0.8.10",
+      "os": "Ubuntu 22.04 LTS",
+      "department": "Engineering",
+      "criticality": "critical",
+      "type": "server",
+      "services": ["kubelet", "containerd", "kube-proxy", "Calico CNI"]
+    }
+  },
+  {
+    "id": "asset_037",
+    "text": "Kubernetes worker node providing additional compute capacity for the production cluster. Configured with GPU resources for ML inference workloads and autoscaler integration for burst capacity.",
+    "metadata": {
+      "hostname": "K8S-WORKER-02",
+      "ip": "10.0.8.11",
+      "os": "Ubuntu 22.04 LTS",
+      "department": "Engineering",
+      "criticality": "critical",
+      "type": "server",
+      "services": ["kubelet", "containerd", "kube-proxy", "NVIDIA Container Runtime"]
+    }
+  },
+  {
+    "id": "asset_038",
+    "text": "Kubernetes control plane node running the API server, etcd, scheduler, and controller manager. Access restricted to the infrastructure team via bastion host. Etcd encryption at rest enabled with automated certificate rotation.",
+    "metadata": {
+      "hostname": "K8S-CTRL-01",
+      "ip": "10.0.8.5",
+      "os": "Ubuntu 22.04 LTS",
+      "department": "Engineering",
+      "criticality": "critical",
+      "type": "server",
+      "services": ["kube-apiserver", "etcd", "kube-scheduler", "kube-controller-manager"]
+    }
+  },
+  {
+    "id": "asset_039",
+    "text": "Building management system controller for HVAC, lighting, and environmental monitoring across the corporate campus. Connected to BACnet network with gateway to the IT monitoring VLAN for alerting purposes.",
+    "metadata": {
+      "hostname": "BMS-CTRL-01",
+      "ip": "10.0.15.10",
+      "os": "Tridium Niagara 4",
+      "department": "Facilities",
+      "criticality": "medium",
+      "type": "iot",
+      "services": ["BACnet", "HTTPS", "SNMP"]
+    }
+  },
+  {
+    "id": "asset_040",
+    "text": "IP security camera system NVR managing 48 cameras across building entrances, server rooms, and parking facilities. Video retention set to 90 days with motion-triggered recording and integration with physical security access control.",
+    "metadata": {
+      "hostname": "CAM-NVR-01",
+      "ip": "10.0.15.20",
+      "os": "Milestone XProtect 2024",
+      "department": "Facilities",
+      "criticality": "medium",
+      "type": "iot",
+      "services": ["RTSP", "HTTPS", "ONVIF"]
+    }
+  },
+  {
+    "id": "asset_041",
+    "text": "GitLab Enterprise server providing source code management, issue tracking, and CI/CD pipeline orchestration. Hosts 340 repositories across engineering, security, and infrastructure teams with SAML SSO integration.",
+    "metadata": {
+      "hostname": "CI-GITLAB-01",
+      "ip": "10.0.7.20",
+      "os": "Ubuntu 22.04 LTS",
+      "department": "Engineering",
+      "criticality": "critical",
+      "type": "server",
+      "services": ["GitLab", "HTTPS", "SSH", "Docker Registry"]
+    }
+  },
+  {
+    "id": "asset_042",
+    "text": "JFrog Artifactory server serving as the enterprise artifact repository for Maven, npm, PyPI, Docker, and Helm packages. Configured as a virtual repository proxying public registries with vulnerability scanning on upload.",
+    "metadata": {
+      "hostname": "CI-ARTIFACTORY-01",
+      "ip": "10.0.7.30",
+      "os": "RHEL 9",
+      "department": "Engineering",
+      "criticality": "high",
+      "type": "server",
+      "services": ["Artifactory", "HTTPS", "Docker Registry", "npm Registry"]
+    }
+  },
+  {
+    "id": "asset_043",
+    "text": "Cisco Unified Communications Manager providing enterprise VOIP services for 1,500 IP phones and softphone clients. Integrated with Microsoft Teams for unified communications and configured with SRTP for call encryption.",
+    "metadata": {
+      "hostname": "VOIP-CUCM-01",
+      "ip": "10.0.6.20",
+      "os": "Cisco CUCM 15.0",
+      "department": "IT",
+      "criticality": "high",
+      "type": "server",
+      "services": ["SIP", "SRTP", "HTTPS", "LDAP"]
+    }
+  },
+  {
+    "id": "asset_044",
+    "text": "Cisco Catalyst 9130 wireless access point deployed on the third floor of Building A. Provides dual-band WiFi 6E coverage for corporate and guest SSIDs with WPA3-Enterprise authentication and rogue AP detection.",
+    "metadata": {
+      "hostname": "WAP-BLD-A-3F-01",
+      "ip": "10.0.14.10",
+      "os": "Cisco IOS-XE 17.9",
+      "department": "IT",
+      "criticality": "low",
+      "type": "network",
+      "services": ["WiFi 6E", "802.1X", "CAPWAP"]
+    }
+  },
+  {
+    "id": "asset_045",
+    "text": "Cisco Catalyst 9130 wireless access point deployed in the lobby and conference center of Building B. Supports high-density client mode for events with dedicated guest VLAN and bandwidth throttling.",
+    "metadata": {
+      "hostname": "WAP-BLD-B-1F-01",
+      "ip": "10.0.14.11",
+      "os": "Cisco IOS-XE 17.9",
+      "department": "IT",
+      "criticality": "low",
+      "type": "network",
+      "services": ["WiFi 6E", "802.1X", "CAPWAP"]
+    }
+  },
+  {
+    "id": "asset_046",
+    "text": "AWS Storage Gateway appliance providing hybrid cloud storage integration. Presents iSCSI volumes to on-premises servers while tiering data to S3 for cost-effective long-term retention. Cached mode with 2TB local SSD cache.",
+    "metadata": {
+      "hostname": "SGW-AWS-01",
+      "ip": "10.0.4.30",
+      "os": "AWS Storage Gateway VM",
+      "department": "IT",
+      "criticality": "high",
+      "type": "cloud",
+      "services": ["iSCSI", "NFS", "SMB", "HTTPS"]
+    }
+  },
+  {
+    "id": "asset_047",
+    "text": "Development server used by the QA team for integration testing and staging deployments. Mirrors production architecture at reduced scale. Contains synthetic test data only with no production PII. Refreshed weekly from sanitized snapshots.",
+    "metadata": {
+      "hostname": "DEV-STAGING-01",
+      "ip": "10.0.16.10",
+      "os": "Ubuntu 22.04 LTS",
+      "department": "Engineering",
+      "criticality": "low",
+      "type": "server",
+      "services": ["Docker", "Nginx", "PostgreSQL", "Redis"]
+    }
+  },
+  {
+    "id": "asset_048",
+    "text": "Development server hosting internal tooling including SonarQube for code quality analysis, Selenium Grid for automated browser testing, and shared development databases. Accessible only from the engineering VLAN.",
+    "metadata": {
+      "hostname": "DEV-TOOLS-01",
+      "ip": "10.0.16.11",
+      "os": "Ubuntu 22.04 LTS",
+      "department": "Engineering",
+      "criticality": "medium",
+      "type": "server",
+      "services": ["SonarQube", "Selenium Grid", "PostgreSQL", "HTTPS"]
+    }
+  },
+  {
+    "id": "asset_049",
+    "text": "IoT sensor gateway aggregating data from 85 environmental sensors across the campus including temperature, humidity, air quality, and occupancy sensors. Forwards telemetry to the building management system and cloud analytics platform via MQTT.",
+    "metadata": {
+      "hostname": "IOT-GW-01",
+      "ip": "10.0.15.30",
+      "os": "Embedded Linux (Yocto)",
+      "department": "Facilities",
+      "criticality": "low",
+      "type": "iot",
+      "services": ["MQTT", "HTTPS", "BLE Gateway"]
+    }
+  },
+  {
+    "id": "asset_050",
+    "text": "VOIP session border controller providing SIP trunking to the PSTN carrier and securing voice traffic at the network edge. Handles call admission control, codec transcoding, and DoS protection for the voice infrastructure.",
+    "metadata": {
+      "hostname": "VOIP-SBC-01",
+      "ip": "10.0.6.25",
+      "os": "AudioCodes Mediant 4000",
+      "department": "IT",
+      "criticality": "high",
+      "type": "network",
+      "services": ["SIP", "SRTP", "HTTPS", "SNMP"]
+    }
+  }
+]

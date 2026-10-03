@@ -1,0 +1,802 @@
+[
+  {
+    "id": "risk_001",
+    "text": "Primary datacenter experiences complete power failure due to utility grid outage combined with UPS battery exhaustion and generator fuel depletion beyond 72 hours. All on-premises production systems become unavailable, affecting customer-facing services and internal operations.",
+    "metadata": {
+      "risk_id": "RISK-001",
+      "risk_category": "physical",
+      "asset_or_service": "Primary datacenter infrastructure",
+      "threat_scenario": "Extended utility power failure exceeding backup power capacity",
+      "impact": "critical",
+      "likelihood": "unlikely",
+      "current_controls": "Redundant UPS systems, dual diesel generators, 96-hour fuel contract, automated failover to DR site",
+      "residual_risk": "medium",
+      "rto_hours": 4,
+      "rpo_hours": 1
+    }
+  },
+  {
+    "id": "risk_002",
+    "text": "Enterprise-wide ransomware encryption affecting all Windows endpoints, file servers, and Active Directory domain controllers. Attacker deploys ransomware across the network using compromised domain admin credentials, encrypting production data and backups accessible via the network.",
+    "metadata": {
+      "risk_id": "RISK-002",
+      "risk_category": "technical",
+      "asset_or_service": "Enterprise IT infrastructure",
+      "threat_scenario": "Ransomware full encryption with AD compromise",
+      "impact": "critical",
+      "likelihood": "possible",
+      "current_controls": "EDR on all endpoints, network segmentation, offline backup copies, privileged access management, incident response retainer",
+      "residual_risk": "high",
+      "rto_hours": 72,
+      "rpo_hours": 24
+    }
+  },
+  {
+    "id": "risk_003",
+    "text": "Loss of key cybersecurity personnel including the CISO and two senior security architects simultaneously due to competitive recruitment in a tight labor market. Critical institutional knowledge of security architecture, incident response procedures, and vendor relationships is lost.",
+    "metadata": {
+      "risk_id": "RISK-003",
+      "risk_category": "personnel",
+      "asset_or_service": "Security operations team",
+      "threat_scenario": "Simultaneous departure of key security leadership and senior staff",
+      "impact": "high",
+      "likelihood": "possible",
+      "current_controls": "Cross-training program, documented runbooks, MSSP backup contract, competitive retention packages",
+      "residual_risk": "medium",
+      "rto_hours": 720,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_004",
+    "text": "AWS us-east-1 region experiences prolonged outage exceeding 24 hours affecting all production workloads hosted in that region. Services include customer-facing web application, API gateway, RDS databases, and S3 storage for document management.",
+    "metadata": {
+      "risk_id": "RISK-004",
+      "risk_category": "vendor",
+      "asset_or_service": "Cloud production environment (AWS)",
+      "threat_scenario": "Extended AWS regional outage exceeding SLA thresholds",
+      "impact": "critical",
+      "likelihood": "unlikely",
+      "current_controls": "Multi-AZ deployment, Route53 health checks, warm standby in us-west-2, S3 cross-region replication",
+      "residual_risk": "medium",
+      "rto_hours": 2,
+      "rpo_hours": 1
+    }
+  },
+  {
+    "id": "risk_005",
+    "text": "Azure Active Directory outage prevents all Single Sign-On authentication for SaaS applications and internal cloud services. Users are unable to access email, collaboration tools, CRM, and business applications that depend on Azure AD as the identity provider.",
+    "metadata": {
+      "risk_id": "RISK-005",
+      "risk_category": "vendor",
+      "asset_or_service": "Identity and access management (Azure AD)",
+      "threat_scenario": "Azure AD global service outage disrupting SSO authentication",
+      "impact": "critical",
+      "likelihood": "unlikely",
+      "current_controls": "Break-glass local admin accounts, cached credentials on endpoints, backup LDAP for critical systems",
+      "residual_risk": "high",
+      "rto_hours": 1,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_006",
+    "text": "Critical vendor compromise where the managed security service provider (MSSP) responsible for 24/7 SOC monitoring is breached. Attacker gains access to MSSP management console and can view customer alert data, disable monitoring, or pivot into customer environments through management connections.",
+    "metadata": {
+      "risk_id": "RISK-006",
+      "risk_category": "vendor",
+      "asset_or_service": "Managed SOC service",
+      "threat_scenario": "MSSP breach with potential lateral movement to customer environments",
+      "impact": "critical",
+      "likelihood": "possible",
+      "current_controls": "Vendor security assessments, network segmentation of management interfaces, dedicated jump hosts, contract SLA with breach notification",
+      "residual_risk": "high",
+      "rto_hours": 8,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_007",
+    "text": "Volumetric DDoS attack exceeding 100 Gbps targeting public-facing services including the corporate website, customer portal, and API gateway. Attack saturates internet uplinks and overwhelms on-premises DDoS mitigation appliance capacity.",
+    "metadata": {
+      "risk_id": "RISK-007",
+      "risk_category": "technical",
+      "asset_or_service": "Public-facing web services",
+      "threat_scenario": "Large-scale DDoS attack overwhelming network capacity",
+      "impact": "high",
+      "likelihood": "likely",
+      "current_controls": "Cloud-based DDoS scrubbing service, CDN with origin protection, ISP blackhole routing capability, rate limiting",
+      "residual_risk": "medium",
+      "rto_hours": 1,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_008",
+    "text": "Insider threat involving a privileged database administrator exfiltrating customer PII and financial data for sale on dark web marketplaces. The DBA has legitimate access to production databases and knowledge to bypass standard monitoring controls.",
+    "metadata": {
+      "risk_id": "RISK-008",
+      "risk_category": "personnel",
+      "asset_or_service": "Customer database systems",
+      "threat_scenario": "Malicious DBA exfiltrating sensitive customer data",
+      "impact": "critical",
+      "likelihood": "possible",
+      "current_controls": "Database activity monitoring, DLP controls, privileged session recording, background checks, separation of duties",
+      "residual_risk": "medium",
+      "rto_hours": 2,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_009",
+    "text": "Regulatory enforcement action resulting in significant financial penalty due to non-compliance with GDPR cross-border data transfer requirements following invalidation of adequacy decisions. Operations in EU markets may be restricted pending compliance remediation.",
+    "metadata": {
+      "risk_id": "RISK-009",
+      "risk_category": "regulatory",
+      "asset_or_service": "EU customer data processing operations",
+      "threat_scenario": "GDPR enforcement action for cross-border data transfer violations",
+      "impact": "high",
+      "likelihood": "possible",
+      "current_controls": "Standard contractual clauses, data localization for EU customers, DPO oversight, regular transfer impact assessments",
+      "residual_risk": "medium",
+      "rto_hours": 0,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_010",
+    "text": "Fire or flood damage to the primary office facility rendering it unusable for extended period. Loss of on-site equipment, physical records, and access to network infrastructure housed in the building communications room.",
+    "metadata": {
+      "risk_id": "RISK-010",
+      "risk_category": "physical",
+      "asset_or_service": "Primary office facility and on-site infrastructure",
+      "threat_scenario": "Facility destruction from fire or water damage",
+      "impact": "high",
+      "likelihood": "unlikely",
+      "current_controls": "Fire suppression systems, flood sensors, remote work capability, off-site document storage, insurance coverage",
+      "residual_risk": "medium",
+      "rto_hours": 48,
+      "rpo_hours": 24
+    }
+  },
+  {
+    "id": "risk_011",
+    "text": "Pandemic or public health emergency requiring extended work-from-home operations for 6+ months. Increased attack surface from home networks, VPN capacity constraints, and reduced physical security controls for endpoints handling sensitive data.",
+    "metadata": {
+      "risk_id": "RISK-011",
+      "risk_category": "operational",
+      "asset_or_service": "Enterprise workforce and operations",
+      "threat_scenario": "Extended pandemic requiring full remote operations",
+      "impact": "medium",
+      "likelihood": "possible",
+      "current_controls": "Remote work infrastructure scaled to 100% capacity, VPN split tunneling with ZTNA, endpoint security regardless of location, virtual collaboration tools",
+      "residual_risk": "low",
+      "rto_hours": 8,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_012",
+    "text": "Backup system failure where both primary and secondary backup infrastructure fails simultaneously. Veeam backup server corruption combined with cloud backup replication lag creates a window where recent data is unrecoverable.",
+    "metadata": {
+      "risk_id": "RISK-012",
+      "risk_category": "technical",
+      "asset_or_service": "Enterprise backup infrastructure",
+      "threat_scenario": "Simultaneous failure of primary and secondary backup systems",
+      "impact": "critical",
+      "likelihood": "unlikely",
+      "current_controls": "3-2-1 backup strategy, immutable backup copies, quarterly restore testing, backup monitoring and alerting",
+      "residual_risk": "medium",
+      "rto_hours": 12,
+      "rpo_hours": 4
+    }
+  },
+  {
+    "id": "risk_013",
+    "text": "Core network equipment failure involving simultaneous failure of redundant core switches or WAN routers. Network fabric collapse isolates datacenter segments and disrupts all east-west and north-south traffic patterns.",
+    "metadata": {
+      "risk_id": "RISK-013",
+      "risk_category": "technical",
+      "asset_or_service": "Core network infrastructure",
+      "threat_scenario": "Dual core switch or router failure collapsing network fabric",
+      "impact": "critical",
+      "likelihood": "rare",
+      "current_controls": "Redundant core switch stack, diverse hardware vendors for redundancy, spare equipment on-site, 4-hour vendor RMA SLA",
+      "residual_risk": "medium",
+      "rto_hours": 4,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_014",
+    "text": "DNS hijacking attack redirecting corporate domain resolution to attacker-controlled infrastructure. Customers and employees are directed to phishing pages mimicking legitimate services, resulting in credential theft and potential malware delivery.",
+    "metadata": {
+      "risk_id": "RISK-014",
+      "risk_category": "technical",
+      "asset_or_service": "Corporate DNS and domain infrastructure",
+      "threat_scenario": "DNS registrar account compromise enabling domain hijacking",
+      "impact": "critical",
+      "likelihood": "unlikely",
+      "current_controls": "Registrar lock enabled, MFA on registrar accounts, DNSSEC signing, DNS monitoring with automated alerts",
+      "residual_risk": "medium",
+      "rto_hours": 2,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_015",
+    "text": "TLS certificate expiry for customer-facing services causing browser security warnings and API authentication failures. Expired certificates on load balancers or reverse proxies result in service unavailability for HTTPS connections.",
+    "metadata": {
+      "risk_id": "RISK-015",
+      "risk_category": "operational",
+      "asset_or_service": "Public-facing TLS certificates",
+      "threat_scenario": "Certificate expiry causing service disruption and trust warnings",
+      "impact": "high",
+      "likelihood": "possible",
+      "current_controls": "Automated certificate management with ACME protocol, 30/14/7 day expiry alerts, certificate inventory in CMDB",
+      "residual_risk": "low",
+      "rto_hours": 1,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_016",
+    "text": "Enterprise email system outage affecting Microsoft 365 Exchange Online. Complete loss of email communication, calendar scheduling, and associated collaboration workflows. Impact across all business units with critical effect on customer communications and contractual deadline management.",
+    "metadata": {
+      "risk_id": "RISK-016",
+      "risk_category": "vendor",
+      "asset_or_service": "Microsoft 365 Exchange Online",
+      "threat_scenario": "Prolonged M365 Exchange Online service outage",
+      "impact": "high",
+      "likelihood": "possible",
+      "current_controls": "Microsoft SLA with financial credits, alternative communication channels (Slack, phone), email continuity service for inbound queuing",
+      "residual_risk": "medium",
+      "rto_hours": 4,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_017",
+    "text": "ERP system unavailability due to database corruption or application failure. SAP production instance becomes inaccessible, halting order processing, inventory management, financial reporting, and supply chain operations across all business units.",
+    "metadata": {
+      "risk_id": "RISK-017",
+      "risk_category": "technical",
+      "asset_or_service": "SAP ERP production system",
+      "threat_scenario": "ERP database corruption or application-level failure",
+      "impact": "critical",
+      "likelihood": "unlikely",
+      "current_controls": "Real-time database replication, hourly transaction log backups, dedicated DBA on-call, tested DR failover procedure",
+      "residual_risk": "medium",
+      "rto_hours": 8,
+      "rpo_hours": 1
+    }
+  },
+  {
+    "id": "risk_018",
+    "text": "Payment processing system failure preventing the organization from processing customer transactions. Gateway timeout or processor connectivity loss results in direct revenue impact and customer dissatisfaction during peak business hours.",
+    "metadata": {
+      "risk_id": "RISK-018",
+      "risk_category": "technical",
+      "asset_or_service": "Payment processing gateway",
+      "threat_scenario": "Payment processor outage or connectivity failure",
+      "impact": "critical",
+      "likelihood": "possible",
+      "current_controls": "Dual payment processor integration, automatic failover, offline transaction queuing, processor status monitoring",
+      "residual_risk": "medium",
+      "rto_hours": 1,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_019",
+    "text": "Software supply chain attack where a compromised open-source dependency introduces a backdoor into production applications. Malicious code is introduced via a trusted package update and deploys to production through the CI/CD pipeline.",
+    "metadata": {
+      "risk_id": "RISK-019",
+      "risk_category": "technical",
+      "asset_or_service": "Application development and CI/CD pipeline",
+      "threat_scenario": "Trojanized open-source package deployed via CI/CD",
+      "impact": "critical",
+      "likelihood": "possible",
+      "current_controls": "Software composition analysis, dependency pinning, private artifact registry, SBOM generation, pipeline security scanning",
+      "residual_risk": "high",
+      "rto_hours": 24,
+      "rpo_hours": 4
+    }
+  },
+  {
+    "id": "risk_020",
+    "text": "Physical theft of employee laptops containing sensitive corporate data during travel or from office locations. Loss of unencrypted data on endpoints or exposure of cached credentials and authentication tokens.",
+    "metadata": {
+      "risk_id": "RISK-020",
+      "risk_category": "physical",
+      "asset_or_service": "Employee endpoint devices",
+      "threat_scenario": "Laptop theft with potential data exposure",
+      "impact": "medium",
+      "likelihood": "likely",
+      "current_controls": "Full disk encryption (BitLocker/FileVault), remote wipe capability, conditional access requiring device compliance, asset tracking",
+      "residual_risk": "low",
+      "rto_hours": 24,
+      "rpo_hours": 1
+    }
+  },
+  {
+    "id": "risk_021",
+    "text": "Cooling system failure in the primary datacenter causing thermal shutdown of server and storage equipment. Extended downtime while HVAC systems are repaired and equipment is brought back online in a controlled manner to prevent hardware damage.",
+    "metadata": {
+      "risk_id": "RISK-021",
+      "risk_category": "physical",
+      "asset_or_service": "Datacenter cooling infrastructure",
+      "threat_scenario": "HVAC failure causing thermal shutdown of IT equipment",
+      "impact": "high",
+      "likelihood": "unlikely",
+      "current_controls": "Redundant CRAC units, environmental monitoring with automated alerts, emergency portable cooling units, DR site failover",
+      "residual_risk": "medium",
+      "rto_hours": 8,
+      "rpo_hours": 1
+    }
+  },
+  {
+    "id": "risk_022",
+    "text": "Intellectual property theft through a nation-state sponsored advanced persistent threat targeting proprietary research and development data. Prolonged dwell time with sophisticated evasion techniques designed to avoid standard detection capabilities.",
+    "metadata": {
+      "risk_id": "RISK-022",
+      "risk_category": "technical",
+      "asset_or_service": "R&D data and intellectual property",
+      "threat_scenario": "APT campaign targeting proprietary technology data",
+      "impact": "critical",
+      "likelihood": "possible",
+      "current_controls": "Network segmentation for R&D, DLP on sensitive repositories, threat hunting program, threat intelligence feeds, enhanced monitoring for R&D segment",
+      "residual_risk": "high",
+      "rto_hours": 0,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_023",
+    "text": "Loss of the disaster recovery site due to a regional event affecting both primary and DR locations within the same geographic area. Both sites become simultaneously unavailable, rendering the DR strategy ineffective.",
+    "metadata": {
+      "risk_id": "RISK-023",
+      "risk_category": "physical",
+      "asset_or_service": "Disaster recovery infrastructure",
+      "threat_scenario": "Regional disaster affecting both primary and DR sites",
+      "impact": "critical",
+      "likelihood": "rare",
+      "current_controls": "Geographic separation of 200+ miles, cloud-based tertiary recovery option, data replication to third region",
+      "residual_risk": "medium",
+      "rto_hours": 24,
+      "rpo_hours": 4
+    }
+  },
+  {
+    "id": "risk_024",
+    "text": "Regulatory change requiring immediate data sovereignty compliance in new jurisdictions where the organization operates. Existing cloud infrastructure deployments may not meet data residency requirements, requiring emergency migration of workloads.",
+    "metadata": {
+      "risk_id": "RISK-024",
+      "risk_category": "regulatory",
+      "asset_or_service": "Cloud data storage and processing",
+      "threat_scenario": "New data sovereignty regulation requiring infrastructure changes",
+      "impact": "high",
+      "likelihood": "possible",
+      "current_controls": "Multi-region cloud architecture, data classification program, legal monitoring of regulatory changes, modular deployment templates",
+      "residual_risk": "medium",
+      "rto_hours": 0,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_025",
+    "text": "Critical vulnerability disclosure in widely-used enterprise software (e.g., Exchange, vCenter, Confluence) with active exploitation in the wild. Time pressure to patch before exploitation, balanced against change management and testing requirements.",
+    "metadata": {
+      "risk_id": "RISK-025",
+      "risk_category": "technical",
+      "asset_or_service": "Enterprise software infrastructure",
+      "threat_scenario": "Zero-day or critical CVE with active exploitation requiring emergency patching",
+      "impact": "high",
+      "likelihood": "likely",
+      "current_controls": "Vulnerability management program, emergency patching procedure, compensating controls playbook, threat intelligence monitoring",
+      "residual_risk": "medium",
+      "rto_hours": 0,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_026",
+    "text": "ISP connectivity failure affecting all internet-facing services and remote worker access. Both primary and secondary ISP circuits fail simultaneously due to shared last-mile infrastructure or regional fiber cut.",
+    "metadata": {
+      "risk_id": "RISK-026",
+      "risk_category": "technical",
+      "asset_or_service": "Internet connectivity",
+      "threat_scenario": "Dual ISP failure from shared infrastructure or regional fiber cut",
+      "impact": "high",
+      "likelihood": "unlikely",
+      "current_controls": "Diverse ISP providers with different physical paths, 4G/5G backup circuit, cloud workload independence from on-premises connectivity",
+      "residual_risk": "medium",
+      "rto_hours": 2,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_027",
+    "text": "Security information and event management (SIEM) platform failure causing loss of security monitoring visibility. Log ingestion, correlation, and alerting cease, creating a blind spot during which active threats could go undetected.",
+    "metadata": {
+      "risk_id": "RISK-027",
+      "risk_category": "technical",
+      "asset_or_service": "SIEM platform (Splunk)",
+      "threat_scenario": "SIEM outage creating security monitoring blind spot",
+      "impact": "high",
+      "likelihood": "unlikely",
+      "current_controls": "SIEM clustering with redundancy, log buffer on forwarders, EDR independent alerting, MSSP backup monitoring",
+      "residual_risk": "medium",
+      "rto_hours": 4,
+      "rpo_hours": 1
+    }
+  },
+  {
+    "id": "risk_028",
+    "text": "Mass resignation or unavailability of IT operations team during a critical incident due to labor dispute, health event, or competing employer recruitment. Operations and incident response capabilities are severely degraded.",
+    "metadata": {
+      "risk_id": "RISK-028",
+      "risk_category": "personnel",
+      "asset_or_service": "IT operations and incident response team",
+      "threat_scenario": "Mass unavailability of IT operations staff during active incident",
+      "impact": "high",
+      "likelihood": "unlikely",
+      "current_controls": "Cross-training across teams, documented procedures, managed service contracts for surge support, automation of routine tasks",
+      "residual_risk": "medium",
+      "rto_hours": 48,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_029",
+    "text": "Customer-facing API rate limiting failure allowing abuse of API endpoints for data scraping, account enumeration, or resource exhaustion. Excessive API consumption degrades service for legitimate users and may expose sensitive data through enumeration attacks.",
+    "metadata": {
+      "risk_id": "RISK-029",
+      "risk_category": "technical",
+      "asset_or_service": "Customer API platform",
+      "threat_scenario": "API abuse through rate limiting bypass or misconfiguration",
+      "impact": "medium",
+      "likelihood": "likely",
+      "current_controls": "API gateway rate limiting, per-key quotas, anomaly detection on API usage patterns, WAF rules for API endpoints",
+      "residual_risk": "low",
+      "rto_hours": 1,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_030",
+    "text": "Privileged access management system failure preventing administrators from accessing critical infrastructure for emergency maintenance or incident response. CyberArk vault unavailability locks out all privileged credentials during a time-sensitive security incident.",
+    "metadata": {
+      "risk_id": "RISK-030",
+      "risk_category": "technical",
+      "asset_or_service": "CyberArk PAM platform",
+      "threat_scenario": "PAM system outage during active security incident",
+      "impact": "high",
+      "likelihood": "unlikely",
+      "current_controls": "PAM high-availability cluster, break-glass sealed envelopes for emergency credentials, quarterly DR testing of PAM failover",
+      "residual_risk": "medium",
+      "rto_hours": 2,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_031",
+    "text": "SaaS provider breach exposing sensitive corporate data stored in a critical business application such as Salesforce, ServiceNow, or Workday. Provider's multi-tenant architecture compromise leads to cross-tenant data access affecting confidential HR records, customer data, or financial information.",
+    "metadata": {
+      "risk_id": "RISK-031",
+      "risk_category": "vendor",
+      "asset_or_service": "SaaS business applications",
+      "threat_scenario": "Multi-tenant SaaS provider breach with cross-tenant data exposure",
+      "impact": "critical",
+      "likelihood": "possible",
+      "current_controls": "CASB monitoring, SaaS security posture management, vendor SOC 2 Type II review, data encryption with customer-managed keys where supported, contractual breach notification SLAs",
+      "residual_risk": "high",
+      "rto_hours": 8,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_032",
+    "text": "AI/ML model poisoning attack where an adversary manipulates training data or model weights used in production fraud detection and threat scoring systems. Poisoned models produce incorrect risk scores, allowing fraudulent transactions or malicious activity to bypass automated controls undetected.",
+    "metadata": {
+      "risk_id": "RISK-032",
+      "risk_category": "technical",
+      "asset_or_service": "AI/ML fraud detection and threat scoring models",
+      "threat_scenario": "Training data poisoning or model weight manipulation degrading ML-based security controls",
+      "impact": "high",
+      "likelihood": "unlikely",
+      "current_controls": "Model versioning with integrity hashes, training data provenance tracking, model performance drift monitoring, A/B testing against baseline models",
+      "residual_risk": "medium",
+      "rto_hours": 24,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_033",
+    "text": "Code signing key compromise allowing an attacker to sign malicious software with the organization's trusted certificate. Signed malware bypasses application whitelisting, EDR signature validation, and customer trust mechanisms. Revocation of the compromised certificate disrupts all software distribution and update channels.",
+    "metadata": {
+      "risk_id": "RISK-033",
+      "risk_category": "technical",
+      "asset_or_service": "Software code signing infrastructure",
+      "threat_scenario": "Code signing private key theft enabling trusted malware distribution",
+      "impact": "critical",
+      "likelihood": "unlikely",
+      "current_controls": "HSM-backed key storage, dual-authorization signing workflow, certificate transparency monitoring, timestamped signatures for revocation granularity",
+      "residual_risk": "medium",
+      "rto_hours": 12,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_034",
+    "text": "IoT botnet targeting corporate network infrastructure via compromised building management, HVAC, and camera systems. Infected IoT devices are weaponized for internal network scanning, lateral movement to IT segments, or participation in external DDoS attacks consuming corporate bandwidth.",
+    "metadata": {
+      "risk_id": "RISK-034",
+      "risk_category": "technical",
+      "asset_or_service": "IoT and building management infrastructure",
+      "threat_scenario": "Compromised IoT devices forming botnet within corporate network",
+      "impact": "high",
+      "likelihood": "possible",
+      "current_controls": "IoT VLAN isolation, NAC enforcement, firmware update management, egress filtering on IoT segments, network behavior analysis",
+      "residual_risk": "medium",
+      "rto_hours": 4,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_035",
+    "text": "Insider trading data theft where an employee with access to material non-public information about pending M&A transactions, quarterly earnings, or strategic initiatives exfiltrates data for personal financial gain or sale to third parties. Regulatory investigation by SEC could result in criminal charges and significant reputational damage.",
+    "metadata": {
+      "risk_id": "RISK-035",
+      "risk_category": "personnel",
+      "asset_or_service": "M&A deal rooms and financial reporting systems",
+      "threat_scenario": "Insider exfiltrating MNPI for securities trading advantage",
+      "impact": "critical",
+      "likelihood": "possible",
+      "current_controls": "Information barriers, deal room access logging, DLP policies for financial data, trading window restrictions, employee attestation of insider trading policy",
+      "residual_risk": "high",
+      "rto_hours": 0,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_036",
+    "text": "Cyber insurance coverage gap discovered during a major incident where the policy excludes the specific attack vector or damage type experienced. War exclusion clauses, acts-of-state attribution, or failure to meet policy prerequisites such as MFA enforcement leave the organization financially exposed for breach costs, regulatory fines, and litigation expenses.",
+    "metadata": {
+      "risk_id": "RISK-036",
+      "risk_category": "operational",
+      "asset_or_service": "Cyber insurance program",
+      "threat_scenario": "Insurance claim denial due to policy exclusion or prerequisite failure during major incident",
+      "impact": "high",
+      "likelihood": "possible",
+      "current_controls": "Annual policy review with broker, compliance attestation for policy prerequisites, policy wording legal review, pre-incident claim simulation exercise",
+      "residual_risk": "medium",
+      "rto_hours": 0,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_037",
+    "text": "Shadow IT exposure where business units deploy unauthorized SaaS applications, cloud infrastructure, or development tools without security review or IT governance oversight. Sensitive data is processed in unmonitored environments lacking encryption, access controls, or backup capabilities.",
+    "metadata": {
+      "risk_id": "RISK-037",
+      "risk_category": "operational",
+      "asset_or_service": "Unauthorized SaaS and cloud services",
+      "threat_scenario": "Unmanaged shadow IT services processing sensitive data without security controls",
+      "impact": "high",
+      "likelihood": "likely",
+      "current_controls": "CASB shadow IT discovery, cloud access broker for unsanctioned app detection, expense report scanning for SaaS subscriptions, quarterly department IT surveys",
+      "residual_risk": "medium",
+      "rto_hours": 0,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_038",
+    "text": "M&A integration security gap during acquisition of a new subsidiary with significantly lower security maturity. Network interconnection introduces inherited vulnerabilities, unpatched systems, and compromised accounts into the corporate environment. Attacker pivots from the acquired entity's weak controls to access parent company critical assets.",
+    "metadata": {
+      "risk_id": "RISK-038",
+      "risk_category": "operational",
+      "asset_or_service": "M&A integration and subsidiary networks",
+      "threat_scenario": "Acquired company's weak security posture enabling pivot to parent organization",
+      "impact": "critical",
+      "likelihood": "possible",
+      "current_controls": "Pre-acquisition security due diligence, network isolation during integration, phased connectivity with security gates, dedicated integration security team",
+      "residual_risk": "high",
+      "rto_hours": 48,
+      "rpo_hours": 24
+    }
+  },
+  {
+    "id": "risk_039",
+    "text": "Zero-day vulnerability in a widely used open-source library (e.g., Log4j, OpenSSL, XZ Utils) with critical severity and trivial exploitability. The library is embedded in hundreds of internal and vendor applications, making comprehensive identification and patching extremely challenging within the exploitation window.",
+    "metadata": {
+      "risk_id": "RISK-039",
+      "risk_category": "technical",
+      "asset_or_service": "Open-source software dependencies across the application portfolio",
+      "threat_scenario": "Critical zero-day in ubiquitous open-source library with mass exploitation",
+      "impact": "critical",
+      "likelihood": "possible",
+      "current_controls": "Software Bill of Materials for all applications, SCA tooling integrated in CI/CD, WAF virtual patching capability, threat intelligence monitoring for emerging CVEs",
+      "residual_risk": "high",
+      "rto_hours": 0,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_040",
+    "text": "Targeted ransomware attack specifically designed to destroy backup infrastructure before encrypting production data. Attacker performs reconnaissance of backup topology including Veeam servers, cloud replication agents, and tape management systems, then systematically disables or encrypts each backup tier before detonating ransomware across the enterprise.",
+    "metadata": {
+      "risk_id": "RISK-040",
+      "risk_category": "technical",
+      "asset_or_service": "Backup and recovery infrastructure",
+      "threat_scenario": "Ransomware with backup-specific targeting and destruction capabilities",
+      "impact": "critical",
+      "likelihood": "possible",
+      "current_controls": "Air-gapped immutable backup copies, backup admin credentials isolated from domain, backup network segmentation, canary files for early ransomware detection, tertiary offline tape storage",
+      "residual_risk": "medium",
+      "rto_hours": 168,
+      "rpo_hours": 48
+    }
+  },
+  {
+    "id": "risk_041",
+    "text": "Generative AI data leakage where employees input confidential business data, source code, or customer information into public AI services such as ChatGPT, Claude, or Copilot without enterprise licensing. Training data retention by AI providers creates uncontrolled copies of sensitive data outside organizational governance boundaries.",
+    "metadata": {
+      "risk_id": "RISK-041",
+      "risk_category": "operational",
+      "asset_or_service": "Public generative AI services",
+      "threat_scenario": "Employee disclosure of confidential data to public AI platforms",
+      "impact": "high",
+      "likelihood": "likely",
+      "current_controls": "AI acceptable use policy, CASB URL filtering for unauthorized AI services, DLP monitoring for AI platform uploads, enterprise AI deployment with data protection agreements",
+      "residual_risk": "medium",
+      "rto_hours": 0,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_042",
+    "text": "Deepfake-enabled social engineering attack using AI-generated voice or video to impersonate executives in real-time communications. Attacker conducts convincing voice calls or video conferences to authorize wire transfers, credential resets, or sensitive data disclosures, bypassing traditional verification methods.",
+    "metadata": {
+      "risk_id": "RISK-042",
+      "risk_category": "technical",
+      "asset_or_service": "Executive communications and financial authorization workflows",
+      "threat_scenario": "AI deepfake impersonation of executives for financial fraud or data theft",
+      "impact": "critical",
+      "likelihood": "possible",
+      "current_controls": "Out-of-band verification for financial transactions, code word authentication for executive requests, executive security awareness training on deepfakes, transaction approval requiring multiple authorizers",
+      "residual_risk": "medium",
+      "rto_hours": 0,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_043",
+    "text": "Kubernetes cluster compromise through misconfigured RBAC, exposed dashboards, or container escape vulnerabilities allowing an attacker to gain cluster-admin privileges. Attacker can access all secrets, deploy cryptominers, exfiltrate data from all namespaces, or use the cluster as a pivot point to cloud provider APIs.",
+    "metadata": {
+      "risk_id": "RISK-043",
+      "risk_category": "technical",
+      "asset_or_service": "Production Kubernetes clusters",
+      "threat_scenario": "Kubernetes cluster compromise via RBAC misconfiguration or container escape",
+      "impact": "critical",
+      "likelihood": "possible",
+      "current_controls": "Pod security standards enforcement, RBAC least-privilege review, network policies, OPA Gatekeeper admission control, runtime container security monitoring, private API server endpoint",
+      "residual_risk": "medium",
+      "rto_hours": 8,
+      "rpo_hours": 1
+    }
+  },
+  {
+    "id": "risk_044",
+    "text": "Cloud account credential exposure through developer error such as committing AWS access keys, Azure service principal secrets, or GCP service account keys to public repositories. Automated credential harvesters detect exposed secrets within minutes and begin exploiting cloud resources for cryptomining, data theft, or infrastructure abuse.",
+    "metadata": {
+      "risk_id": "RISK-044",
+      "risk_category": "technical",
+      "asset_or_service": "Cloud provider accounts (AWS, Azure, GCP)",
+      "threat_scenario": "Cloud credentials exposed in public code repositories",
+      "impact": "high",
+      "likelihood": "likely",
+      "current_controls": "Pre-commit hooks for secret scanning, GitHub secret scanning alerts, short-lived credentials via IAM roles, cloud provider credential exposure detection services",
+      "residual_risk": "medium",
+      "rto_hours": 1,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_045",
+    "text": "Compliance failure during PCI DSS v4.0 assessment resulting in loss of payment card processing capability. Assessor identifies significant gaps in new requirements such as targeted risk analysis, authenticated vulnerability scanning, or script management on payment pages, leading to non-compliant status.",
+    "metadata": {
+      "risk_id": "RISK-045",
+      "risk_category": "regulatory",
+      "asset_or_service": "Payment card processing infrastructure",
+      "threat_scenario": "PCI DSS v4.0 compliance failure resulting in revoked processing authorization",
+      "impact": "critical",
+      "likelihood": "possible",
+      "current_controls": "Quarterly internal assessments, QSA pre-assessment gap analysis, PCI DSS v4.0 transition roadmap, dedicated compliance team with PCI expertise",
+      "residual_risk": "medium",
+      "rto_hours": 0,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_046",
+    "text": "Third-party API dependency failure where a critical external API (payment processor, identity verification, shipping provider) experiences extended downtime or discontinues service without adequate notice. Business processes dependent on the API are disrupted with no immediate alternative available.",
+    "metadata": {
+      "risk_id": "RISK-046",
+      "risk_category": "vendor",
+      "asset_or_service": "External API integrations",
+      "threat_scenario": "Critical third-party API outage or service discontinuation",
+      "impact": "high",
+      "likelihood": "possible",
+      "current_controls": "API abstraction layer enabling provider switching, secondary provider contracts for critical APIs, circuit breaker patterns with graceful degradation, SLA monitoring dashboards",
+      "residual_risk": "medium",
+      "rto_hours": 4,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_047",
+    "text": "BGP hijacking attack where an adversary announces more specific routes for the organization's IP address space, redirecting inbound traffic through attacker-controlled infrastructure for interception, modification, or denial of service. Affects all internet-facing services and may go undetected for hours.",
+    "metadata": {
+      "risk_id": "RISK-047",
+      "risk_category": "technical",
+      "asset_or_service": "Internet-facing IP address space and BGP routing",
+      "threat_scenario": "BGP route hijacking redirecting traffic through adversary infrastructure",
+      "impact": "high",
+      "likelihood": "unlikely",
+      "current_controls": "RPKI route origin validation, BGP monitoring services, ISP route filtering agreements, multiple transit providers with diverse peering",
+      "residual_risk": "medium",
+      "rto_hours": 2,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_048",
+    "text": "Container registry compromise where the private Docker registry or Helm chart repository is breached, allowing an attacker to inject malicious layers into base images or modify deployment charts. All subsequent deployments pull compromised images, propagating the attack across the entire container fleet.",
+    "metadata": {
+      "risk_id": "RISK-048",
+      "risk_category": "technical",
+      "asset_or_service": "Container registry and artifact repository",
+      "threat_scenario": "Private container registry compromise enabling supply chain poisoning",
+      "impact": "critical",
+      "likelihood": "unlikely",
+      "current_controls": "Image signing with Cosign/Notary, admission controller requiring signed images, registry access restricted to CI/CD service accounts, vulnerability scanning on push, content trust enforcement",
+      "residual_risk": "medium",
+      "rto_hours": 12,
+      "rpo_hours": 4
+    }
+  },
+  {
+    "id": "risk_049",
+    "text": "Physical security breach at a remote or branch office lacking enterprise-grade physical controls. Attacker gains after-hours physical access to network closets, installs rogue network devices or keyloggers, and establishes persistent remote access to the corporate network through the compromised branch circuit.",
+    "metadata": {
+      "risk_id": "RISK-049",
+      "risk_category": "physical",
+      "asset_or_service": "Branch office network infrastructure",
+      "threat_scenario": "Physical intrusion at remote office enabling network implant installation",
+      "impact": "high",
+      "likelihood": "unlikely",
+      "current_controls": "802.1X port-based authentication, MAC address monitoring, branch network segmentation, encrypted SD-WAN tunnels, physical access alarms on network closets",
+      "residual_risk": "medium",
+      "rto_hours": 4,
+      "rpo_hours": 0
+    }
+  },
+  {
+    "id": "risk_050",
+    "text": "Mass data corruption event caused by a software bug in a database migration or ETL process that silently corrupts data across production tables. The corruption propagates to backups before detection, rendering all recent backup copies unreliable. Recovery requires identifying the last known-good backup and replaying transaction logs, resulting in potential data loss.",
+    "metadata": {
+      "risk_id": "RISK-050",
+      "risk_category": "technical",
+      "asset_or_service": "Production databases and data pipelines",
+      "threat_scenario": "Silent data corruption propagating to backup copies before detection",
+      "impact": "critical",
+      "likelihood": "unlikely",
+      "current_controls": "Data integrity checksums, database change data capture, point-in-time recovery capability, data validation assertions in ETL pipelines, immutable long-term backup retention",
+      "residual_risk": "medium",
+      "rto_hours": 48,
+      "rpo_hours": 24
+    }
+  }
+]

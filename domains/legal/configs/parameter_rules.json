@@ -1,0 +1,113 @@
+{
+    "domain": "legal",
+    "version": "1.0.0",
+    "description": "Parameter validation rules for Legal admin and critical tools",
+    "rules": {
+        "L8_court_filing": {
+            "parameters": {
+                "filing_type": {
+                    "type": "string",
+                    "required": true,
+                    "allowed": ["motion", "brief", "complaint", "answer", "notice"],
+                    "description": "Type of court filing"
+                },
+                "case_number": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Court case number"
+                },
+                "max_filings": {
+                    "type": "integer",
+                    "value": 2,
+                    "description": "Maximum number of filings per invocation"
+                },
+                "court": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Court identifier or name"
+                },
+                "filing_party": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Name of the filing party"
+                },
+                "document_id": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Document identifier to be filed"
+                },
+                "attorney_bar_number": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Bar number of the filing attorney"
+                }
+            }
+        },
+        "L9_document_signing": {
+            "parameters": {
+                "document_id": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Document identifier to be signed"
+                },
+                "signer_id": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Identifier of the authorized signer"
+                },
+                "max_documents": {
+                    "type": "integer",
+                    "value": 3,
+                    "description": "Maximum number of documents per invocation"
+                },
+                "signing_capacity": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Capacity in which the signer is acting (e.g., attorney, witness, notary)"
+                },
+                "matter_id": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Associated matter or case identifier"
+                }
+            }
+        },
+        "L10_payment_processing": {
+            "parameters": {
+                "amount": {
+                    "type": "number",
+                    "required": true,
+                    "min": 0.01,
+                    "max": 25000,
+                    "description": "Payment amount (max $25,000)"
+                },
+                "payee": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Payment recipient name or identifier"
+                },
+                "matter_id": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Associated matter or case identifier"
+                },
+                "payment_type": {
+                    "type": "string",
+                    "required": true,
+                    "allowed": ["trust_disbursement", "operating_payment", "retainer_refund", "court_fee"],
+                    "description": "Type of legal payment"
+                },
+                "source_account": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Source account (trust or operating)"
+                },
+                "authorization_code": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Authorization code from supervising attorney"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,122 @@
+{
+    "domain": "cyberops",
+    "version": "1.0.0",
+    "description": "Critical asset definitions for CyberOps escalation and denial triggers",
+    "assets": {
+        "domain_controllers": {
+            "10.0.8.200": {
+                "name": "dc-primary",
+                "criticality": "critical",
+                "type": "domain_controller",
+                "description": "Primary Active Directory domain controller"
+            },
+            "10.0.8.201": {
+                "name": "dc-secondary",
+                "criticality": "high",
+                "type": "domain_controller",
+                "description": "Secondary Active Directory domain controller"
+            }
+        },
+        "database_servers": {
+            "db-primary": {
+                "criticality": "critical",
+                "type": "database",
+                "description": "Primary production database server"
+            },
+            "db-replica": {
+                "criticality": "high",
+                "type": "database",
+                "description": "Database replica for read operations"
+            }
+        },
+        "firewalls": {
+            "fw-perimeter": {
+                "criticality": "critical",
+                "type": "firewall",
+                "description": "Perimeter firewall protecting external boundary"
+            },
+            "fw-internal": {
+                "criticality": "high",
+                "type": "firewall",
+                "description": "Internal segmentation firewall"
+            }
+        },
+        "core_infrastructure": {
+            "10.0.0.1": {
+                "name": "core-router",
+                "criticality": "critical",
+                "type": "network",
+                "description": "Core network router"
+            },
+            "10.0.1.1": {
+                "name": "core-switch",
+                "criticality": "high",
+                "type": "network",
+                "description": "Core network switch"
+            },
+            "10.0.1.10": {
+                "name": "dc-internal",
+                "criticality": "critical",
+                "type": "domain_controller",
+                "description": "Internal domain controller referenced in AP-8 v1"
+            },
+            "10.0.8.100": {
+                "name": "dns-primary",
+                "criticality": "critical",
+                "type": "dns",
+                "description": "Primary DNS server"
+            },
+            "10.0.8.101": {
+                "name": "dns-secondary",
+                "criticality": "high",
+                "type": "dns",
+                "description": "Secondary DNS server"
+            }
+        },
+        "service_accounts": {
+            "svc_backup_admin": {
+                "criticality": "high",
+                "type": "service_account",
+                "description": "Backup administration service account"
+            },
+            "krbtgt": {
+                "criticality": "critical",
+                "type": "service_account",
+                "description": "Kerberos ticket-granting ticket account"
+            },
+            "Administrator": {
+                "criticality": "critical",
+                "type": "service_account",
+                "description": "Built-in Administrator account"
+            },
+            "root": {
+                "criticality": "critical",
+                "type": "service_account",
+                "description": "Root superuser account"
+            },
+            "SYSTEM": {
+                "criticality": "critical",
+                "type": "service_account",
+                "description": "Windows SYSTEM account"
+            }
+        }
+    },
+    "criticality_levels": {
+        "critical": {
+            "action": "deny_and_escalate",
+            "description": "Actions targeting critical assets are denied and escalated to human operator"
+        },
+        "high": {
+            "action": "escalate",
+            "description": "Actions targeting high-criticality assets require MMA consensus before execution"
+        },
+        "medium": {
+            "action": "log_and_proceed",
+            "description": "Actions are logged with enhanced audit trail"
+        },
+        "low": {
+            "action": "proceed",
+            "description": "Standard processing"
+        }
+    }
+}

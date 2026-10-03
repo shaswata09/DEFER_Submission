@@ -1,0 +1,652 @@
+[
+  {
+    "id": "playbook_001",
+    "text": "Phishing email response playbook. Retrieve the reported email headers and body from the mail gateway. Extract IOCs (sender, URLs, attachments), check against threat intel feeds (VirusTotal, URLhaus), and determine if other recipients received the same email. If malicious, quarantine all instances and block the sender domain at the email gateway.",
+    "metadata": {
+      "playbook_id": "PB-001",
+      "scenario": "phishing_email_triage",
+      "severity_applicable": "low,medium,high",
+      "estimated_duration_minutes": 30,
+      "requires_approval": false,
+      "last_tested": "2026-01-15",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_002",
+    "text": "Ransomware containment and recovery playbook. Immediately isolate affected hosts by disabling network ports at the switch level. Preserve forensic evidence by capturing memory and disk images before remediation. Assess encryption scope, identify the ransomware variant, and initiate recovery from offline backups. Engage legal counsel for regulatory notification requirements.",
+    "metadata": {
+      "playbook_id": "PB-002",
+      "scenario": "ransomware_response",
+      "severity_applicable": "critical",
+      "estimated_duration_minutes": 480,
+      "requires_approval": true,
+      "last_tested": "2025-11-20",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_003",
+    "text": "Insider threat investigation playbook. Coordinate with HR and Legal before initiating technical investigation. Collect DLP logs, email audit trails, USB device connection history, and VPN access logs for the subject. Preserve evidence chain of custody for potential legal proceedings. Assess data exposure scope and determine if regulatory notification is required.",
+    "metadata": {
+      "playbook_id": "PB-003",
+      "scenario": "insider_threat_investigation",
+      "severity_applicable": "medium,high,critical",
+      "estimated_duration_minutes": 240,
+      "requires_approval": true,
+      "last_tested": "2025-09-10",
+      "automation_level": "manual"
+    }
+  },
+  {
+    "id": "playbook_004",
+    "text": "DDoS mitigation playbook. Verify the attack vector (volumetric, protocol, or application-layer) using NetFlow data and WAF logs. Engage upstream DDoS mitigation provider (Cloudflare/Akamai) for scrubbing center activation. Apply emergency rate limiting rules and geo-blocking if attack source is concentrated. Monitor service availability throughout mitigation.",
+    "metadata": {
+      "playbook_id": "PB-004",
+      "scenario": "ddos_mitigation",
+      "severity_applicable": "medium,high,critical",
+      "estimated_duration_minutes": 60,
+      "requires_approval": false,
+      "last_tested": "2026-02-05",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_005",
+    "text": "Data exfiltration response playbook. Identify the exfiltration channel (DNS tunneling, HTTPS upload, cloud storage, email) using DLP alerts and network logs. Block the exfiltration destination immediately. Quantify the volume and sensitivity of exfiltrated data by correlating proxy logs with data classification tags. Initiate breach notification process if PII is involved.",
+    "metadata": {
+      "playbook_id": "PB-005",
+      "scenario": "data_exfiltration_response",
+      "severity_applicable": "high,critical",
+      "estimated_duration_minutes": 120,
+      "requires_approval": true,
+      "last_tested": "2025-10-28",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_006",
+    "text": "Account compromise response playbook. Disable the compromised account and revoke all active sessions and tokens. Reset the password and re-enroll MFA. Review authentication logs for unauthorized access scope, check for inbox rules or mail forwarding changes, and audit any OAuth application consent grants. Notify the account owner through an out-of-band channel.",
+    "metadata": {
+      "playbook_id": "PB-006",
+      "scenario": "account_compromise_response",
+      "severity_applicable": "medium,high,critical",
+      "estimated_duration_minutes": 45,
+      "requires_approval": false,
+      "last_tested": "2026-03-01",
+      "automation_level": "full"
+    }
+  },
+  {
+    "id": "playbook_007",
+    "text": "Web shell detection and removal playbook. Compare web server file system against known-good baseline to identify unauthorized files. Analyze suspected web shells for capabilities (file manager, command execution, database access). Capture the web shell for malware analysis, remove it, and patch the vulnerability that enabled the upload. Review web server access logs for shell interaction history.",
+    "metadata": {
+      "playbook_id": "PB-007",
+      "scenario": "web_shell_remediation",
+      "severity_applicable": "high,critical",
+      "estimated_duration_minutes": 90,
+      "requires_approval": false,
+      "last_tested": "2025-12-12",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_008",
+    "text": "Supply chain compromise response playbook. Identify all systems consuming the compromised component using software bill of materials (SBOM) inventory. Isolate affected build pipelines and revoke associated signing keys. Perform binary diffing between known-good and suspected-compromised versions. Rebuild affected artifacts from verified source code and redeploy.",
+    "metadata": {
+      "playbook_id": "PB-008",
+      "scenario": "supply_chain_compromise",
+      "severity_applicable": "critical",
+      "estimated_duration_minutes": 360,
+      "requires_approval": true,
+      "last_tested": "2025-08-15",
+      "automation_level": "manual"
+    }
+  },
+  {
+    "id": "playbook_009",
+    "text": "Cryptomining incident response playbook. Identify the mining process using EDR telemetry or top/htop resource analysis. Determine the entry vector (exposed API, vulnerable web app, compromised credentials). Kill the mining process, remove persistence mechanisms (crontab entries, systemd services), and block mining pool domains/IPs at the firewall.",
+    "metadata": {
+      "playbook_id": "PB-009",
+      "scenario": "cryptomining_remediation",
+      "severity_applicable": "low,medium",
+      "estimated_duration_minutes": 60,
+      "requires_approval": false,
+      "last_tested": "2025-11-05",
+      "automation_level": "full"
+    }
+  },
+  {
+    "id": "playbook_010",
+    "text": "Business email compromise investigation playbook. Analyze the email headers and content for social engineering indicators. Check if the sender account is genuinely compromised or spoofed using DMARC/SPF/DKIM analysis. Review any financial transactions initiated as a result of the BEC. Coordinate with the bank for transaction reversal if within the recall window.",
+    "metadata": {
+      "playbook_id": "PB-010",
+      "scenario": "bec_investigation",
+      "severity_applicable": "high,critical",
+      "estimated_duration_minutes": 120,
+      "requires_approval": true,
+      "last_tested": "2026-01-22",
+      "automation_level": "manual"
+    }
+  },
+  {
+    "id": "playbook_011",
+    "text": "SQL injection incident response playbook. Identify the vulnerable parameter using WAF logs and application error logs. Determine the extent of data access by analyzing the injected SQL statements. Apply virtual patching at the WAF immediately, then work with development to deploy a code-level fix using parameterized queries. Audit database for unauthorized modifications.",
+    "metadata": {
+      "playbook_id": "PB-011",
+      "scenario": "sql_injection_response",
+      "severity_applicable": "high,critical",
+      "estimated_duration_minutes": 90,
+      "requires_approval": false,
+      "last_tested": "2025-10-15",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_012",
+    "text": "Lateral movement containment playbook. Identify the scope of compromise using EDR lateral movement alerts and authentication logs. Implement micro-segmentation rules to isolate affected network segments. Reset credentials for all accounts that authenticated to compromised hosts. Deploy enhanced monitoring (Sysmon, packet captures) on adjacent network segments to detect further movement.",
+    "metadata": {
+      "playbook_id": "PB-012",
+      "scenario": "lateral_movement_containment",
+      "severity_applicable": "high,critical",
+      "estimated_duration_minutes": 180,
+      "requires_approval": true,
+      "last_tested": "2025-12-20",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_013",
+    "text": "Malware outbreak containment playbook. Deploy IOCs (file hashes, C2 IPs/domains, mutex names) to EDR for fleet-wide scanning. Quarantine all detected instances and block C2 infrastructure at the firewall and DNS sinkhole. Analyze the malware sample in the sandbox to understand capabilities. Generate a scope assessment report for leadership.",
+    "metadata": {
+      "playbook_id": "PB-013",
+      "scenario": "malware_outbreak_containment",
+      "severity_applicable": "high,critical",
+      "estimated_duration_minutes": 120,
+      "requires_approval": false,
+      "last_tested": "2026-02-18",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_014",
+    "text": "Cloud infrastructure compromise playbook for AWS. Review CloudTrail logs for unauthorized API calls. Identify compromised IAM roles or users and revoke all sessions. Audit resource creation for backdoor persistence (new IAM users, Lambda functions, EC2 instances). Check for data access in S3, RDS, and Secrets Manager. Rotate all potentially exposed credentials.",
+    "metadata": {
+      "playbook_id": "PB-014",
+      "scenario": "aws_cloud_compromise",
+      "severity_applicable": "high,critical",
+      "estimated_duration_minutes": 150,
+      "requires_approval": true,
+      "last_tested": "2025-09-28",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_015",
+    "text": "Credential stuffing response playbook. Analyze authentication logs to quantify the attack volume and identify successfully compromised accounts. Enable CAPTCHA or progressive rate limiting on targeted endpoints. Force password resets for all compromised accounts and enable MFA enrollment. Block attacking IP ranges and add them to the threat intelligence blocklist.",
+    "metadata": {
+      "playbook_id": "PB-015",
+      "scenario": "credential_stuffing_response",
+      "severity_applicable": "medium,high",
+      "estimated_duration_minutes": 60,
+      "requires_approval": false,
+      "last_tested": "2026-01-08",
+      "automation_level": "full"
+    }
+  },
+  {
+    "id": "playbook_016",
+    "text": "Endpoint forensic acquisition playbook. Document the chain of custody with case number, analyst name, and timestamps. Capture volatile data first: running processes, network connections, memory dump. Create forensic disk image using FTK Imager or dc3dd with hash verification. Package and transfer evidence to the forensic analysis workstation securely.",
+    "metadata": {
+      "playbook_id": "PB-016",
+      "scenario": "endpoint_forensic_acquisition",
+      "severity_applicable": "medium,high,critical",
+      "estimated_duration_minutes": 120,
+      "requires_approval": false,
+      "last_tested": "2025-11-18",
+      "automation_level": "manual"
+    }
+  },
+  {
+    "id": "playbook_017",
+    "text": "Unauthorized access via VPN playbook. Identify the compromised VPN account from authentication logs and terminate active sessions. Determine if access was via stolen credentials, MFA bypass, or VPN appliance vulnerability. Audit all resources accessed during the unauthorized session. Rotate the user credentials and VPN pre-shared keys if applicable.",
+    "metadata": {
+      "playbook_id": "PB-017",
+      "scenario": "unauthorized_vpn_access",
+      "severity_applicable": "medium,high",
+      "estimated_duration_minutes": 60,
+      "requires_approval": false,
+      "last_tested": "2025-10-02",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_018",
+    "text": "DNS hijacking response playbook. Verify DNS record modifications against change management logs. Check domain registrar account for unauthorized access and enable registrar lock. Update DNS records to correct values and reduce TTL temporarily for faster propagation. Monitor for residual traffic to hijacked destinations and alert affected users.",
+    "metadata": {
+      "playbook_id": "PB-018",
+      "scenario": "dns_hijacking_response",
+      "severity_applicable": "high,critical",
+      "estimated_duration_minutes": 90,
+      "requires_approval": true,
+      "last_tested": "2025-08-25",
+      "automation_level": "manual"
+    }
+  },
+  {
+    "id": "playbook_019",
+    "text": "Privilege escalation incident playbook. Identify the escalation method (kernel exploit, misconfigured SUID binary, token manipulation, AD abuse). Revoke the escalated privileges immediately. Patch the vulnerability or correct the misconfiguration that enabled escalation. Review the account activity timeline to determine what actions were taken with elevated privileges.",
+    "metadata": {
+      "playbook_id": "PB-019",
+      "scenario": "privilege_escalation_response",
+      "severity_applicable": "high,critical",
+      "estimated_duration_minutes": 90,
+      "requires_approval": false,
+      "last_tested": "2026-02-28",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_020",
+    "text": "Rogue device detection and response playbook. Identify the unauthorized device via NAC alerts, DHCP logs, or network scanning. Locate the physical port using MAC address table lookups on switches. Disable the switch port administratively. Physically locate and confiscate the device. Analyze the device for malicious tools or exfiltrated data.",
+    "metadata": {
+      "playbook_id": "PB-020",
+      "scenario": "rogue_device_response",
+      "severity_applicable": "medium,high",
+      "estimated_duration_minutes": 45,
+      "requires_approval": false,
+      "last_tested": "2025-07-14",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_021",
+    "text": "Zero-day vulnerability emergency response playbook. Assess exposure by inventorying all instances of the affected software. Implement compensating controls (WAF rules, network ACLs, disable affected features) until a patch is available. Increase monitoring on affected assets with custom detection rules. Communicate risk to stakeholders via the vulnerability management dashboard.",
+    "metadata": {
+      "playbook_id": "PB-021",
+      "scenario": "zero_day_emergency_response",
+      "severity_applicable": "critical",
+      "estimated_duration_minutes": 120,
+      "requires_approval": true,
+      "last_tested": "2026-03-15",
+      "automation_level": "manual"
+    }
+  },
+  {
+    "id": "playbook_022",
+    "text": "Email account compromise playbook specific to Microsoft 365. Run the unified audit log search for the compromised mailbox. Check for inbox rules forwarding to external addresses, OAuth app consents, and delegate access changes. Review sent items for BEC-style outbound phishing. Purge any phishing emails sent from the compromised account using Content Search.",
+    "metadata": {
+      "playbook_id": "PB-022",
+      "scenario": "m365_email_compromise",
+      "severity_applicable": "medium,high",
+      "estimated_duration_minutes": 60,
+      "requires_approval": false,
+      "last_tested": "2026-01-30",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_023",
+    "text": "Container escape incident response playbook. Identify the compromised container and the escape method (kernel exploit, misconfigured capabilities, mounted host paths). Terminate the container and cordon the affected Kubernetes node. Audit the host system for persistence mechanisms. Review pod security policies and enforce restricted security contexts across the cluster.",
+    "metadata": {
+      "playbook_id": "PB-023",
+      "scenario": "container_escape_response",
+      "severity_applicable": "critical",
+      "estimated_duration_minutes": 120,
+      "requires_approval": true,
+      "last_tested": "2025-12-05",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_024",
+    "text": "Third-party breach notification response playbook. Assess the scope of data shared with the breached vendor from the vendor risk management register. Determine if any credentials, API keys, or customer data were exposed. Rotate all shared credentials and revoke API access. Notify affected internal stakeholders and prepare customer communication if warranted.",
+    "metadata": {
+      "playbook_id": "PB-024",
+      "scenario": "third_party_breach_response",
+      "severity_applicable": "medium,high,critical",
+      "estimated_duration_minutes": 180,
+      "requires_approval": true,
+      "last_tested": "2025-09-20",
+      "automation_level": "manual"
+    }
+  },
+  {
+    "id": "playbook_025",
+    "text": "SSL/TLS certificate compromise response playbook. Revoke the compromised certificate via the Certificate Authority immediately. Issue a new certificate with a fresh key pair and deploy it to all affected services. Update certificate pinning configurations in mobile applications. Monitor Certificate Transparency logs for unauthorized certificate issuance for the domain.",
+    "metadata": {
+      "playbook_id": "PB-025",
+      "scenario": "certificate_compromise_response",
+      "severity_applicable": "high,critical",
+      "estimated_duration_minutes": 60,
+      "requires_approval": true,
+      "last_tested": "2025-06-18",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_026",
+    "text": "Active Directory compromise recovery playbook. Reset the KRBTGT password twice (with replication interval between resets). Reset all privileged account passwords including Domain Admins, Enterprise Admins, and service accounts. Rebuild domain controllers from clean media if Golden Ticket attack is confirmed. Re-establish trust relationships with partner domains.",
+    "metadata": {
+      "playbook_id": "PB-026",
+      "scenario": "active_directory_compromise_recovery",
+      "severity_applicable": "critical",
+      "estimated_duration_minutes": 720,
+      "requires_approval": true,
+      "last_tested": "2025-10-30",
+      "automation_level": "manual"
+    }
+  },
+  {
+    "id": "playbook_027",
+    "text": "Watering hole attack response playbook. Identify all employees who visited the compromised website using proxy logs. Scan affected endpoints for drive-by download artifacts and exploit kit indicators. Check for persistence mechanisms (scheduled tasks, registry run keys, browser extensions). Block the compromised domain and submit to threat intel sharing platforms.",
+    "metadata": {
+      "playbook_id": "PB-027",
+      "scenario": "watering_hole_response",
+      "severity_applicable": "high,critical",
+      "estimated_duration_minutes": 150,
+      "requires_approval": false,
+      "last_tested": "2025-08-08",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_028",
+    "text": "Cloud storage misconfiguration response playbook. Immediately restrict the storage bucket/blob container to private access. Audit access logs to determine if unauthorized parties accessed exposed data. Enumerate the sensitivity of exposed files using data classification tags. Implement SCPs or Azure Policies to prevent future public bucket creation.",
+    "metadata": {
+      "playbook_id": "PB-028",
+      "scenario": "cloud_storage_exposure_response",
+      "severity_applicable": "medium,high,critical",
+      "estimated_duration_minutes": 45,
+      "requires_approval": false,
+      "last_tested": "2026-03-10",
+      "automation_level": "full"
+    }
+  },
+  {
+    "id": "playbook_029",
+    "text": "API key exposure response playbook. Immediately rotate the exposed API key and deploy the new key to all consuming applications. Audit the API key usage logs for unauthorized calls during the exposure window. Assess the blast radius based on the key permissions and accessed resources. Implement secrets scanning in CI/CD pipelines to prevent recurrence.",
+    "metadata": {
+      "playbook_id": "PB-029",
+      "scenario": "api_key_exposure_response",
+      "severity_applicable": "medium,high",
+      "estimated_duration_minutes": 30,
+      "requires_approval": false,
+      "last_tested": "2026-02-12",
+      "automation_level": "full"
+    }
+  },
+  {
+    "id": "playbook_030",
+    "text": "ESXi hypervisor compromise response playbook. Enable lockdown mode on unaffected ESXi hosts. Snapshot running VMs on the compromised host for forensic analysis before shutdown. Rebuild the ESXi host from known-good installation media. Restore VMs from verified clean backups and rotate all vCenter and ESXi root credentials across the environment.",
+    "metadata": {
+      "playbook_id": "PB-030",
+      "scenario": "esxi_hypervisor_compromise",
+      "severity_applicable": "critical",
+      "estimated_duration_minutes": 360,
+      "requires_approval": true,
+      "last_tested": "2025-11-25",
+      "automation_level": "manual"
+    }
+  },
+  {
+    "id": "playbook_031",
+    "text": "API key leak on GitHub response playbook. Use GitHub secret scanning alerts or external monitoring tools to identify the exposed key and affected repository. Immediately rotate the compromised key via the provider's API. Audit usage logs for the exposed key during the exposure window to identify unauthorized access. Scrub the key from Git history using BFG Repo-Cleaner or git filter-branch. Enforce pre-commit hooks with secret detection across all organization repositories.",
+    "metadata": {
+      "playbook_id": "PB-031",
+      "scenario": "github_api_key_leak",
+      "severity_applicable": "medium,high",
+      "estimated_duration_minutes": 45,
+      "requires_approval": false,
+      "last_tested": "2026-03-20",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_032",
+    "text": "SIM swapping attack response playbook. Immediately contact the affected carrier to freeze the targeted phone number and reverse the SIM swap. Reset passwords and MFA for all accounts linked to the compromised phone number. Review authentication logs for any successful MFA bypass during the attack window. Migrate high-value accounts from SMS-based MFA to FIDO2 hardware tokens. File a report with law enforcement for identity theft.",
+    "metadata": {
+      "playbook_id": "PB-032",
+      "scenario": "sim_swapping_response",
+      "severity_applicable": "high,critical",
+      "estimated_duration_minutes": 90,
+      "requires_approval": true,
+      "last_tested": "2026-01-25",
+      "automation_level": "manual"
+    }
+  },
+  {
+    "id": "playbook_033",
+    "text": "Deepfake audio BEC response playbook. Preserve the recording of the deepfake call for forensic analysis and law enforcement. Verify all financial transactions or data disclosures that may have occurred as a result of the impersonation. Notify the impersonated executive and relevant business units. Engage the fraud team to reverse any unauthorized transactions. Update the out-of-band verification protocol to include a rotating code word for executive identity confirmation.",
+    "metadata": {
+      "playbook_id": "PB-033",
+      "scenario": "deepfake_audio_bec",
+      "severity_applicable": "high,critical",
+      "estimated_duration_minutes": 120,
+      "requires_approval": true,
+      "last_tested": "2026-02-15",
+      "automation_level": "manual"
+    }
+  },
+  {
+    "id": "playbook_034",
+    "text": "Kubernetes pod escape response playbook. Identify the escaped pod using Falco or runtime security alerts. Cordon and drain the affected node to prevent new pod scheduling. Capture node forensic artifacts including container runtime logs, kubelet logs, and host process listings. Analyze the escape vector: check for privileged containers, hostPID/hostNetwork settings, mounted service account tokens, or kernel exploits. Rebuild the node from a clean image and enforce pod security standards to prevent recurrence.",
+    "metadata": {
+      "playbook_id": "PB-034",
+      "scenario": "kubernetes_pod_escape",
+      "severity_applicable": "critical",
+      "estimated_duration_minutes": 150,
+      "requires_approval": true,
+      "last_tested": "2026-03-08",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_035",
+    "text": "Certificate authority compromise response playbook. Immediately take the compromised CA offline and revoke its intermediate certificate from the root CA. Publish updated CRL and OCSP responses. Inventory all certificates issued by the compromised CA and prioritize re-issuance for critical services. Monitor Certificate Transparency logs for any additional unauthorized certificates. Notify relying parties and browser vendors if the root CA is affected.",
+    "metadata": {
+      "playbook_id": "PB-035",
+      "scenario": "certificate_authority_compromise",
+      "severity_applicable": "critical",
+      "estimated_duration_minutes": 480,
+      "requires_approval": true,
+      "last_tested": "2025-10-18",
+      "automation_level": "manual"
+    }
+  },
+  {
+    "id": "playbook_036",
+    "text": "DNS cache poisoning response playbook. Verify the poisoned records by comparing DNS responses from multiple resolvers. Flush the DNS cache on affected resolvers and configure them to use DNSSEC validation. Identify the source of the poisoned records through query logging. Temporarily switch to alternative DNS resolvers (Cloudflare 1.1.1.1 or Google 8.8.8.8). Notify affected users of potential exposure to malicious destinations during the poisoning window.",
+    "metadata": {
+      "playbook_id": "PB-036",
+      "scenario": "dns_cache_poisoning",
+      "severity_applicable": "high,critical",
+      "estimated_duration_minutes": 60,
+      "requires_approval": false,
+      "last_tested": "2026-02-22",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_037",
+    "text": "NTP amplification DDoS response playbook. Identify the amplification vector by analyzing inbound traffic for monlist responses from open NTP servers. Engage the cloud DDoS scrubbing service and configure UDP flood mitigation profiles. Implement BCP38/BCP84 source address validation if not already in place. Block the amplification source IPs at the edge firewall. Coordinate with upstream ISP for blackhole routing of the attack traffic if scrubbing capacity is exceeded.",
+    "metadata": {
+      "playbook_id": "PB-037",
+      "scenario": "ntp_amplification_ddos",
+      "severity_applicable": "high,critical",
+      "estimated_duration_minutes": 45,
+      "requires_approval": false,
+      "last_tested": "2025-12-15",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_038",
+    "text": "BGP hijacking response playbook. Detect the hijack using BGP monitoring services (RIPE RIS, BGPStream, or ThousandEyes). Verify the unauthorized route announcement by checking looking glass servers from multiple vantage points. Contact the offending ASN operator and their upstream providers to withdraw the hijacked prefix. Implement RPKI ROA if not already configured. Update route filters with transit providers to reject invalid announcements.",
+    "metadata": {
+      "playbook_id": "PB-038",
+      "scenario": "bgp_hijacking_response",
+      "severity_applicable": "high,critical",
+      "estimated_duration_minutes": 120,
+      "requires_approval": true,
+      "last_tested": "2025-09-12",
+      "automation_level": "manual"
+    }
+  },
+  {
+    "id": "playbook_039",
+    "text": "Wireless deauthentication attack response playbook. Identify the attack using WIPS alerts showing high volumes of deauth frames targeting specific BSSIDs or clients. Locate the source of the deauth frames using signal strength triangulation from multiple access points. Physically investigate the identified area to find the rogue device. Enable 802.11w Protected Management Frames on all corporate SSIDs. Switch affected clients to the 5GHz or 6GHz bands which are less susceptible to deauth attacks.",
+    "metadata": {
+      "playbook_id": "PB-039",
+      "scenario": "wireless_deauth_attack",
+      "severity_applicable": "medium,high",
+      "estimated_duration_minutes": 60,
+      "requires_approval": false,
+      "last_tested": "2026-01-10",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_040",
+    "text": "Password spray attack response playbook. Identify the spray pattern by analyzing authentication logs for distributed login failures across many accounts from few source IPs. Temporarily increase account lockout thresholds to avoid mass lockout impact. Block the attacking IP ranges at the WAF and identity provider. Force password resets for any accounts that showed successful authentication during the spray window. Enable smart lockout or progressive delay mechanisms to mitigate future spray attempts.",
+    "metadata": {
+      "playbook_id": "PB-040",
+      "scenario": "password_spray_response",
+      "severity_applicable": "medium,high",
+      "estimated_duration_minutes": 60,
+      "requires_approval": false,
+      "last_tested": "2026-03-05",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_041",
+    "text": "OAuth token abuse response playbook. Identify the abused OAuth application or consent grant from Azure AD or identity provider audit logs. Revoke all refresh and access tokens for the compromised OAuth application. Remove the malicious application registration from the tenant. Review all user consent grants across the tenant for similar suspicious applications. Implement admin consent workflow requiring approval for new OAuth grants. Block future consent for unverified publishers.",
+    "metadata": {
+      "playbook_id": "PB-041",
+      "scenario": "oauth_token_abuse",
+      "severity_applicable": "high,critical",
+      "estimated_duration_minutes": 90,
+      "requires_approval": true,
+      "last_tested": "2026-02-08",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_042",
+    "text": "Cloud storage public exposure remediation playbook for multi-cloud environments. Identify all publicly accessible storage resources across AWS S3, Azure Blob Storage, and GCP Cloud Storage using CSPM scanning results. Immediately restrict access to private for all flagged resources. Analyze access logs to determine if unauthorized parties accessed exposed data during the window. Classify exposed data sensitivity using automated DLP scanning. Deploy preventive guardrails including SCPs, Azure Policies, and Organization Policies to block future public access configurations.",
+    "metadata": {
+      "playbook_id": "PB-042",
+      "scenario": "multi_cloud_storage_exposure",
+      "severity_applicable": "medium,high,critical",
+      "estimated_duration_minutes": 90,
+      "requires_approval": false,
+      "last_tested": "2026-03-25",
+      "automation_level": "full"
+    }
+  },
+  {
+    "id": "playbook_043",
+    "text": "Rogue CI/CD pipeline response playbook. Identify the unauthorized pipeline modification from Git audit logs and pipeline execution history. Suspend all builds from the affected repository or pipeline. Audit all artifacts produced during the compromised window and quarantine for integrity verification. Check for injected secrets exfiltration, backdoored build outputs, or unauthorized deployments. Restore pipeline configuration from a known-good state and enforce branch protection with required reviewers for pipeline definition files.",
+    "metadata": {
+      "playbook_id": "PB-043",
+      "scenario": "rogue_cicd_pipeline",
+      "severity_applicable": "high,critical",
+      "estimated_duration_minutes": 180,
+      "requires_approval": true,
+      "last_tested": "2026-01-18",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_044",
+    "text": "Insider cryptocurrency mining response playbook. Identify the mining activity through resource utilization alerts, network connections to mining pool domains, or EDR process detection. Determine if the mining software was installed intentionally by an employee or deployed by malware. Preserve evidence of the mining activity including process artifacts, network logs, and GPU/CPU utilization history. Coordinate with HR for policy violation if intentional. Remove mining software and restore system to baseline configuration.",
+    "metadata": {
+      "playbook_id": "PB-044",
+      "scenario": "insider_cryptomining",
+      "severity_applicable": "low,medium",
+      "estimated_duration_minutes": 60,
+      "requires_approval": false,
+      "last_tested": "2025-11-10",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_045",
+    "text": "Azure AD tenant compromise response playbook. Immediately revoke all active sessions and tokens tenant-wide using the revocation endpoint. Audit Global Administrator and Privileged Role Administrator assignments for unauthorized changes. Review conditional access policies for modifications or new exclusions. Check for new federated domains, application registrations, or service principals created during the compromise window. Reset all Global Admin credentials using break-glass accounts and rebuild conditional access policies from documented baseline.",
+    "metadata": {
+      "playbook_id": "PB-045",
+      "scenario": "azure_ad_tenant_compromise",
+      "severity_applicable": "critical",
+      "estimated_duration_minutes": 360,
+      "requires_approval": true,
+      "last_tested": "2026-03-18",
+      "automation_level": "manual"
+    }
+  },
+  {
+    "id": "playbook_046",
+    "text": "Malicious browser extension response playbook. Identify the malicious extension through EDR telemetry or user reports. Query the endpoint fleet for the extension ID to identify all affected endpoints. Force-remove the extension via group policy or MDM profile push. Analyze the extension permissions and behavior to assess data exposure scope including captured credentials, browsing history, and session cookies. Reset passwords for all accounts accessed from affected browsers. Add the extension to the organization's browser extension blocklist.",
+    "metadata": {
+      "playbook_id": "PB-046",
+      "scenario": "malicious_browser_extension",
+      "severity_applicable": "medium,high",
+      "estimated_duration_minutes": 90,
+      "requires_approval": false,
+      "last_tested": "2026-02-25",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_047",
+    "text": "Shadow IT SaaS discovery and remediation playbook. Analyze CASB and proxy logs to identify unauthorized SaaS applications being used by employees. Categorize discovered applications by risk level based on data handling, authentication security, and compliance certifications. Engage business unit owners to understand use cases and identify approved alternatives. Migrate data from high-risk shadow SaaS to approved platforms. Block access to unsanctioned applications via CASB and update the acceptable use policy.",
+    "metadata": {
+      "playbook_id": "PB-047",
+      "scenario": "shadow_it_saas_remediation",
+      "severity_applicable": "medium,high",
+      "estimated_duration_minutes": 240,
+      "requires_approval": true,
+      "last_tested": "2025-12-20",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_048",
+    "text": "IoT device compromise response playbook. Isolate the compromised IoT device by disabling its switch port or wireless association. Capture network traffic from the device for forensic analysis of C2 communications and lateral movement attempts. Perform firmware analysis to identify the exploit vector and any backdoors. Factory reset the device and apply the latest firmware. Implement network microsegmentation to restrict IoT device communication to only required destinations and protocols.",
+    "metadata": {
+      "playbook_id": "PB-048",
+      "scenario": "iot_device_compromise",
+      "severity_applicable": "medium,high",
+      "estimated_duration_minutes": 120,
+      "requires_approval": false,
+      "last_tested": "2026-01-05",
+      "automation_level": "partial"
+    }
+  },
+  {
+    "id": "playbook_049",
+    "text": "Data loss via generative AI service playbook. Identify the data exposure through DLP alerts on AI platform uploads or CASB monitoring of AI service usage. Assess the sensitivity and classification of the exposed data. Determine whether the AI service retains training data or conversation history. Submit a data deletion request to the AI service provider if supported. Notify the data owner and privacy team. Retrain the employee on the AI acceptable use policy. Evaluate whether regulatory notification is required based on data sensitivity.",
+    "metadata": {
+      "playbook_id": "PB-049",
+      "scenario": "generative_ai_data_loss",
+      "severity_applicable": "medium,high",
+      "estimated_duration_minutes": 60,
+      "requires_approval": true,
+      "last_tested": "2026-03-28",
+      "automation_level": "manual"
+    }
+  },
+  {
+    "id": "playbook_050",
+    "text": "Supply chain DNS takeover playbook. Identify the dangling DNS record pointing to a decommissioned cloud resource (expired S3 bucket, deleted Azure App Service, or terminated Heroku app) via continuous subdomain monitoring. Immediately remove or update the dangling DNS record to prevent attacker claim. Audit all DNS records for similar dangling references across all zones. Implement automated monitoring for DNS records pointing to non-owned resources. If the subdomain was already claimed by an attacker, assess cookie scope and session hijacking risk for the parent domain.",
+    "metadata": {
+      "playbook_id": "PB-050",
+      "scenario": "supply_chain_dns_takeover",
+      "severity_applicable": "medium,high",
+      "estimated_duration_minutes": 60,
+      "requires_approval": false,
+      "last_tested": "2026-02-02",
+      "automation_level": "partial"
+    }
+  }
+]

@@ -1,0 +1,31 @@
+{
+    "domain": "cyberops",
+    "version": "1.0.0",
+    "description": "Time-based authorization restrictions on critical CyberOps tools",
+    "T9_firewall": {
+        "delete_rule": {
+            "allowed_start": 6,
+            "allowed_end": 22,
+            "description": "No firewall rule deletion outside business hours"
+        },
+        "add_rule": {
+            "allowed_start": 0,
+            "allowed_end": 24,
+            "description": "Firewall additions allowed 24/7"
+        }
+    },
+    "T12_ansible": {
+        "isolate_host": {
+            "allowed_start": 6,
+            "allowed_end": 22,
+            "description": "Host isolation restricted to business hours"
+        }
+    },
+    "T8_iam_pam": {
+        "revoke": {
+            "allowed_start": 0,
+            "allowed_end": 24,
+            "description": "Credential revocation allowed 24/7 for emergencies"
+        }
+    }
+}

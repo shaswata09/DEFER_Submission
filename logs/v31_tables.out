@@ -1,0 +1,30 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "./analysis/replay_v31.py", line 141, in <module>
+    tables()
+    ~~~~~~^^
+  File "./analysis/replay_v31.py", line 105, in tables
+    row[label] = _row(*_as_run(d, cfg, keep))
+                 ~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./analysis/replay_v31.py", line 89, in _row
+    return {"asr": _ci(attack), "n": len(attack),
+                   ~~~^^^^^^^^
+  File "./analysis/replay_v31.py", line 65, in _ci
+    p, lo, hi, n = asr(ts)
+                   ~~~^^^^
+  File "./analysis/replay_panels.py", line 144, in asr
+    p, lo, hi = cluster_bootstrap(attack, lambda t: t["outcome"] == "executed",
+                ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                  lambda t: f"{t['domain']}:{t['ap']}:{t['variant']}")
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./analysis/statistical_tests.py", line 76, in cluster_bootstrap
+    groups = list(_clusters(trials, cluster_key).values())
+                  ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "./analysis/statistical_tests.py", line 60, in _clusters
+    out[key(t)].append(t)
+        ~~~^^^
+  File "./analysis/replay_panels.py", line 145, in <lambda>
+    lambda t: f"{t['domain']}:{t['ap']}:{t['variant']}")
+                 ~^^^^^^^^^^
+KeyError: 'domain'

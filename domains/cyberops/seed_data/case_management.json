@@ -1,0 +1,902 @@
+[
+  {
+    "id": "case_001",
+    "text": "Phishing campaign targeting finance department with spoofed DocuSign emails containing credential harvesting links. Three users submitted credentials before the campaign was identified by the email gateway. Affected accounts were disabled and passwords reset within 2 hours of detection.",
+    "metadata": {
+      "case_id": "CASE-2024-001",
+      "incident_type": "phishing",
+      "severity": "medium",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 4,
+      "affected_assets_count": 3,
+      "date_opened": "2024-01-15",
+      "date_closed": "2024-01-15"
+    }
+  },
+  {
+    "id": "case_002",
+    "text": "Emotet malware infection on workstation WS-FIN-042 detected by CrowdStrike Falcon. Initial vector was a malicious Excel macro delivered via email. The malware established C2 communication and attempted lateral movement via SMB before containment.",
+    "metadata": {
+      "case_id": "CASE-2024-002",
+      "incident_type": "malware",
+      "severity": "high",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 8,
+      "affected_assets_count": 1,
+      "date_opened": "2024-01-22",
+      "date_closed": "2024-01-23"
+    }
+  },
+  {
+    "id": "case_003",
+    "text": "LockBit 3.0 ransomware incident affecting file server FS-CORP-01. Attack entered via compromised VPN credentials purchased on dark web marketplace. Attacker performed reconnaissance for 3 days before deploying ransomware. Recovery performed from offline backups.",
+    "metadata": {
+      "case_id": "CASE-2024-003",
+      "incident_type": "ransomware",
+      "severity": "critical",
+      "status": "resolved",
+      "detection_method": "automated",
+      "mttr_hours": 72,
+      "affected_assets_count": 15,
+      "date_opened": "2024-02-10",
+      "date_closed": "2024-02-14"
+    }
+  },
+  {
+    "id": "case_004",
+    "text": "Insider threat case involving a departing engineer who copied proprietary source code to a personal USB drive. DLP agent flagged the bulk file transfer. Investigation confirmed 2.3 GB of intellectual property was copied. Legal and HR were engaged for disciplinary action.",
+    "metadata": {
+      "case_id": "CASE-2024-004",
+      "incident_type": "insider_threat",
+      "severity": "high",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 24,
+      "affected_assets_count": 1,
+      "date_opened": "2024-02-28",
+      "date_closed": "2024-03-05"
+    }
+  },
+  {
+    "id": "case_005",
+    "text": "Volumetric DDoS attack targeting the customer-facing web application at 45 Gbps peak. Attack used UDP reflection via memcached amplification. Cloudflare DDoS protection mitigated most traffic. On-call engineer tuned rate limiting rules to handle residual application-layer flood.",
+    "metadata": {
+      "case_id": "CASE-2024-005",
+      "incident_type": "ddos",
+      "severity": "high",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 3,
+      "affected_assets_count": 4,
+      "date_opened": "2024-03-12",
+      "date_closed": "2024-03-12"
+    }
+  },
+  {
+    "id": "case_006",
+    "text": "Data breach discovered when customer PII was found listed on a dark web forum. Investigation traced the leak to an unpatched Apache Struts server (CVE-2023-50164) in the DMZ. Approximately 12,000 customer records were exfiltrated over a 2-week period.",
+    "metadata": {
+      "case_id": "CASE-2024-006",
+      "incident_type": "data_breach",
+      "severity": "critical",
+      "status": "closed",
+      "detection_method": "external_notification",
+      "mttr_hours": 168,
+      "affected_assets_count": 2,
+      "date_opened": "2024-03-25",
+      "date_closed": "2024-04-10"
+    }
+  },
+  {
+    "id": "case_007",
+    "text": "Account compromise of senior executive via SIM swapping attack. Threat actor used stolen credentials to access corporate email and initiated a fraudulent wire transfer of $85,000. The transfer was flagged by the bank fraud detection system before completion.",
+    "metadata": {
+      "case_id": "CASE-2024-007",
+      "incident_type": "account_compromise",
+      "severity": "critical",
+      "status": "closed",
+      "detection_method": "external_notification",
+      "mttr_hours": 6,
+      "affected_assets_count": 2,
+      "date_opened": "2024-04-08",
+      "date_closed": "2024-04-09"
+    }
+  },
+  {
+    "id": "case_008",
+    "text": "SQL injection attack against the customer portal login page. Automated scanner detected SQLi payloads in web application firewall logs. Attacker extracted user table contents from the backend MySQL database. Vulnerable endpoint was patched and all user passwords were force-reset.",
+    "metadata": {
+      "case_id": "CASE-2024-008",
+      "incident_type": "web_app_attack",
+      "severity": "high",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 12,
+      "affected_assets_count": 3,
+      "date_opened": "2024-04-20",
+      "date_closed": "2024-04-21"
+    }
+  },
+  {
+    "id": "case_009",
+    "text": "Supply chain compromise via malicious dependency injected into an internal npm package. The compromised package contained a reverse shell that activated during CI/CD builds. Detected during routine code review when a developer noticed unexpected network calls in build logs.",
+    "metadata": {
+      "case_id": "CASE-2024-009",
+      "incident_type": "supply_chain",
+      "severity": "critical",
+      "status": "resolved",
+      "detection_method": "user_report",
+      "mttr_hours": 48,
+      "affected_assets_count": 8,
+      "date_opened": "2024-05-05",
+      "date_closed": "2024-05-08"
+    }
+  },
+  {
+    "id": "case_010",
+    "text": "AWS S3 bucket misconfiguration exposed internal documentation and API keys. A public bucket policy was inadvertently applied during a Terraform deployment. External security researcher reported the exposure via the bug bounty program. All exposed keys were rotated immediately.",
+    "metadata": {
+      "case_id": "CASE-2024-010",
+      "incident_type": "misconfiguration",
+      "severity": "medium",
+      "status": "closed",
+      "detection_method": "external_notification",
+      "mttr_hours": 2,
+      "affected_assets_count": 1,
+      "date_opened": "2024-05-18",
+      "date_closed": "2024-05-18"
+    }
+  },
+  {
+    "id": "case_011",
+    "text": "Spear phishing targeting the CISO with a weaponized PDF exploiting CVE-2024-4367 in PDF.js. The payload attempted to install a Sliver C2 implant. Endpoint detection blocked the payload execution, and the sender domain was added to the block list.",
+    "metadata": {
+      "case_id": "CASE-2024-011",
+      "incident_type": "phishing",
+      "severity": "high",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 2,
+      "affected_assets_count": 1,
+      "date_opened": "2024-06-03",
+      "date_closed": "2024-06-03"
+    }
+  },
+  {
+    "id": "case_012",
+    "text": "Cryptomining malware deployed on Kubernetes cluster via exposed Docker API. Attacker launched XMRig containers mining Monero across 12 worker nodes. Detected when cloud cost monitoring alerted on unexpected 340% CPU usage increase across the cluster.",
+    "metadata": {
+      "case_id": "CASE-2024-012",
+      "incident_type": "malware",
+      "severity": "medium",
+      "status": "closed",
+      "detection_method": "user_report",
+      "mttr_hours": 6,
+      "affected_assets_count": 12,
+      "date_opened": "2024-06-22",
+      "date_closed": "2024-06-23"
+    }
+  },
+  {
+    "id": "case_013",
+    "text": "BEC incident where threat actor compromised a vendor email account and sent modified invoices with updated banking details. Two fraudulent payments totaling $142,000 were processed before the accounts payable team noticed discrepancies in vendor communication style.",
+    "metadata": {
+      "case_id": "CASE-2024-013",
+      "incident_type": "account_compromise",
+      "severity": "critical",
+      "status": "closed",
+      "detection_method": "user_report",
+      "mttr_hours": 36,
+      "affected_assets_count": 3,
+      "date_opened": "2024-07-10",
+      "date_closed": "2024-07-15"
+    }
+  },
+  {
+    "id": "case_014",
+    "text": "Application-layer DDoS targeting the REST API with HTTP POST flood at 250,000 requests per second. Attack originated from a botnet of compromised IoT devices. WAF rules were tuned with stricter rate limiting and CAPTCHA challenges for suspicious client fingerprints.",
+    "metadata": {
+      "case_id": "CASE-2024-014",
+      "incident_type": "ddos",
+      "severity": "medium",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 4,
+      "affected_assets_count": 2,
+      "date_opened": "2024-07-28",
+      "date_closed": "2024-07-28"
+    }
+  },
+  {
+    "id": "case_015",
+    "text": "Insider threat where a database administrator exfiltrated customer financial records via encrypted email attachments over a 6-month period. Threat hunting team discovered the activity by correlating unusual email attachment sizes with database query logs.",
+    "metadata": {
+      "case_id": "CASE-2024-015",
+      "incident_type": "insider_threat",
+      "severity": "critical",
+      "status": "closed",
+      "detection_method": "threat_hunt",
+      "mttr_hours": 240,
+      "affected_assets_count": 4,
+      "date_opened": "2024-08-15",
+      "date_closed": "2024-09-01"
+    }
+  },
+  {
+    "id": "case_016",
+    "text": "Cross-site scripting vulnerability exploited in the customer support portal. Stored XSS payload in ticket descriptions executed in support agent browsers, exfiltrating session cookies. Vulnerability was patched and all active sessions were invalidated.",
+    "metadata": {
+      "case_id": "CASE-2024-016",
+      "incident_type": "web_app_attack",
+      "severity": "medium",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 8,
+      "affected_assets_count": 5,
+      "date_opened": "2024-09-02",
+      "date_closed": "2024-09-03"
+    }
+  },
+  {
+    "id": "case_017",
+    "text": "PLAY ransomware incident initiated through exploitation of CVE-2024-1709 in ScreenConnect. Attacker gained initial access, deployed SystemBC for persistence, and staged data for double extortion. Containment was achieved by isolating the affected network segment.",
+    "metadata": {
+      "case_id": "CASE-2024-017",
+      "incident_type": "ransomware",
+      "severity": "critical",
+      "status": "resolved",
+      "detection_method": "automated",
+      "mttr_hours": 96,
+      "affected_assets_count": 22,
+      "date_opened": "2024-09-18",
+      "date_closed": "2024-09-25"
+    }
+  },
+  {
+    "id": "case_018",
+    "text": "Phishing campaign using QR codes embedded in PDF attachments that redirected to credential harvesting page mimicking Microsoft 365 login. Seven employees scanned the QR codes on personal devices, bypassing corporate email security controls.",
+    "metadata": {
+      "case_id": "CASE-2024-018",
+      "incident_type": "phishing",
+      "severity": "medium",
+      "status": "closed",
+      "detection_method": "user_report",
+      "mttr_hours": 5,
+      "affected_assets_count": 7,
+      "date_opened": "2024-10-05",
+      "date_closed": "2024-10-06"
+    }
+  },
+  {
+    "id": "case_019",
+    "text": "Misconfigured Azure AD conditional access policy allowed legacy authentication protocols (IMAP/POP3) to bypass MFA requirements. Attacker used stolen credentials from previous breach to access 14 email accounts via Thunderbird with basic auth.",
+    "metadata": {
+      "case_id": "CASE-2024-019",
+      "incident_type": "misconfiguration",
+      "severity": "high",
+      "status": "closed",
+      "detection_method": "threat_hunt",
+      "mttr_hours": 10,
+      "affected_assets_count": 14,
+      "date_opened": "2024-10-20",
+      "date_closed": "2024-10-21"
+    }
+  },
+  {
+    "id": "case_020",
+    "text": "TrickBot malware infection spreading via internal network shares. Initial infection vector was a malvertising campaign that delivered the payload through a compromised WordPress site. EDR detected the C2 beacon and network segmentation limited the spread to 3 endpoints.",
+    "metadata": {
+      "case_id": "CASE-2024-020",
+      "incident_type": "malware",
+      "severity": "high",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 14,
+      "affected_assets_count": 3,
+      "date_opened": "2024-11-08",
+      "date_closed": "2024-11-09"
+    }
+  },
+  {
+    "id": "case_021",
+    "text": "Data breach through compromised third-party analytics vendor. Vendor suffered a breach that exposed tracking pixels containing customer behavioral data and partial PII. Notification received from the vendor triggered incident response and vendor access revocation.",
+    "metadata": {
+      "case_id": "CASE-2025-021",
+      "incident_type": "supply_chain",
+      "severity": "medium",
+      "status": "closed",
+      "detection_method": "external_notification",
+      "mttr_hours": 48,
+      "affected_assets_count": 2,
+      "date_opened": "2025-01-12",
+      "date_closed": "2025-01-15"
+    }
+  },
+  {
+    "id": "case_022",
+    "text": "Account compromise of cloud admin credentials via adversary-in-the-middle phishing (EvilGinx2). Attacker intercepted MFA tokens and established persistent access using a federated identity provider. All cloud sessions were revoked and federation trust was rebuilt.",
+    "metadata": {
+      "case_id": "CASE-2025-022",
+      "incident_type": "account_compromise",
+      "severity": "critical",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 18,
+      "affected_assets_count": 6,
+      "date_opened": "2025-02-05",
+      "date_closed": "2025-02-07"
+    }
+  },
+  {
+    "id": "case_023",
+    "text": "Exploitation of CVE-2024-3400 in Palo Alto GlobalProtect VPN gateway. Attacker leveraged the command injection vulnerability to deploy a Python reverse shell. Network traffic analysis revealed data staging activity before containment was achieved.",
+    "metadata": {
+      "case_id": "CASE-2025-023",
+      "incident_type": "web_app_attack",
+      "severity": "critical",
+      "status": "resolved",
+      "detection_method": "automated",
+      "mttr_hours": 16,
+      "affected_assets_count": 1,
+      "date_opened": "2025-03-01",
+      "date_closed": "2025-03-03"
+    }
+  },
+  {
+    "id": "case_024",
+    "text": "Phishing campaign delivering AsyncRAT via OneNote attachments. Malicious .one files contained embedded HTA scripts. Four endpoints were infected before the mail rule blocking OneNote attachments was deployed. All infected endpoints were reimaged.",
+    "metadata": {
+      "case_id": "CASE-2025-024",
+      "incident_type": "malware",
+      "severity": "medium",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 10,
+      "affected_assets_count": 4,
+      "date_opened": "2025-03-20",
+      "date_closed": "2025-03-21"
+    }
+  },
+  {
+    "id": "case_025",
+    "text": "Insider threat involving a contractor who installed unauthorized remote access software (AnyDesk) on production servers. Activity was detected by application allowlisting policy violation alerts in CrowdStrike. Contractor access was revoked and audit confirmed no data exfiltration.",
+    "metadata": {
+      "case_id": "CASE-2025-025",
+      "incident_type": "insider_threat",
+      "severity": "medium",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 3,
+      "affected_assets_count": 2,
+      "date_opened": "2025-04-10",
+      "date_closed": "2025-04-10"
+    }
+  },
+  {
+    "id": "case_026",
+    "text": "Ransomware attack by ALPHV/BlackCat group targeting VMware ESXi hypervisors via CVE-2024-37085. Attacker exploited Active Directory integration to gain ESXi admin access. 45 virtual machines were encrypted before network isolation was completed. Recovery took 5 days using replicated backups.",
+    "metadata": {
+      "case_id": "CASE-2025-026",
+      "incident_type": "ransomware",
+      "severity": "critical",
+      "status": "resolved",
+      "detection_method": "automated",
+      "mttr_hours": 120,
+      "affected_assets_count": 45,
+      "date_opened": "2025-05-02",
+      "date_closed": "2025-05-10"
+    }
+  },
+  {
+    "id": "case_027",
+    "text": "DNS tunneling exfiltration detected during proactive threat hunt. Attacker used iodine tool to tunnel data through DNS TXT queries to attacker-controlled nameserver. Approximately 800 MB of compressed data was exfiltrated over 10 days before discovery.",
+    "metadata": {
+      "case_id": "CASE-2025-027",
+      "incident_type": "data_breach",
+      "severity": "high",
+      "status": "closed",
+      "detection_method": "threat_hunt",
+      "mttr_hours": 36,
+      "affected_assets_count": 3,
+      "date_opened": "2025-06-15",
+      "date_closed": "2025-06-18"
+    }
+  },
+  {
+    "id": "case_028",
+    "text": "DDoS attack combining SYN flood with DNS amplification targeting the primary and secondary DNS infrastructure. Total attack bandwidth reached 120 Gbps. Akamai Prolexic was engaged for emergency scrubbing center activation and BGP rerouting.",
+    "metadata": {
+      "case_id": "CASE-2025-028",
+      "incident_type": "ddos",
+      "severity": "high",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 5,
+      "affected_assets_count": 6,
+      "date_opened": "2025-07-08",
+      "date_closed": "2025-07-08"
+    }
+  },
+  {
+    "id": "case_029",
+    "text": "Misconfigured Kubernetes RBAC allowed a compromised pod service account to escalate privileges to cluster-admin. Attacker deployed cryptocurrency miners and attempted to access cloud provider metadata service for IAM credential theft.",
+    "metadata": {
+      "case_id": "CASE-2025-029",
+      "incident_type": "misconfiguration",
+      "severity": "high",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 8,
+      "affected_assets_count": 10,
+      "date_opened": "2025-08-22",
+      "date_closed": "2025-08-23"
+    }
+  },
+  {
+    "id": "case_030",
+    "text": "Supply chain attack via compromised GitHub Action used in the CI/CD pipeline. The action was modified to inject a backdoor into build artifacts during the compilation step. Dependency review identified the malicious commit hash mismatch during routine audit.",
+    "metadata": {
+      "case_id": "CASE-2025-030",
+      "incident_type": "supply_chain",
+      "severity": "critical",
+      "status": "resolved",
+      "detection_method": "user_report",
+      "mttr_hours": 72,
+      "affected_assets_count": 5,
+      "date_opened": "2025-09-10",
+      "date_closed": "2025-09-15"
+    }
+  },
+  {
+    "id": "case_031",
+    "text": "Credential stuffing attack against the customer API using credentials from the 2024 Collection breach database. Over 2 million authentication attempts were observed within 4 hours. Rate limiting and CAPTCHA implementation blocked 99.8% of attempts, but 340 accounts were temporarily compromised.",
+    "metadata": {
+      "case_id": "CASE-2025-031",
+      "incident_type": "account_compromise",
+      "severity": "medium",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 6,
+      "affected_assets_count": 340,
+      "date_opened": "2025-10-18",
+      "date_closed": "2025-10-19"
+    }
+  },
+  {
+    "id": "case_032",
+    "text": "Server-side request forgery in the internal PDF generation service exploited to access AWS metadata endpoint and retrieve IAM role temporary credentials. Attacker used the credentials to enumerate S3 buckets and download internal design documents.",
+    "metadata": {
+      "case_id": "CASE-2025-032",
+      "incident_type": "web_app_attack",
+      "severity": "high",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 14,
+      "affected_assets_count": 3,
+      "date_opened": "2025-11-05",
+      "date_closed": "2025-11-07"
+    }
+  },
+  {
+    "id": "case_033",
+    "text": "Phishing attack delivering IcedID malware via password-protected ZIP files linked in an email thread hijack. The malware used HTTPS C2 with JA3 fingerprint matching known IcedID infrastructure. Five endpoints were infected across two business units.",
+    "metadata": {
+      "case_id": "CASE-2026-033",
+      "incident_type": "phishing",
+      "severity": "high",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 9,
+      "affected_assets_count": 5,
+      "date_opened": "2026-01-14",
+      "date_closed": "2026-01-15"
+    }
+  },
+  {
+    "id": "case_034",
+    "text": "Data breach caused by a developer accidentally committing database connection strings and API keys to a public GitHub repository. Automated secret scanning by GitHub alerted the security team. All exposed credentials were rotated within 90 minutes of notification.",
+    "metadata": {
+      "case_id": "CASE-2026-034",
+      "incident_type": "data_breach",
+      "severity": "medium",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 2,
+      "affected_assets_count": 1,
+      "date_opened": "2026-02-20",
+      "date_closed": "2026-02-20"
+    }
+  },
+  {
+    "id": "case_035",
+    "text": "Scattered Spider social engineering attack targeting the IT help desk. Attacker impersonated an employee and convinced a help desk agent to reset MFA for a privileged account. The compromised account was used to access the identity management platform before anomalous login location triggered an alert.",
+    "metadata": {
+      "case_id": "CASE-2026-035",
+      "incident_type": "account_compromise",
+      "severity": "critical",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 4,
+      "affected_assets_count": 2,
+      "date_opened": "2026-03-08",
+      "date_closed": "2026-03-09"
+    }
+  },
+  {
+    "id": "case_036",
+    "text": "AWS S3 bucket exposure incident where a production bucket containing customer health records was made publicly accessible after a Terraform module update removed the Block Public Access settings. External monitoring service UpGuard reported the exposure. HIPAA breach notification procedures were initiated and the bucket was secured within 45 minutes of discovery. Approximately 8,200 patient records were potentially exposed during the 6-hour window.",
+    "metadata": {
+      "case_id": "CASE-2026-036",
+      "incident_type": "misconfiguration",
+      "severity": "critical",
+      "status": "closed",
+      "detection_method": "external_notification",
+      "mttr_hours": 6,
+      "affected_assets_count": 1,
+      "date_opened": "2026-03-15",
+      "date_closed": "2026-03-18"
+    }
+  },
+  {
+    "id": "case_037",
+    "text": "AWS Lambda function abuse where an attacker leveraged compromised developer credentials to deploy a cryptomining Lambda function across three regions. The function was configured with maximum memory and 15-minute timeout, running in a tight invocation loop. Cloud cost anomaly alert triggered when the monthly Lambda spend exceeded $12,000 within 8 hours.",
+    "metadata": {
+      "case_id": "CASE-2026-037",
+      "incident_type": "account_compromise",
+      "severity": "high",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 10,
+      "affected_assets_count": 3,
+      "date_opened": "2026-03-18",
+      "date_closed": "2026-03-19"
+    }
+  },
+  {
+    "id": "case_038",
+    "text": "Azure Key Vault breach where an attacker used a compromised service principal to export TLS certificates, database connection strings, and API keys from the production Key Vault. The service principal had been granted excessive permissions during a migration project and was never scoped down. All 47 secrets stored in the vault were rotated within 4 hours.",
+    "metadata": {
+      "case_id": "CASE-2026-038",
+      "incident_type": "data_breach",
+      "severity": "critical",
+      "status": "resolved",
+      "detection_method": "automated",
+      "mttr_hours": 18,
+      "affected_assets_count": 5,
+      "date_opened": "2026-03-20",
+      "date_closed": "2026-03-23"
+    }
+  },
+  {
+    "id": "case_039",
+    "text": "Compromised building automation system (BAS) at the corporate headquarters. An internet-exposed BACnet controller was exploited to manipulate HVAC setpoints and access badge reader logs. The attacker had access for 3 weeks before the facilities team reported erratic temperature behavior. Investigation revealed the BAS was on a flat network with no segmentation from the IT environment.",
+    "metadata": {
+      "case_id": "CASE-2026-039",
+      "incident_type": "iot_ot_compromise",
+      "severity": "high",
+      "status": "closed",
+      "detection_method": "user_report",
+      "mttr_hours": 72,
+      "affected_assets_count": 8,
+      "date_opened": "2026-03-22",
+      "date_closed": "2026-03-28"
+    }
+  },
+  {
+    "id": "case_040",
+    "text": "Network surveillance camera compromise at the data center facility. Fourteen Hikvision cameras were found running outdated firmware vulnerable to CVE-2021-36260. Threat actor gained shell access and used the cameras as a pivot point to scan the internal network. Camera firmware was updated and the IoT VLAN was isolated with strict ACLs.",
+    "metadata": {
+      "case_id": "CASE-2026-040",
+      "incident_type": "iot_ot_compromise",
+      "severity": "medium",
+      "status": "closed",
+      "detection_method": "threat_hunt",
+      "mttr_hours": 24,
+      "affected_assets_count": 14,
+      "date_opened": "2026-03-25",
+      "date_closed": "2026-03-27"
+    }
+  },
+  {
+    "id": "case_041",
+    "text": "Advanced persistent threat discovered during annual threat hunting exercise. A nation-state actor had maintained persistent access to the engineering file server for approximately 4 months using a custom backdoor communicating over DNS TXT records. The implant was designed to exfiltrate CAD files and technical specifications. Attribution analysis linked the activity to APT41 based on TTPs and infrastructure overlap.",
+    "metadata": {
+      "case_id": "CASE-2026-041",
+      "incident_type": "apt",
+      "severity": "critical",
+      "status": "resolved",
+      "detection_method": "threat_hunt",
+      "mttr_hours": 336,
+      "affected_assets_count": 6,
+      "date_opened": "2026-03-28",
+      "date_closed": "2026-04-08"
+    }
+  },
+  {
+    "id": "case_042",
+    "text": "Multi-stage APT intrusion with 7-month dwell time discovered by external incident response firm during merger due diligence. Initial access was via a spear-phishing email to the CFO. The attacker established persistence through a modified DLL in the Exchange server, performed credential harvesting, and exfiltrated financial projections and M&A documents. The threat actor maintained access through two password rotation cycles using a golden ticket.",
+    "metadata": {
+      "case_id": "CASE-2026-042",
+      "incident_type": "apt",
+      "severity": "critical",
+      "status": "resolved",
+      "detection_method": "external_notification",
+      "mttr_hours": 480,
+      "affected_assets_count": 22,
+      "date_opened": "2026-03-30",
+      "date_closed": "2026-04-15"
+    }
+  },
+  {
+    "id": "case_043",
+    "text": "Third-party IT contractor used assigned credentials to access systems outside their authorized scope. The contractor from TechStaff Solutions accessed the HR database and payroll system during after-hours sessions over a 2-week period. Activity was discovered when the contractor attempted to export salary data and the DLP policy flagged the transfer. Contractor was terminated and vendor management initiated a contract review.",
+    "metadata": {
+      "case_id": "CASE-2026-043",
+      "incident_type": "insider_threat",
+      "severity": "high",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 36,
+      "affected_assets_count": 4,
+      "date_opened": "2026-04-01",
+      "date_closed": "2026-04-03"
+    }
+  },
+  {
+    "id": "case_044",
+    "text": "Managed service provider account compromise where the MSP's VPN credentials were stolen in a separate breach. The attacker used the MSP access to deploy RMM tools on 8 servers and establish persistent remote access. Detected when CrowdStrike flagged installation of an unauthorized ScreenConnect instance. All MSP access was revoked pending security review and re-credentialing.",
+    "metadata": {
+      "case_id": "CASE-2026-044",
+      "incident_type": "supply_chain",
+      "severity": "critical",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 14,
+      "affected_assets_count": 8,
+      "date_opened": "2026-04-02",
+      "date_closed": "2026-04-04"
+    }
+  },
+  {
+    "id": "case_045",
+    "text": "Vishing attack targeting the accounts payable department. An attacker impersonating a senior partner at the company's law firm called three AP clerks requesting expedited payment for a fictitious settlement. The caller used publicly available information and a spoofed caller ID matching the law firm's number. One clerk processed a $67,000 wire transfer before the fraud was identified when a second clerk verified the request through the firm's known contact.",
+    "metadata": {
+      "case_id": "CASE-2026-045",
+      "incident_type": "social_engineering",
+      "severity": "high",
+      "status": "closed",
+      "detection_method": "user_report",
+      "mttr_hours": 8,
+      "affected_assets_count": 1,
+      "date_opened": "2026-04-03",
+      "date_closed": "2026-04-04"
+    }
+  },
+  {
+    "id": "case_046",
+    "text": "Deepfake CEO fraud attempt using AI-generated voice clone. An attacker used a real-time voice deepfake during a Microsoft Teams call impersonating the CEO to instruct the VP of Finance to authorize a $2.3 million wire transfer to a new acquisition target. The VP became suspicious when the CEO could not answer a pre-established verification question and terminated the call. Audio forensic analysis confirmed synthetic voice artifacts.",
+    "metadata": {
+      "case_id": "CASE-2026-046",
+      "incident_type": "social_engineering",
+      "severity": "critical",
+      "status": "closed",
+      "detection_method": "user_report",
+      "mttr_hours": 3,
+      "affected_assets_count": 2,
+      "date_opened": "2026-04-04",
+      "date_closed": "2026-04-04"
+    }
+  },
+  {
+    "id": "case_047",
+    "text": "GDPR data breach notification required after an email misconfiguration sent a BCC list of 4,500 EU customer email addresses as visible CC recipients in a marketing campaign. The Data Protection Officer initiated the 72-hour notification process to the Irish DPC. Affected customers were notified within 48 hours. Root cause was a misconfigured mail merge template in the marketing automation platform.",
+    "metadata": {
+      "case_id": "CASE-2026-047",
+      "incident_type": "data_breach",
+      "severity": "medium",
+      "status": "closed",
+      "detection_method": "user_report",
+      "mttr_hours": 12,
+      "affected_assets_count": 1,
+      "date_opened": "2026-04-04",
+      "date_closed": "2026-04-06"
+    }
+  },
+  {
+    "id": "case_048",
+    "text": "HIPAA breach involving unauthorized access to electronic protected health information (ePHI) through a compromised medical IoT device. A networked patient monitoring system in the wellness center was exploited and used to pivot to the HR benefits database containing employee health plan information for 1,200 employees. HHS breach notification was filed and affected individuals were offered credit monitoring.",
+    "metadata": {
+      "case_id": "CASE-2026-048",
+      "incident_type": "data_breach",
+      "severity": "critical",
+      "status": "resolved",
+      "detection_method": "automated",
+      "mttr_hours": 48,
+      "affected_assets_count": 3,
+      "date_opened": "2026-04-05",
+      "date_closed": "2026-04-10"
+    }
+  },
+  {
+    "id": "case_049",
+    "text": "APT group maintained covert access to the email server for 5 months using a web shell hidden in the Exchange OWA directory. The web shell was obfuscated as a legitimate ASP.NET error page and communicated via custom HTTP headers to avoid content inspection. Threat hunting identified the anomaly when comparing file hashes against known-good Exchange installations during a patch cycle.",
+    "metadata": {
+      "case_id": "CASE-2026-049",
+      "incident_type": "apt",
+      "severity": "critical",
+      "status": "resolved",
+      "detection_method": "threat_hunt",
+      "mttr_hours": 168,
+      "affected_assets_count": 4,
+      "date_opened": "2026-04-05",
+      "date_closed": "2026-04-12"
+    }
+  },
+  {
+    "id": "case_050",
+    "text": "Contractor VPN credentials shared with unauthorized third parties. A contractor from DataWorks Inc shared VPN credentials with two subcontractors who were not approved for network access. The unauthorized users accessed development servers and cloned source code repositories. Activity was detected through anomalous concurrent VPN sessions from different geographic locations using the same account.",
+    "metadata": {
+      "case_id": "CASE-2026-050",
+      "incident_type": "insider_threat",
+      "severity": "high",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 16,
+      "affected_assets_count": 5,
+      "date_opened": "2026-04-05",
+      "date_closed": "2026-04-07"
+    }
+  },
+  {
+    "id": "case_051",
+    "text": "OT network intrusion targeting the warehouse automation system. An attacker compromised a programmable logic controller (PLC) managing conveyor belt operations through an exposed Modbus TCP interface. The attacker modified setpoints causing intermittent equipment shutdowns. The OT network lacked monitoring and the intrusion was only discovered after 2 weeks of unexplained production delays.",
+    "metadata": {
+      "case_id": "CASE-2026-051",
+      "incident_type": "iot_ot_compromise",
+      "severity": "high",
+      "status": "closed",
+      "detection_method": "user_report",
+      "mttr_hours": 96,
+      "affected_assets_count": 6,
+      "date_opened": "2026-04-06",
+      "date_closed": "2026-04-10"
+    }
+  },
+  {
+    "id": "case_052",
+    "text": "Social engineering campaign combining LinkedIn reconnaissance with targeted vishing. Attackers profiled 15 employees on LinkedIn, then called them impersonating IT support requesting remote access to install a mandatory security update. Three employees granted access via TeamViewer before the campaign was reported. Malware droppers were deployed on all three endpoints and subsequently contained by EDR.",
+    "metadata": {
+      "case_id": "CASE-2026-052",
+      "incident_type": "social_engineering",
+      "severity": "high",
+      "status": "closed",
+      "detection_method": "user_report",
+      "mttr_hours": 6,
+      "affected_assets_count": 3,
+      "date_opened": "2026-04-06",
+      "date_closed": "2026-04-07"
+    }
+  },
+  {
+    "id": "case_053",
+    "text": "GDPR regulatory notification required after a ransomware attack encrypted a database containing personal data of 23,000 EU customers including names, addresses, and purchase history. The 72-hour notification deadline to the supervisory authority was met. Customer notification letters were sent within 5 business days. The ICO opened a formal investigation into the adequacy of pre-incident security controls.",
+    "metadata": {
+      "case_id": "CASE-2026-053",
+      "incident_type": "ransomware",
+      "severity": "critical",
+      "status": "resolved",
+      "detection_method": "automated",
+      "mttr_hours": 96,
+      "affected_assets_count": 12,
+      "date_opened": "2026-04-06",
+      "date_closed": "2026-04-12"
+    }
+  },
+  {
+    "id": "case_054",
+    "text": "Cloud infrastructure abuse where an attacker leveraged a misconfigured IAM role to spin up 200 GPU instances across multiple AWS regions for cryptocurrency mining. The monthly bill projection reached $340,000 before CloudWatch billing alarms triggered and the SOC was notified. AWS abuse team also flagged the account. All unauthorized resources were terminated and IAM policies were tightened with SCPs.",
+    "metadata": {
+      "case_id": "CASE-2026-054",
+      "incident_type": "misconfiguration",
+      "severity": "high",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 5,
+      "affected_assets_count": 200,
+      "date_opened": "2026-04-07",
+      "date_closed": "2026-04-07"
+    }
+  },
+  {
+    "id": "case_055",
+    "text": "APT intrusion with 3-month dwell time targeting intellectual property. The threat actor gained initial access through a watering hole attack on an industry conference website. Custom malware was deployed using DLL sideloading and communicated via legitimate cloud services (OneDrive API) for command and control. Over 15 GB of R&D data was exfiltrated before detection by a threat hunting team analyzing unusual OneDrive API call volumes.",
+    "metadata": {
+      "case_id": "CASE-2026-055",
+      "incident_type": "apt",
+      "severity": "critical",
+      "status": "resolved",
+      "detection_method": "threat_hunt",
+      "mttr_hours": 240,
+      "affected_assets_count": 9,
+      "date_opened": "2026-04-07",
+      "date_closed": "2026-04-15"
+    }
+  },
+  {
+    "id": "case_056",
+    "text": "Deepfake video used in a Teams meeting to impersonate the CTO and authorize emergency access to the production Kubernetes cluster for a supposed critical security patch. The attacker used a pre-recorded deepfake video with lip-synced audio. A DevOps engineer granted cluster-admin credentials before verifying through an out-of-band channel. The attacker deployed a cryptominer and exfiltrated environment secrets before containment.",
+    "metadata": {
+      "case_id": "CASE-2026-056",
+      "incident_type": "social_engineering",
+      "severity": "critical",
+      "status": "closed",
+      "detection_method": "user_report",
+      "mttr_hours": 8,
+      "affected_assets_count": 4,
+      "date_opened": "2026-04-07",
+      "date_closed": "2026-04-08"
+    }
+  },
+  {
+    "id": "case_057",
+    "text": "Third-party payroll processor breach affecting employee financial data. The payroll vendor notified the company that their systems were compromised and direct deposit banking information for 850 employees was exposed. The breach required notification under state data breach laws in 12 jurisdictions. Affected employees were offered identity theft protection and direct deposit accounts were verified and updated.",
+    "metadata": {
+      "case_id": "CASE-2026-057",
+      "incident_type": "supply_chain",
+      "severity": "high",
+      "status": "closed",
+      "detection_method": "external_notification",
+      "mttr_hours": 48,
+      "affected_assets_count": 2,
+      "date_opened": "2026-04-08",
+      "date_closed": "2026-04-12"
+    }
+  },
+  {
+    "id": "case_058",
+    "text": "Compromised smart building elevator control system. An attacker exploited default credentials on the elevator management interface exposed through the building management network. The attacker could view floor access patterns and had theoretical ability to manipulate elevator operations. The system was immediately isolated and the vendor was engaged for emergency firmware patching and credential rotation.",
+    "metadata": {
+      "case_id": "CASE-2026-058",
+      "incident_type": "iot_ot_compromise",
+      "severity": "medium",
+      "status": "closed",
+      "detection_method": "threat_hunt",
+      "mttr_hours": 12,
+      "affected_assets_count": 4,
+      "date_opened": "2026-04-08",
+      "date_closed": "2026-04-09"
+    }
+  },
+  {
+    "id": "case_059",
+    "text": "PCI-DSS compliance breach discovered during quarterly ASV scan. A misconfigured web application firewall rule allowed direct access to the payment processing API without TLS 1.2 enforcement. While no active exploitation was detected, the compliance violation required immediate remediation and notification to the acquiring bank. The PCI QSA was engaged for an interim assessment and the finding was remediated within 24 hours.",
+    "metadata": {
+      "case_id": "CASE-2026-059",
+      "incident_type": "misconfiguration",
+      "severity": "high",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 24,
+      "affected_assets_count": 2,
+      "date_opened": "2026-04-08",
+      "date_closed": "2026-04-09"
+    }
+  },
+  {
+    "id": "case_060",
+    "text": "Multi-vector social engineering attack combining email phishing, vishing, and physical tailgating. Attackers sent targeted phishing emails to reception staff, followed up with phone calls impersonating a delivery service, and physically entered the building using a cloned employee badge. Once inside, the attacker connected a rogue device to an open network port in a conference room. The device was detected by 802.1X NAC within 3 minutes and the physical intruder was identified via CCTV footage.",
+    "metadata": {
+      "case_id": "CASE-2026-060",
+      "incident_type": "social_engineering",
+      "severity": "critical",
+      "status": "closed",
+      "detection_method": "automated",
+      "mttr_hours": 4,
+      "affected_assets_count": 3,
+      "date_opened": "2026-04-09",
+      "date_closed": "2026-04-09"
+    }
+  }
+]

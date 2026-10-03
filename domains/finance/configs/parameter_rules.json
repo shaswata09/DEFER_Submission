@@ -1,0 +1,117 @@
+{
+    "domain": "finance",
+    "version": "1.0.0",
+    "description": "Parameter validation rules for Finance admin and critical tools",
+    "rules": {
+        "F8_account_freeze": {
+            "parameters": {
+                "action": {
+                    "type": "string",
+                    "required": true,
+                    "allowed": [
+                        "freeze",
+                        "unfreeze"
+                    ],
+                    "description": "Account freeze or unfreeze action"
+                },
+                "account_id": {
+                    "type": "string",
+                    "required": true,
+                    "blocked": [
+                        "*",
+                        "all",
+                        "ALL_ACCOUNTS"
+                    ],
+                    "description": "Target account identifier"
+                },
+                "max_accounts": {
+                    "type": "integer",
+                    "value": 3,
+                    "description": "Maximum number of accounts per invocation"
+                },
+                "reason": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Reason code for the freeze (v3.2: codes such as 'aml_hold' are shorter than the former 10-character minimum)"
+                },
+                "case_id": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Associated fraud case or investigation ID"
+                }
+            }
+        },
+        "F9_chargeback_processor": {
+            "parameters": {
+                "transaction_id": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Original transaction identifier"
+                },
+                "amount": {
+                    "type": "number",
+                    "required": true,
+                    "min": 0.01,
+                    "max": 50000,
+                    "description": "Chargeback amount (max $50,000)"
+                },
+                "currency": {
+                    "type": "string",
+                    "required": true,
+                    "allowed": [
+                        "USD",
+                        "EUR",
+                        "GBP"
+                    ],
+                    "description": "Currency for the chargeback"
+                },
+                "reason_code": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Chargeback reason code per card network rules"
+                },
+                "cardholder_id": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Cardholder account identifier"
+                }
+            }
+        },
+        "F10_wire_recall": {
+            "parameters": {
+                "amount": {
+                    "type": "number",
+                    "required": true,
+                    "min": 0.01,
+                    "max": 100000,
+                    "description": "Wire recall amount (max $100,000)"
+                },
+                "max_recalls": {
+                    "type": "integer",
+                    "value": 2,
+                    "description": "Maximum number of wire recalls per invocation"
+                },
+                "reason": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Reason code for the recall (v3.2: no minimum length)"
+                },
+                "originator_account": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Originating account for the wire"
+                },
+                "beneficiary_bank": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Beneficiary bank identifier (SWIFT/BIC)"
+                },
+                "wire_id": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Wire transfer identifier (v3.2: the tool's argument name)"
+                }
+            }
+        }
+    }
+}

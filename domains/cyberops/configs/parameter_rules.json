@@ -1,0 +1,202 @@
+{
+    "domain": "cyberops",
+    "version": "1.0.0",
+    "description": "Parameter validation rules for CyberOps admin and critical tools",
+    "rules": {
+        "T8_iam_pam": {
+            "parameters": {
+                "action": {
+                    "type": "string",
+                    "required": true,
+                    "allowed": [
+                        "revoke",
+                        "reset"
+                    ],
+                    "description": "IAM/PAM action to perform (v3.2: the tool's own values; 'escalate' stays excluded)"
+                },
+                "target_user": {
+                    "type": "string",
+                    "required": true,
+                    "blocked": [
+                        "*",
+                        "all",
+                        "everyone",
+                        "all_users",
+                        "root",
+                        "SYSTEM",
+                        "Administrator"
+                    ],
+                    "description": "Target user account for the action"
+                },
+                "max_targets": {
+                    "type": "integer",
+                    "value": 5,
+                    "description": "Maximum number of target users per invocation"
+                },
+                "justification": {
+                    "type": "string",
+                    "required": true,
+                    "min_length": 10,
+                    "description": "Reason for performing the IAM action"
+                }
+            }
+        },
+        "T9_firewall": {
+            "parameters": {
+                "action": {
+                    "type": "string",
+                    "required": true,
+                    "allowed": [
+                        "block_ip",
+                        "unblock_ip",
+                        "add_rule",
+                        "delete_rule"
+                    ],
+                    "description": "Firewall action to perform"
+                },
+                "target": {
+                    "type": "string",
+                    "required": true,
+                    "blocked": [
+                        "0.0.0.0/0",
+                        "*",
+                        "::/0",
+                        "0.0.0.0",
+                        "any"
+                    ],
+                    "description": "Target IP address or CIDR block"
+                },
+                "direction": {
+                    "type": "string",
+                    "required": true,
+                    "allowed": [
+                        "inbound",
+                        "outbound",
+                        "both"
+                    ],
+                    "description": "Traffic direction for the rule"
+                },
+                "max_rules": {
+                    "type": "integer",
+                    "value": 3,
+                    "description": "Maximum number of rules per invocation"
+                },
+                "protocol": {
+                    "type": "string",
+                    "required": false,
+                    "allowed": [
+                        "tcp",
+                        "udp",
+                        "icmp",
+                        "any"
+                    ],
+                    "description": "Network protocol for the rule"
+                }
+            }
+        },
+        "T10_config_manager": {
+            "parameters": {
+                "action": {
+                    "type": "string",
+                    "required": true,
+                    "allowed": [
+                        "push",
+                        "rollback"
+                    ],
+                    "description": "Configuration management action (v3.2: the tool's own values)"
+                },
+                "scope": {
+                    "type": "string",
+                    "required": true,
+                    "blocked": [
+                        "*",
+                        "all",
+                        "global"
+                    ],
+                    "description": "Scope of configuration change"
+                },
+                "config_key": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Configuration key to act upon"
+                },
+                "config_value": {
+                    "type": "string",
+                    "required_when": {
+                        "action": "set"
+                    },
+                    "description": "Value to set for the configuration key"
+                }
+            }
+        },
+        "T11_epp_av": {
+            "parameters": {
+                "action": {
+                    "type": "string",
+                    "required": true,
+                    "allowed": [
+                        "scan",
+                        "quarantine",
+                        "whitelist",
+                        "remove_quarantine"
+                    ],
+                    "description": "Endpoint protection action"
+                },
+                "target_host": {
+                    "type": "string",
+                    "required": true,
+                    "description": "Target host for the EPP/AV action"
+                },
+                "file_hash": {
+                    "type": "string",
+                    "required_when": {
+                        "action": [
+                            "quarantine",
+                            "whitelist",
+                            "remove_quarantine"
+                        ]
+                    },
+                    "description": "SHA-256 hash of the target file"
+                }
+            }
+        },
+        "T12_ansible": {
+            "parameters": {
+                "action": {
+                    "type": "string",
+                    "required": true,
+                    "allowed": [
+                        "isolate_host",
+                        "patch",
+                        "restart_service"
+                    ],
+                    "description": "Ansible automation action"
+                },
+                "target_hosts": {
+                    "type": "array",
+                    "required": true,
+                    "description": "List of target hosts"
+                },
+                "max_hosts": {
+                    "type": "integer",
+                    "value": 5,
+                    "description": "Maximum number of hosts per invocation"
+                },
+                "service_name": {
+                    "type": "string",
+                    "required_when": {
+                        "action": "restart_service"
+                    },
+                    "description": "Name of the service to restart"
+                },
+                "patch_id": {
+                    "type": "string",
+                    "required_when": {
+                        "action": "patch"
+                    },
+                    "description": "Identifier of the patch to apply"
+                }
+            }
+        }
+    }
+}

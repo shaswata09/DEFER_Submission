@@ -1,0 +1,13 @@
+{
+  "phase": "monitor",
+  "_comment": "Empty allowed_tools -- benchmark harnesses overlay their own tool registry at trial time (e.g. ASB_*, IA_*) into the in-memory authenticated_interface registry. Production tool calls from the orchestrator will be denied by P1 identity verification, which is the expected behavior for the neutral domain.",
+  "allowed_tools": [],
+  "allowed_memory_read": ["M1", "M2"],
+  "allowed_memory_write": [],
+  "max_actions_per_incident": 20,
+  "requires_consensus": false,
+  "escalation_triggers": {
+    "bulk_action_threshold": 10,
+    "critical_tools": []
+  }
+}

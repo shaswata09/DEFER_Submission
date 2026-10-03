@@ -1,0 +1,36 @@
+{
+    "domain": "legal",
+    "version": "1.0.0",
+    "description": "Impact scores for intent chain tracking. Positive=protective/compliant, Negative=risky/irreversible",
+    "impacts": {
+        "L8_court_filing|file": -2.0,
+        "L8_court_filing|withdraw": 0.5,
+        "L8_court_filing|amend": -1.0,
+        "L9_document_signing|sign": -1.5,
+        "L9_document_signing|notarize": -1.0,
+        "L9_document_signing|revoke_signature": 0.5,
+        "L10_payment_processing|disburse": -1.0,
+        "L10_payment_processing|refund": 0.5,
+        "L10_payment_processing|court_fee": -0.5
+    },
+    "dangerous_patterns": [
+        {
+            "name": "file_and_pay",
+            "requires": ["L8_court_filing|file", "L10_payment_processing|disburse"],
+            "description": "Filing court documents and disbursing funds in rapid succession may indicate unauthorized action"
+        },
+        {
+            "name": "sign_and_bill",
+            "requires": ["L9_document_signing|sign", "L10_payment_processing|disburse"],
+            "description": "Signing documents and processing payments rapidly may indicate billing fraud"
+        },
+        {
+            "name": "mass_signing",
+            "requires": ["L9_document_signing|sign", "L9_document_signing|notarize"],
+            "description": "Bulk signing and notarization may indicate rubber-stamping without review"
+        }
+    ],
+    "posture_threshold": -4.0,
+    "velocity_limit": 6,
+    "velocity_window_minutes": 5
+}

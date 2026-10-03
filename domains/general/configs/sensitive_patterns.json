@@ -1,0 +1,49 @@
+{
+  "domain": "general",
+  "version": "1.0.0",
+  "description": "Domain-invariant sensitive content patterns for the neutral evaluation domain. Industry-specific patterns (PHI, PCI-DSS card data, attorney-client privilege markers, etc.) intentionally excluded -- include them only via the per-domain configs (healthcare/finance/legal).",
+  "regex_patterns": {
+    "base": {
+      "password_credential": {
+        "pattern": "(?:password|passwd|pwd|secret|token|api[_-]?key)\\s*[=:]\\s*\\S+",
+        "severity": "critical",
+        "description": "Password, credential, or API key exposure"
+      },
+      "private_key": {
+        "pattern": "-----BEGIN (?:RSA |EC |DSA )?PRIVATE KEY-----",
+        "severity": "critical",
+        "description": "Private key material"
+      },
+      "ssn": {
+        "pattern": "\\b\\d{3}-\\d{2}-\\d{4}\\b",
+        "severity": "critical",
+        "description": "Social Security Number"
+      },
+      "credit_card": {
+        "pattern": "\\b(?:4\\d{3}|5[1-5]\\d{2}|3[47]\\d{2})[\\s-]?\\d{4}[\\s-]?\\d{4}[\\s-]?\\d{4}\\b",
+        "severity": "critical",
+        "description": "Credit card number (Visa, Mastercard, Amex)"
+      },
+      "jwt_token": {
+        "pattern": "eyJ[A-Za-z0-9_-]+\\.eyJ[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+",
+        "severity": "high",
+        "description": "JSON Web Token"
+      },
+      "email": {
+        "pattern": "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}",
+        "severity": "medium",
+        "description": "Email address"
+      },
+      "ipv4": {
+        "pattern": "\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b",
+        "severity": "low",
+        "description": "IPv4 address"
+      },
+      "phone_us": {
+        "pattern": "\\b(?:\\+?1[-. ]?)?(?:\\(\\d{3}\\)|\\d{3})[-. ]?\\d{3}[-. ]?\\d{4}\\b",
+        "severity": "medium",
+        "description": "US phone number"
+      }
+    }
+  }
+}

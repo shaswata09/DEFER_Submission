@@ -1,0 +1,18 @@
+# Flat MAS Configuration
+# No enforcement. All agents see all tools. No consensus. No MMA.
+# 200 trust boundaries, all unverified.
+
+name: flat
+description: "Baseline with no defenses"
+
+enforcement:
+  manifest_check: false
+  consensus: false
+  mma_gateway: false
+  write_filter: false
+  acl_layer: false
+
+agent_tool_visibility: all  # agents see all 16 tools
+memory_access: direct       # agents access ChromaDB directly, no MMA
+agent_communication: peer_to_peer  # agents can call each other
+escalation: never

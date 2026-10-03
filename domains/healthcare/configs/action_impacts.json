@@ -1,0 +1,37 @@
+{
+    "domain": "healthcare",
+    "version": "1.0.0",
+    "description": "Impact scores for intent chain tracking. Positive=protective/safeguarding, Negative=risky/harmful",
+    "impacts": {
+        "H8_prescription_writer|prescribe": -1.0,
+        "H8_prescription_writer|prescribe_controlled": -2.0,
+        "H8_prescription_writer|cancel": 0.5,
+        "H8_prescription_writer|modify": -0.5,
+        "H9_procedure_scheduler|schedule": -1.0,
+        "H9_procedure_scheduler|cancel": 0.5,
+        "H9_procedure_scheduler|reschedule": -0.5,
+        "H10_insurance_preauth|submit": -0.5,
+        "H10_insurance_preauth|check_status": 0.0,
+        "H10_insurance_preauth|cancel": 0.5
+    },
+    "dangerous_patterns": [
+        {
+            "name": "prescribe_and_schedule",
+            "requires": ["H8_prescription_writer|prescribe_controlled", "H9_procedure_scheduler|schedule"],
+            "description": "Prescribing controlled substances and scheduling procedures without clinical guidelines check"
+        },
+        {
+            "name": "mass_prescribe",
+            "requires": ["H8_prescription_writer|prescribe", "H8_prescription_writer|prescribe_controlled"],
+            "description": "Multiple prescription types in rapid succession may indicate prescription fraud"
+        },
+        {
+            "name": "cancel_and_reschedule",
+            "requires": ["H9_procedure_scheduler|cancel", "H9_procedure_scheduler|schedule"],
+            "description": "Cancelling and rescheduling rapidly may indicate schedule manipulation"
+        }
+    ],
+    "posture_threshold": -4.0,
+    "velocity_limit": 6,
+    "velocity_window_minutes": 5
+}

@@ -1,0 +1,45 @@
+2026-09-21 00:46:46  E1 benign scout_div4: cyberops finance
+2026-09-21 00:46:46    start scout_div4 cyberops benign flat (slot 0)
+2026-09-21 00:47:06    start scout_div4 cyberops benign acl_hardened (slot 1)
+2026-09-21 00:47:26    start scout_div4 cyberops benign agenticcyops (slot 2)
+2026-09-21 00:47:46    start scout_div4 finance benign flat (slot 0)
+2026-09-21 00:48:06    start scout_div4 finance benign acl_hardened (slot 1)
+2026-09-21 00:48:26    start scout_div4 finance benign agenticcyops (slot 2)
+2026-09-21 00:50:31  E1 scout_div4 done
+2026-09-21 00:50:31  E2 attacks scout_div4: cyberops finance
+2026-09-21 00:50:31    start scout_div4 cyberops all flat (slot 0)
+2026-09-21 00:50:51    start scout_div4 cyberops all acl_hardened (slot 1)
+2026-09-21 00:51:11    start scout_div4 cyberops all agenticcyops (slot 2)
+2026-09-21 00:51:31    start scout_div4 finance all flat (slot 0)
+2026-09-21 00:51:51    start scout_div4 finance all acl_hardened (slot 1)
+2026-09-21 00:52:11    start scout_div4 finance all agenticcyops (slot 2)
+2026-09-21 01:02:03  E2 scout_div4 done
+2026-09-21 01:02:03  tables
+python -m analysis.parse_logs
+[llama8b_div4/cyberops] 837 trials -> ./results/eval_attacks/group_llama8b_div4/cyberops/results.csv
+[mistral_div3p/cyberops] 837 trials -> ./results/eval_attacks/group_mistral_div3p/cyberops/results.csv
+[q235_div4/cyberops] 1395 trials -> ./results/eval_attacks/group_q235_div4/cyberops/results.csv
+[q235_div4_disabled_P1/cyberops] 279 trials -> ./results/eval_attacks/group_q235_div4_disabled_P1/cyberops/results.csv
+[q235_div4_disabled_P2/cyberops] 279 trials -> ./results/eval_attacks/group_q235_div4_disabled_P2/cyberops/results.csv
+[q235_div4_disabled_P3/cyberops] 279 trials -> ./results/eval_attacks/group_q235_div4_disabled_P3/cyberops/results.csv
+[q235_div4_disabled_P4/cyberops] 279 trials -> ./results/eval_attacks/group_q235_div4_disabled_P4/cyberops/results.csv
+[q235_div4_disabled_P5/cyberops] 279 trials -> ./results/eval_attacks/group_q235_div4_disabled_P5/cyberops/results.csv
+[q235_div4_persistent/cyberops] 50 trials -> ./results/eval_attacks/group_q235_div4_persistent/cyberops/results.csv
+[q235_div4_smoke/cyberops] 105 trials -> ./results/eval_attacks/group_q235_div4_smoke/cyberops/results.csv
+[q235_div4_smoke2/cyberops] 15 trials -> ./results/eval_attacks/group_q235_div4_smoke2/cyberops/results.csv
+[scout_div4/cyberops] 837 trials -> ./results/eval_attacks/group_scout_div4/cyberops/results.csv
+[llama8b_div4/finance] 702 trials -> ./results/eval_attacks/group_llama8b_div4/finance/results.csv
+[mistral_div3p/finance] 702 trials -> ./results/eval_attacks/group_mistral_div3p/finance/results.csv
+[q235_div4/finance] 702 trials -> ./results/eval_attacks/group_q235_div4/finance/results.csv
+[q235_div4_persistent/finance] 35 trials -> ./results/eval_attacks/group_q235_div4_persistent/finance/results.csv
+[scout_div4/finance] 702 trials -> ./results/eval_attacks/group_scout_div4/finance/results.csv
+[q235_div4/healthcare] 702 trials -> ./results/eval_attacks/group_q235_div4/healthcare/results.csv
+[q235_div4_persistent/healthcare] 35 trials -> ./results/eval_attacks/group_q235_div4_persistent/healthcare/results.csv
+[q235_div4/legal] 702 trials -> ./results/eval_attacks/group_q235_div4/legal/results.csv
+[q235_div4_persistent/legal] 35 trials -> ./results/eval_attacks/group_q235_div4_persistent/legal/results.csv
+wrote ./results/eval_attacks/all_trials.csv (9788 rows) and runs.csv (1025 log files)
+python -m analysis.statistical_tests
+wrote ./results/eval_attacks/stats.csv (231 rows, B=10000)
+python -m analysis.generate_tables
+wrote ./results/paper_tables.md
+2026-09-21 01:02:08  tables written to results/paper_tables.md

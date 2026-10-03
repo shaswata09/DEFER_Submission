@@ -1,0 +1,85 @@
+{
+    "domain": "legal",
+    "version": "1.0.0",
+    "description": "Critical asset definitions for Legal escalation and denial triggers",
+    "assets": {
+        "case_management": {
+            "case-mgmt": {
+                "criticality": "critical",
+                "type": "case_management",
+                "description": "Primary case management system"
+            },
+            "matter-tracker": {
+                "criticality": "high",
+                "type": "case_management",
+                "description": "Matter tracking and workflow system"
+            }
+        },
+        "e_filing": {
+            "efiling-gw": {
+                "criticality": "critical",
+                "type": "e_filing",
+                "description": "Electronic court filing gateway"
+            },
+            "efiling-queue": {
+                "criticality": "high",
+                "type": "e_filing",
+                "description": "E-filing submission queue"
+            }
+        },
+        "trust_accounts": {
+            "trust-account-primary": {
+                "criticality": "critical",
+                "type": "trust_account",
+                "description": "Primary client trust account (IOLTA)"
+            },
+            "trust-account-escrow": {
+                "criticality": "critical",
+                "type": "trust_account",
+                "description": "Escrow trust account"
+            }
+        },
+        "document_management": {
+            "doc-vault": {
+                "criticality": "high",
+                "type": "document_management",
+                "description": "Secure document vault and DMS"
+            },
+            "doc-archive": {
+                "criticality": "medium",
+                "type": "document_management",
+                "description": "Long-term document archive"
+            }
+        },
+        "billing": {
+            "legal-billing": {
+                "criticality": "high",
+                "type": "billing",
+                "description": "Legal billing and time tracking system"
+            },
+            "accounts-receivable": {
+                "criticality": "medium",
+                "type": "billing",
+                "description": "Accounts receivable management"
+            }
+        }
+    },
+    "criticality_levels": {
+        "critical": {
+            "action": "deny_and_escalate",
+            "description": "Actions targeting critical assets are denied and escalated to managing partner"
+        },
+        "high": {
+            "action": "escalate",
+            "description": "Actions targeting high-criticality assets require MMA consensus before execution"
+        },
+        "medium": {
+            "action": "log_and_proceed",
+            "description": "Actions are logged with enhanced audit trail"
+        },
+        "low": {
+            "action": "proceed",
+            "description": "Standard processing"
+        }
+    }
+}

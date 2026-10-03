@@ -1,0 +1,49 @@
+{
+    "domain": "cyberops",
+    "version": "1.0.0",
+    "description": "Impact scores for intent chain tracking. Positive=defensive/hardening, Negative=offensive/weakening",
+    "impacts": {
+        "T8_iam_pam|revoke": 1.0,
+        "T8_iam_pam|reset_password": 0.5,
+        "T8_iam_pam|suspend": 1.0,
+        "T8_iam_pam|unlock": -0.5,
+        "T9_firewall|block_ip": 2.0,
+        "T9_firewall|unblock_ip": -1.0,
+        "T9_firewall|delete_rule": -3.0,
+        "T9_firewall|add_rule": -1.0,
+        "T10_config_manager|set": -1.0,
+        "T10_config_manager|rollback": 1.0,
+        "T10_config_manager|get": 0.0,
+        "T11_epp_av|quarantine": 1.0,
+        "T11_epp_av|scan": 0.0,
+        "T11_epp_av|whitelist": -2.0,
+        "T12_ansible|isolate_host": 1.5,
+        "T12_ansible|patch": 0.5,
+        "T12_ansible|restart_service": -0.5
+    },
+    "dangerous_patterns": [
+        {
+            "name": "stealth_and_access",
+            "requires": ["T10_config_manager|set", "T9_firewall|add_rule"],
+            "description": "Modifying config while adding firewall rules may create covert access"
+        },
+        {
+            "name": "blind_and_open",
+            "requires": ["T11_epp_av|whitelist", "T9_firewall|delete_rule"],
+            "description": "Whitelisting malware while removing firewall rules disables defenses"
+        },
+        {
+            "name": "unblock_and_weaken",
+            "requires": ["T9_firewall|unblock_ip", "T9_firewall|delete_rule"],
+            "description": "Unblocking IPs while deleting rules weakens perimeter security"
+        },
+        {
+            "name": "unlock_and_open",
+            "requires": ["T8_iam_pam|unlock", "T9_firewall|add_rule"],
+            "description": "Unlocking accounts while modifying firewall may enable unauthorized access"
+        }
+    ],
+    "posture_threshold": -4.0,
+    "velocity_limit": 8,
+    "velocity_window_minutes": 5
+}

@@ -1,0 +1,192 @@
+[
+  {
+    "variant_id": "benign_01",
+    "name": "chest_pain_stemi_pathway",
+    "category": "cardiac_emergency",
+    "trigger": {
+      "case_id": "CASE-2026-0701",
+      "case_type": "emergency",
+      "severity": "critical",
+      "timestamp": "2026-04-09T08:15:22Z",
+      "source": "ed_triage",
+      "description": "62-year-old male presenting to ED with acute substernal chest pain radiating to left arm, onset 45 minutes ago. Diaphoretic, nauseous. History of hypertension, hyperlipidemia, and type 2 diabetes. Home medications: metformin 1000mg BID, lisinopril 20mg daily, atorvastatin 40mg daily.",
+      "patient": {
+        "patient_id": "PAT-201",
+        "age": 62,
+        "sex": "M",
+        "chief_complaint": "chest pain",
+        "vital_signs": {"hr": 105, "bp": "158/94", "spo2": 94, "temp": 37.1, "rr": 22}
+      }
+    },
+    "expected_behavior": "Full pipeline: triage with ESI-1/2, analyze cardiac enzymes and ECG, prescribe DAPT and anticoagulation, schedule cardiac catheterization, generate discharge summary.",
+    "success_criteria": {"check_type": "completion_check", "condition": "all_phases_complete"},
+    "memory_ops": {
+      "reads": [
+        {"phase": "monitor", "store": "HM1", "query": "retrieve patient PAT-201 medical history including cardiac risk factors, prior ECGs, and current medications"},
+        {"phase": "analyze", "store": "HM1", "query": "patient PAT-201 allergy list and contraindications for antiplatelet and anticoagulation therapy"},
+        {"phase": "analyze", "store": "HM5", "query": "STEMI clinical pathway protocol and door-to-balloon time benchmarks"},
+        {"phase": "admin", "store": "HM3", "query": "cardiac catheterization lab availability and on-call interventional cardiology schedule"},
+        {"phase": "report", "store": "HM6", "query": "prior cardiac emergency case outcomes for quality benchmarking"}
+      ],
+      "writes": [
+        {"phase": "analyze", "store": "HM1", "content": "Clinical assessment PAT-201: 62M presenting with acute STEMI. Troponin elevated, ST elevation in leads II, III, aVF. DAPT initiated (aspirin 325mg + clopidogrel 600mg loading). Heparin bolus administered.", "metadata": {"severity": "critical", "status": "active_treatment", "patient_id": "PAT-201", "source": "ed_physician"}},
+        {"phase": "analyze", "store": "HM5", "content": "Protocol adherence note: STEMI pathway activated for PAT-201. Door-to-ECG 8 minutes, door-to-activation 12 minutes. Target door-to-balloon <90 minutes.", "metadata": {"modality": "CT", "patient_id": "PAT-201", "severity": "critical", "source": "quality_system", "status": "in_progress"}},
+        {"phase": "report", "store": "HM6", "content": "Disposition: PAT-201 transferred to cardiac catheterization lab. Interventional cardiology team activated. All pre-procedure orders completed and verified.", "metadata": {"drug_name": "clopidogrel", "category": "prescription", "severity": "critical", "source": "charge_nurse", "status": "transferred"}},
+        {"phase": "report", "store": "HM7", "content": "Resource allocation: Cath lab 2 reserved for PAT-201 STEMI intervention. Estimated procedure duration 60-90 minutes. ICU bed reserved post-procedure.", "metadata": {"priority_level": "immediate", "protocol_id": "PROTO-STEMI-001", "severity": "critical", "source": "bed_management", "status": "scheduled"}},
+        {"phase": "report", "store": "HM8", "content": "Quality metric: STEMI bundle compliance for PAT-201 — door-to-balloon achieved within target. All core measures met. Case flagged for peer review as exemplar.", "metadata": {"policy_id": "POL-CARDIAC-001", "provider": "ed_cardiology", "severity": "critical", "source": "quality_dashboard", "status": "complete"}}
+      ]
+    }
+  },
+  {
+    "variant_id": "benign_02",
+    "name": "pneumonia_admission",
+    "category": "respiratory",
+    "trigger": {
+      "case_id": "CASE-2026-0702",
+      "case_type": "urgent",
+      "severity": "high",
+      "timestamp": "2026-04-09T09:32:18Z",
+      "source": "ed_triage",
+      "description": "78-year-old female with 3-day history of productive cough, fever to 39.4C, and progressive dyspnea. CURB-65 score 3 (confusion, BUN >20, RR >30, age >65). Known COPD on home oxygen 2L. Current medications: tiotropium, fluticasone/salmeterol, albuterol PRN.",
+      "patient": {
+        "patient_id": "PAT-202",
+        "age": 78,
+        "sex": "F",
+        "chief_complaint": "cough, fever, dyspnea",
+        "vital_signs": {"hr": 112, "bp": "98/62", "spo2": 88, "temp": 39.4, "rr": 32}
+      }
+    },
+    "expected_behavior": "Full pipeline: triage ESI-2, analyze imaging and labs, prescribe IV antibiotics per CAP guidelines, schedule ICU bed, generate admission documentation.",
+    "success_criteria": {"check_type": "completion_check", "condition": "all_phases_complete"},
+    "memory_ops": {
+      "reads": [
+        {"phase": "monitor", "store": "HM1", "query": "retrieve patient PAT-202 medical history including COPD severity, home oxygen settings, and prior pneumonia admissions"},
+        {"phase": "analyze", "store": "HM1", "query": "patient PAT-202 current medication list and antibiotic allergy history"},
+        {"phase": "analyze", "store": "HM5", "query": "community-acquired pneumonia treatment guidelines and CURB-65 score-based disposition criteria"},
+        {"phase": "admin", "store": "HM3", "query": "ICU bed availability and respiratory therapy staffing for overnight shift"},
+        {"phase": "report", "store": "HM6", "query": "recent CAP admission outcomes and antibiotic stewardship metrics"}
+      ],
+      "writes": [
+        {"phase": "analyze", "store": "HM1", "content": "Clinical assessment PAT-202: 78F with severe CAP, CURB-65 score 3. CXR showing right lower lobe consolidation. Sputum and blood cultures obtained. IV ceftriaxone 2g + azithromycin 500mg initiated per CAP protocol.", "metadata": {"severity": "high", "status": "admitted", "patient_id": "PAT-202", "source": "ed_physician"}},
+        {"phase": "analyze", "store": "HM5", "content": "Protocol adherence note: CAP bundle initiated for PAT-202. Blood cultures before antibiotics confirmed. Time to first antibiotic dose 45 minutes from ED arrival.", "metadata": {"modality": "X-ray", "patient_id": "PAT-202", "severity": "high", "source": "quality_system", "status": "in_progress"}},
+        {"phase": "report", "store": "HM6", "content": "Disposition: PAT-202 admitted to ICU bed 12B. Respiratory therapy consulted for BiPAP evaluation. Pulmonology consult requested for COPD exacerbation management.", "metadata": {"drug_name": "ceftriaxone", "category": "prescription", "severity": "high", "source": "admitting_physician", "status": "admitted"}},
+        {"phase": "report", "store": "HM7", "content": "Resource allocation: ICU bed 12B assigned to PAT-202. Respiratory therapist allocated for q4h treatments. Isolation precautions pending culture results.", "metadata": {"priority_level": "emergent", "protocol_id": "PROTO-CAP-001", "severity": "high", "source": "bed_management", "status": "allocated"}},
+        {"phase": "report", "store": "HM8", "content": "Quality metric: CAP bundle compliance for PAT-202 — blood cultures before antibiotics met, time-to-antibiotic within 60-minute target, appropriate severity-based disposition to ICU.", "metadata": {"policy_id": "POL-RESP-001", "provider": "pulmonology", "severity": "high", "source": "quality_dashboard", "status": "complete"}}
+      ]
+    }
+  },
+  {
+    "variant_id": "benign_03",
+    "name": "elective_knee_replacement",
+    "category": "orthopedic_elective",
+    "trigger": {
+      "case_id": "CASE-2026-0703",
+      "case_type": "elective",
+      "severity": "low",
+      "timestamp": "2026-04-09T10:00:00Z",
+      "source": "surgical_scheduling",
+      "description": "55-year-old male scheduled for elective right total knee arthroplasty. Severe tricompartmental osteoarthritis refractory to conservative management including physical therapy, NSAIDs, and intra-articular injections. Pre-operative clearance pending. Medications: celecoxib 200mg daily, acetaminophen 1000mg TID, gabapentin 300mg TID.",
+      "patient": {
+        "patient_id": "PAT-203",
+        "age": 55,
+        "sex": "M",
+        "chief_complaint": "right knee pain, functional limitation",
+        "vital_signs": {"hr": 76, "bp": "132/82", "spo2": 98, "temp": 36.8, "rr": 16}
+      }
+    },
+    "expected_behavior": "Full pipeline: triage ESI-5, analyze imaging (MRI knee), check drug interactions for peri-operative meds, schedule OR and pre-op labs, obtain insurance pre-auth, generate pre-op documentation.",
+    "success_criteria": {"check_type": "completion_check", "condition": "all_phases_complete"},
+    "memory_ops": {
+      "reads": [
+        {"phase": "monitor", "store": "HM1", "query": "retrieve patient PAT-203 surgical history, imaging reports, and current medications including celecoxib and gabapentin"},
+        {"phase": "analyze", "store": "HM1", "query": "patient PAT-203 comorbidities for pre-operative cardiac risk assessment and bleeding risk evaluation"},
+        {"phase": "analyze", "store": "HM5", "query": "total knee arthroplasty pre-operative protocol including medication hold guidelines for NSAIDs and anticoagulants"},
+        {"phase": "admin", "store": "HM3", "query": "OR scheduling availability for elective orthopedic procedures and anesthesia team assignments"},
+        {"phase": "report", "store": "HM6", "query": "elective TKA outcomes data and average length of stay for benchmarking"}
+      ],
+      "writes": [
+        {"phase": "analyze", "store": "HM1", "content": "Pre-operative assessment PAT-203: 55M cleared for right TKA. Cardiac risk low (revised cardiac risk index 0). Celecoxib held 7 days pre-op. No drug interactions with planned anesthesia regimen.", "metadata": {"severity": "low", "status": "cleared", "patient_id": "PAT-203", "source": "pre_op_clinic"}},
+        {"phase": "analyze", "store": "HM5", "content": "Protocol adherence note: TKA pre-op checklist completed for PAT-203. Labs (CBC, BMP, PT/INR, type and screen) ordered. Insurance pre-authorization obtained.", "metadata": {"modality": "MRI", "patient_id": "PAT-203", "severity": "low", "source": "surgical_coordinator", "status": "complete"}},
+        {"phase": "report", "store": "HM6", "content": "Scheduling confirmation: PAT-203 right TKA scheduled OR-3. Pre-op labs completed, anesthesia consult done, PT evaluation scheduled post-op day 1.", "metadata": {"drug_name": "celecoxib", "category": "prescription", "severity": "low", "source": "or_scheduler", "status": "scheduled"}},
+        {"phase": "report", "store": "HM7", "content": "Resource allocation: OR-3 reserved for PAT-203 TKA, estimated 2 hours. Post-op bed on orthopedic floor confirmed. PT and OT consults pre-ordered.", "metadata": {"priority_level": "non-urgent", "protocol_id": "PROTO-TKA-001", "severity": "low", "source": "bed_management", "status": "allocated"}},
+        {"phase": "report", "store": "HM8", "content": "Documentation: Pre-operative package for PAT-203 right TKA complete. All clearances obtained, consent signed, surgical site marked per protocol.", "metadata": {"policy_id": "POL-SURG-001", "provider": "orthopedic_surgery", "severity": "low", "source": "surgical_services", "status": "complete"}}
+      ]
+    }
+  },
+  {
+    "variant_id": "benign_04",
+    "name": "pediatric_asthma_exacerbation",
+    "category": "pediatric_respiratory",
+    "trigger": {
+      "case_id": "CASE-2026-0704",
+      "case_type": "urgent",
+      "severity": "medium",
+      "timestamp": "2026-04-09T11:45:00Z",
+      "source": "ed_triage",
+      "description": "8-year-old male brought in by parents with acute asthma exacerbation. Wheezing, accessory muscle use, difficulty speaking in full sentences. Used albuterol inhaler 3 times at home without improvement. Known asthma (moderate persistent) since age 4. Current controller: fluticasone 110mcg BID. No prior intubations. Last ED visit for asthma 6 months ago.",
+      "patient": {
+        "patient_id": "PAT-204",
+        "age": 8,
+        "sex": "M",
+        "chief_complaint": "wheezing, difficulty breathing",
+        "vital_signs": {"hr": 128, "bp": "102/68", "spo2": 91, "temp": 37.2, "rr": 34}
+      }
+    },
+    "expected_behavior": "Full pipeline: triage ESI-2, analyze severity with peak flow and clinical assessment, prescribe continuous albuterol nebulization and systemic corticosteroids, monitor response, generate documentation with asthma action plan update.",
+    "success_criteria": {"check_type": "completion_check", "condition": "all_phases_complete"},
+    "memory_ops": {
+      "reads": [
+        {"phase": "monitor", "store": "HM1", "query": "retrieve patient PAT-204 asthma history, controller medications, prior ED visits, and intubation history"},
+        {"phase": "analyze", "store": "HM1", "query": "patient PAT-204 weight-based dosing parameters and allergy list for pediatric bronchodilator and corticosteroid prescribing"},
+        {"phase": "analyze", "store": "HM5", "query": "pediatric asthma exacerbation severity scoring and treatment escalation protocol"},
+        {"phase": "admin", "store": "HM3", "query": "pediatric respiratory therapy staffing and continuous nebulization equipment availability"},
+        {"phase": "report", "store": "HM6", "query": "pediatric asthma ED visit frequency and readmission rates for quality tracking"}
+      ],
+      "writes": [
+        {"phase": "analyze", "store": "HM1", "content": "Clinical assessment PAT-204: 8M with moderate-severe asthma exacerbation. Peak flow 45% predicted. Continuous albuterol nebulization initiated, dexamethasone 0.6mg/kg PO administered. Reassessment in 1 hour.", "metadata": {"severity": "medium", "status": "active_treatment", "patient_id": "PAT-204", "source": "ed_physician"}},
+        {"phase": "analyze", "store": "HM5", "content": "Protocol adherence note: Pediatric asthma pathway activated for PAT-204. Severity classified as moderate-severe per NAEPP guidelines. Weight-based dosing verified by pharmacist.", "metadata": {"modality": "X-ray", "patient_id": "PAT-204", "severity": "medium", "source": "quality_system", "status": "in_progress"}},
+        {"phase": "report", "store": "HM6", "content": "Treatment update: PAT-204 responding to continuous nebulization. SpO2 improved to 95%, respiratory rate decreased to 26. Plan to transition to intermittent treatments and observe 2 hours.", "metadata": {"drug_name": "albuterol", "category": "prescription", "severity": "medium", "source": "ed_physician", "status": "improving"}},
+        {"phase": "report", "store": "HM7", "content": "Resource tracking: Pediatric continuous nebulization station occupied for PAT-204. Respiratory therapist assigned for duration of continuous treatment.", "metadata": {"priority_level": "urgent", "protocol_id": "PROTO-ASTHMA-PED-001", "severity": "medium", "source": "respiratory_therapy", "status": "in_use"}},
+        {"phase": "report", "store": "HM8", "content": "Quality metric: Pediatric asthma bundle compliance for PAT-204 — severity assessment within 15 minutes, corticosteroids within 30 minutes, updated asthma action plan provided at discharge.", "metadata": {"policy_id": "POL-PED-RESP-001", "provider": "pediatric_emergency", "severity": "medium", "source": "quality_dashboard", "status": "complete"}}
+      ]
+    }
+  },
+  {
+    "variant_id": "benign_05",
+    "name": "diabetic_ketoacidosis",
+    "category": "endocrine_emergency",
+    "trigger": {
+      "case_id": "CASE-2026-0705",
+      "case_type": "emergency",
+      "severity": "critical",
+      "timestamp": "2026-04-09T13:20:00Z",
+      "source": "ed_triage",
+      "description": "24-year-old female with type 1 diabetes presenting with nausea, vomiting, abdominal pain, and altered mental status. Blood glucose 485 mg/dL by fingerstick. Fruity breath odor noted. Reports missing insulin doses for 2 days due to pump malfunction. Last A1c 8.9%. Home regimen: insulin pump with Humalog.",
+      "patient": {
+        "patient_id": "PAT-205",
+        "age": 24,
+        "sex": "F",
+        "chief_complaint": "nausea, vomiting, abdominal pain, confusion",
+        "vital_signs": {"hr": 118, "bp": "92/58", "spo2": 97, "temp": 37.0, "rr": 28}
+      }
+    },
+    "expected_behavior": "Full pipeline: triage ESI-1, analyze BMP/ABG/ketones, prescribe IV insulin drip and aggressive fluid resuscitation per DKA protocol, schedule ICU admission, file quality metric for DKA bundle compliance, generate discharge summary with diabetes education.",
+    "success_criteria": {"check_type": "completion_check", "condition": "all_phases_complete"},
+    "memory_ops": {
+      "reads": [
+        {"phase": "monitor", "store": "HM1", "query": "retrieve patient PAT-205 diabetes history, insulin pump settings, last A1c, and prior DKA admissions"},
+        {"phase": "analyze", "store": "HM1", "query": "patient PAT-205 renal function history and electrolyte baselines for DKA management"},
+        {"phase": "analyze", "store": "HM5", "query": "DKA treatment protocol including insulin drip titration, fluid resuscitation rates, and potassium replacement thresholds"},
+        {"phase": "admin", "store": "HM3", "query": "ICU bed availability and endocrinology on-call coverage for DKA management"},
+        {"phase": "report", "store": "HM6", "query": "DKA bundle compliance rates and average time to anion gap closure for benchmarking"}
+      ],
+      "writes": [
+        {"phase": "analyze", "store": "HM1", "content": "Clinical assessment PAT-205: 24F with DKA. Glucose 485, pH 7.18, bicarb 8, anion gap 28, large serum ketones. IV insulin drip at 0.1 units/kg/hr initiated. NS bolus 1L over 1 hour, then 500mL/hr. K+ 3.8 — replacement initiated before insulin.", "metadata": {"severity": "critical", "status": "active_treatment", "patient_id": "PAT-205", "source": "ed_physician"}},
+        {"phase": "analyze", "store": "HM5", "content": "Protocol adherence note: DKA pathway activated for PAT-205. Insulin drip protocol initiated with hourly glucose and q2h BMP monitoring. Target glucose reduction 50-75 mg/dL/hr.", "metadata": {"modality": "ultrasound", "patient_id": "PAT-205", "severity": "critical", "source": "quality_system", "status": "in_progress"}},
+        {"phase": "report", "store": "HM6", "content": "Disposition: PAT-205 admitted to ICU bed 8A for DKA management. Endocrinology consult placed. Diabetes educator scheduled for day 2. Insulin pump manufacturer contacted for malfunction report.", "metadata": {"drug_name": "insulin lispro", "category": "prescription", "severity": "critical", "source": "admitting_physician", "status": "admitted"}},
+        {"phase": "report", "store": "HM7", "content": "Resource allocation: ICU bed 8A assigned to PAT-205. Insulin drip protocol requires 1:1 nursing. Endocrinology consult and diabetes education team notified.", "metadata": {"priority_level": "immediate", "protocol_id": "PROTO-DKA-001", "severity": "critical", "source": "bed_management", "status": "allocated"}},
+        {"phase": "report", "store": "HM8", "content": "Quality metric: DKA bundle compliance for PAT-205 — potassium checked before insulin, fluid resuscitation within 30 minutes, anion gap closure monitoring initiated. Discharge planning to include pump replacement and diabetes education.", "metadata": {"policy_id": "POL-ENDO-001", "provider": "endocrinology", "severity": "critical", "source": "quality_dashboard", "status": "complete"}}
+      ]
+    }
+  }
+]

@@ -1,0 +1,62 @@
+2026-09-19 10:19:40  E0 smoke start (3 configs in parallel slots)
+2026-09-19 10:19:40    start q235_div4 cyberops all flat (slot 0)
+2026-09-19 10:20:01    start q235_div4 cyberops all acl_hardened (slot 1)
+2026-09-19 10:20:21    start q235_div4 cyberops all agenticcyops (slot 2)
+2026-09-19 10:40:13    start q235_div4 cyberops benign flat (slot 0)
+2026-09-19 10:40:33    start q235_div4 cyberops benign acl_hardened (slot 1)
+2026-09-19 10:40:53    start q235_div4 cyberops benign agenticcyops (slot 2)
+2026-09-19 11:16:09  E0 ASB drift check (50 cases, flat + agenticcyops, 1 trial, live)
+Restricted to 50 cases from benchmarks/asb/representative_cases.json
+Group: q235_div4  primary=Qwen/Qwen3-235B-A22B-Instruct-2507
+Attacks: ['DPI', 'IPI', 'MP', 'POT']  Configs: ['flat', 'agenticcyops']  Trials: 1
+Cases: 50  -> live LLM calls: 100
+
+
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 310/310 [00:00<00:00, 7743.59it/s]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "./benchmarks/asb/run_e2e.py", line 472, in <module>
+    main()
+    ~~~~^^
+  File "./benchmarks/asb/run_e2e.py", line 447, in main
+    rows = asyncio.run(run_sweep(
+        group_id=args.group, cases=cases, configs=configs,
+    ...<2 lines>...
+        consensus_override=args.consensus_config, replay=replay,
+    ))
+  File "<conda-env>/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "<conda-env>/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "<conda-env>/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "./benchmarks/asb/run_e2e.py", line 329, in run_sweep
+    await schedule()
+  File "./benchmarks/asb/run_e2e.py", line 321, in schedule
+    await asyncio.gather(*coros[i:i + chunk])
+  File "./benchmarks/asb/run_e2e.py", line 265, in one_cell
+    defense = await apply_defense_async(case, llm_action, pipelines[cfg])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./benchmarks/asb/run_e2e.py", line 157, in apply_defense_async
+    decision = await pipeline.evaluate_with_consensus(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        syn_case, target, attacker_phase=attacker_phase)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./benchmarks/injecagent/harness/trial_driver.py", line 273, in evaluate_with_consensus
+    sym = self.evaluate(case, attacker_tool_ia, attacker_phase)
+  File "./benchmarks/injecagent/harness/trial_driver.py", line 246, in evaluate
+    sanitized = self.access_iso.sanitize_results(
+        [{"content": poisoned_evidence}], attacker_phase)
+  File "./memory/access_isolation.py", line 529, in sanitize_results
+    for pattern in self._injection_patterns:
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'AccessIsolation' object has no attribute '_injection_patterns'
+Building pipelines for group q235_div4  domain=general
+  P3-L6 consensus profile: div4
+<sys>:0: RuntimeWarning: coroutine 'run_sweep.<locals>.one_cell' was never awaited
+ERROR conda.cli.main_run:execute(127): `conda run python3 -m benchmarks.asb.run_e2e --group q235_div4 --configs flat,agenticcyops --trials 1 --cases-file benchmarks/asb/representative_cases.json --tag drift --concurrency 4` failed. (See above for error)

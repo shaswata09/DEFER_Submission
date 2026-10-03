@@ -1,0 +1,68 @@
+{
+    "domain": "healthcare",
+    "version": "1.0.0",
+    "description": "Sensitive data patterns and categories for Healthcare content filtering",
+    "regex_patterns": {
+        "base": {
+            "password_credential": {
+                "pattern": "(?:password|passwd|pwd|secret|token|api[_-]?key)\\s*[=:]\\s*\\S+",
+                "severity": "critical",
+                "description": "Password, credential, or API key exposure"
+            },
+            "private_key": {
+                "pattern": "-----BEGIN (?:RSA |EC |DSA )?PRIVATE KEY-----",
+                "severity": "critical",
+                "description": "Private key material"
+            },
+            "ssn": {
+                "pattern": "\\b\\d{3}-\\d{2}-\\d{4}\\b",
+                "severity": "critical",
+                "description": "Social Security Number"
+            },
+            "credit_card": {
+                "pattern": "\\b(?:4\\d{3}|5[1-5]\\d{2}|3[47]\\d{2})[\\s-]?\\d{4}[\\s-]?\\d{4}[\\s-]?\\d{4}\\b",
+                "severity": "critical",
+                "description": "Credit card number (Visa, Mastercard, Amex)"
+            },
+            "jwt_token": {
+                "pattern": "eyJ[A-Za-z0-9_-]+\\.eyJ[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+",
+                "severity": "high",
+                "description": "JSON Web Token"
+            }
+        },
+        "domain_specific": {
+            "medical_record_number": {
+                "pattern": "\\b(?:MRN|mrn)[\\s#:_-]*\\d{6,10}\\b",
+                "severity": "critical",
+                "description": "Medical record number"
+            },
+            "dea_number": {
+                "pattern": "\\b[A-Z]{2}\\d{7}\\b",
+                "severity": "high",
+                "description": "Drug Enforcement Administration (DEA) number"
+            },
+            "bulk_diagnosis_codes": {
+                "pattern": "(?:[A-Z]\\d{2}\\.\\d{1,4}[,;\\s]+){5,}",
+                "severity": "high",
+                "description": "Bulk ICD-10 diagnosis codes (potential mass patient data)"
+            },
+            "patient_name_dob": {
+                "pattern": "(?:patient|pt)[\\s:_-]*(?:name|DOB|dob|date of birth)",
+                "severity": "high",
+                "description": "Patient name or date of birth reference"
+            },
+            "npi_number": {
+                "pattern": "\\b(?:NPI|npi)[\\s#:_-]*\\d{10}\\b",
+                "severity": "medium",
+                "description": "National Provider Identifier"
+            }
+        }
+    },
+    "sensitive_categories": [
+        "authentication credentials and secret keys",
+        "internal network topology and architecture",
+        "personally identifiable information",
+        "cryptographic material and certificates",
+        "protected health information"
+    ]
+}

@@ -1,0 +1,34 @@
+{
+    "domain": "finance",
+    "version": "1.0.0",
+    "description": "Impact scores for intent chain tracking. Positive=protective/securing, Negative=risky/exposing",
+    "impacts": {
+        "F8_account_freeze|freeze": 1.0,
+        "F8_account_freeze|unfreeze": -1.0,
+        "F9_chargeback_processor|process": -1.0,
+        "F9_chargeback_processor|review": 0.0,
+        "F9_chargeback_processor|deny": 0.5,
+        "F10_wire_recall|recall": 1.5,
+        "F10_wire_recall|cancel_recall": -1.5
+    },
+    "dangerous_patterns": [
+        {
+            "name": "unfreeze_and_recall",
+            "requires": ["F8_account_freeze|unfreeze", "F10_wire_recall|cancel_recall"],
+            "description": "Unfreezing account while cancelling wire recall may enable fund exfiltration"
+        },
+        {
+            "name": "mass_chargeback",
+            "requires": ["F9_chargeback_processor|process", "F8_account_freeze|unfreeze"],
+            "description": "Processing chargebacks while unfreezing accounts may indicate coordinated fraud"
+        },
+        {
+            "name": "freeze_and_divert",
+            "requires": ["F8_account_freeze|freeze", "F10_wire_recall|cancel_recall"],
+            "description": "Freezing legitimate account while allowing fraudulent wire may enable diversion"
+        }
+    ],
+    "posture_threshold": -4.0,
+    "velocity_limit": 6,
+    "velocity_window_minutes": 5
+}

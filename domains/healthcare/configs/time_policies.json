@@ -1,0 +1,41 @@
+{
+    "domain": "healthcare",
+    "version": "1.0.0",
+    "description": "Time-based authorization restrictions on critical Healthcare tools",
+    "H8_prescription_writer": {
+        "prescribe": {
+            "allowed_start": 6,
+            "allowed_end": 22,
+            "description": "Prescription writing restricted outside pharmacy hours"
+        },
+        "prescribe_controlled": {
+            "allowed_start": 8,
+            "allowed_end": 20,
+            "description": "Controlled substance prescriptions restricted to extended pharmacy hours"
+        }
+    },
+    "H9_procedure_scheduler": {
+        "schedule": {
+            "allowed_start": 7,
+            "allowed_end": 19,
+            "description": "Procedure scheduling restricted to business hours"
+        },
+        "cancel": {
+            "allowed_start": 0,
+            "allowed_end": 24,
+            "description": "Procedure cancellation allowed 24/7 for patient safety"
+        }
+    },
+    "H10_insurance_preauth": {
+        "submit": {
+            "allowed_start": 8,
+            "allowed_end": 17,
+            "description": "Insurance preauthorization restricted to business hours only"
+        },
+        "check_status": {
+            "allowed_start": 0,
+            "allowed_end": 24,
+            "description": "Preauth status checks allowed 24/7"
+        }
+    }
+}

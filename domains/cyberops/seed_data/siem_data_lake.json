@@ -1,0 +1,977 @@
+[
+  {
+    "id": "siem_001",
+    "text": "Multiple failed authentication attempts detected for user j.martinez against domain controller DC-PRIMARY-01. Five consecutive failed Kerberos pre-authentication requests within 2 minutes from workstation WS-FIN-AP01, followed by a successful login on the sixth attempt.",
+    "metadata": {
+      "event_type": "authentication",
+      "source_ip": "10.0.10.51",
+      "dest_ip": "10.0.1.10",
+      "username": "j.martinez",
+      "timestamp": "2026-03-15T08:32:14Z",
+      "severity": "medium",
+      "outcome": "failure"
+    }
+  },
+  {
+    "id": "siem_002",
+    "text": "Firewall denied outbound connection from engineering workstation to known command-and-control IP address on port 443. The destination IP matches a Cobalt Strike team server identified in recent threat intelligence feeds.",
+    "metadata": {
+      "event_type": "firewall",
+      "source_ip": "10.0.12.10",
+      "dest_ip": "185.220.101.42",
+      "username": "d.chen",
+      "timestamp": "2026-03-15T09:15:33Z",
+      "severity": "critical",
+      "outcome": "blocked"
+    }
+  },
+  {
+    "id": "siem_003",
+    "text": "Unusual DNS query observed from HR workstation requesting resolution of a recently registered domain with high entropy name characteristic of DGA malware. The domain was flagged by threat intelligence as associated with Emotet infrastructure.",
+    "metadata": {
+      "event_type": "dns",
+      "source_ip": "10.0.11.10",
+      "dest_ip": "10.0.1.10",
+      "username": "s.patel",
+      "timestamp": "2026-03-15T10:22:07Z",
+      "severity": "high",
+      "outcome": "blocked"
+    }
+  },
+  {
+    "id": "siem_004",
+    "text": "Email gateway blocked an inbound message containing a malicious macro-enabled Excel attachment. The email originated from a spoofed vendor address and targeted three Finance department users with a fake invoice theme.",
+    "metadata": {
+      "event_type": "email",
+      "source_ip": "203.0.113.55",
+      "dest_ip": "10.0.2.20",
+      "username": "finance-group",
+      "timestamp": "2026-03-15T11:05:42Z",
+      "severity": "high",
+      "outcome": "blocked"
+    }
+  },
+  {
+    "id": "siem_005",
+    "text": "EDR alert triggered on CEO workstation detecting PowerShell execution with encoded command and bypassed execution policy. The process was spawned by a Microsoft Word document opened from an email attachment. CrowdStrike Falcon killed the process automatically.",
+    "metadata": {
+      "event_type": "endpoint",
+      "source_ip": "10.0.13.10",
+      "dest_ip": "10.0.13.10",
+      "username": "r.thompson",
+      "timestamp": "2026-03-15T14:18:55Z",
+      "severity": "critical",
+      "outcome": "blocked"
+    }
+  },
+  {
+    "id": "siem_006",
+    "text": "VPN connection established from an unusual geographic location. User a.kumar typically connects from the US East Coast but this session originated from an IP geolocated to Romania. Session was flagged for review by the impossible travel detection rule.",
+    "metadata": {
+      "event_type": "vpn",
+      "source_ip": "86.105.18.73",
+      "dest_ip": "10.0.0.5",
+      "username": "a.kumar",
+      "timestamp": "2026-03-15T03:42:19Z",
+      "severity": "high",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_007",
+    "text": "Privileged account escalation detected. Standard user m.wilson added to Domain Admins group via Active Directory Users and Computers console on IT admin workstation. The change was made outside of the approved change management window.",
+    "metadata": {
+      "event_type": "authentication",
+      "source_ip": "10.0.9.10",
+      "dest_ip": "10.0.1.10",
+      "username": "admin.jreed",
+      "timestamp": "2026-03-15T22:14:33Z",
+      "severity": "critical",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_008",
+    "text": "Unusual file access pattern detected on file server. User l.garcia accessed 847 files in the Finance restricted share within 10 minutes, suggesting automated data collection or exfiltration preparation. Normal baseline for this user is under 30 files per hour.",
+    "metadata": {
+      "event_type": "file_access",
+      "source_ip": "10.0.10.51",
+      "dest_ip": "10.0.4.20",
+      "username": "l.garcia",
+      "timestamp": "2026-03-16T02:33:08Z",
+      "severity": "critical",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_009",
+    "text": "Large outbound data transfer detected. Workstation WS-ENG-DEVOPS uploaded 2.3 GB to an external cloud storage provider over HTTPS within a 15-minute window. The destination domain is not on the approved cloud services whitelist.",
+    "metadata": {
+      "event_type": "firewall",
+      "source_ip": "10.0.12.11",
+      "dest_ip": "104.16.85.20",
+      "username": "k.nakamura",
+      "timestamp": "2026-03-16T16:45:22Z",
+      "severity": "high",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_010",
+    "text": "Failed VPN authentication detected from multiple source IPs for user b.johnson within a 5-minute window. Seven failed attempts from four different IP addresses suggest a credential stuffing or brute force attack against the VPN gateway.",
+    "metadata": {
+      "event_type": "vpn",
+      "source_ip": "198.51.100.22",
+      "dest_ip": "10.0.0.5",
+      "username": "b.johnson",
+      "timestamp": "2026-03-16T04:12:51Z",
+      "severity": "high",
+      "outcome": "failure"
+    }
+  },
+  {
+    "id": "siem_011",
+    "text": "Firewall permitted connection from internal web server to external IP on non-standard port 8443. Investigation revealed the connection was part of a legitimate webhook callback to a SaaS integration partner, but the firewall rule was overly permissive.",
+    "metadata": {
+      "event_type": "firewall",
+      "source_ip": "10.0.3.10",
+      "dest_ip": "52.204.128.15",
+      "username": "svc-webapp",
+      "timestamp": "2026-03-16T12:08:44Z",
+      "severity": "low",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_012",
+    "text": "DNS exfiltration attempt detected. Workstation WS-HR-01 generated 342 DNS TXT queries to a single domain within 5 minutes, with query names containing Base64-encoded data patterns consistent with DNS tunneling tools like iodine or dnscat2.",
+    "metadata": {
+      "event_type": "dns",
+      "source_ip": "10.0.11.10",
+      "dest_ip": "10.0.1.10",
+      "username": "s.patel",
+      "timestamp": "2026-03-16T15:27:33Z",
+      "severity": "critical",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_013",
+    "text": "Email gateway quarantined outbound email from user c.davis containing a spreadsheet with 5,000 customer records including names, emails, and phone numbers. DLP policy for PII bulk transmission triggered and the email was held for manager review.",
+    "metadata": {
+      "event_type": "email",
+      "source_ip": "10.0.10.50",
+      "dest_ip": "10.0.2.20",
+      "username": "c.davis",
+      "timestamp": "2026-03-17T09:33:15Z",
+      "severity": "high",
+      "outcome": "blocked"
+    }
+  },
+  {
+    "id": "siem_014",
+    "text": "EDR detected Mimikatz execution on IT admin workstation. The tool was invoked via a renamed binary to evade basic detection, but behavioral analysis identified LSASS memory access patterns consistent with credential dumping techniques.",
+    "metadata": {
+      "event_type": "endpoint",
+      "source_ip": "10.0.9.10",
+      "dest_ip": "10.0.9.10",
+      "username": "admin.jreed",
+      "timestamp": "2026-03-17T22:45:08Z",
+      "severity": "critical",
+      "outcome": "blocked"
+    }
+  },
+  {
+    "id": "siem_015",
+    "text": "Successful login to SQL Server database from an unrecognized source IP within the engineering subnet. The connection used the sa account which should be disabled per policy. The session executed sp_who2 and queried the sys.databases catalog.",
+    "metadata": {
+      "event_type": "authentication",
+      "source_ip": "10.0.12.10",
+      "dest_ip": "10.0.4.10",
+      "username": "sa",
+      "timestamp": "2026-03-17T01:15:42Z",
+      "severity": "critical",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_016",
+    "text": "Firewall blocked port scan activity from external IP targeting the corporate network perimeter. SYN scan detected across 1,024 ports on VPN gateway and external web server. Source IP is associated with Shodan scanning infrastructure.",
+    "metadata": {
+      "event_type": "firewall",
+      "source_ip": "71.6.167.142",
+      "dest_ip": "10.0.0.1",
+      "username": "N/A",
+      "timestamp": "2026-03-17T06:22:18Z",
+      "severity": "medium",
+      "outcome": "blocked"
+    }
+  },
+  {
+    "id": "siem_017",
+    "text": "VPN session established by user t.brooks during non-business hours from a previously unseen device. The device failed the endpoint compliance check for missing EDR agent but was granted limited access to email only per the remediation VLAN policy.",
+    "metadata": {
+      "event_type": "vpn",
+      "source_ip": "72.134.90.55",
+      "dest_ip": "10.0.0.5",
+      "username": "t.brooks",
+      "timestamp": "2026-03-17T23:55:41Z",
+      "severity": "medium",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_018",
+    "text": "File access audit log shows user p.williams accessed executive compensation files on the file server. The user is an IT helpdesk analyst and does not have a business need to access HR Restricted data. Access was granted through a nested group membership that was not cleaned up.",
+    "metadata": {
+      "event_type": "file_access",
+      "source_ip": "10.0.9.10",
+      "dest_ip": "10.0.4.20",
+      "username": "p.williams",
+      "timestamp": "2026-03-18T10:12:33Z",
+      "severity": "high",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_019",
+    "text": "Email gateway detected and blocked a Business Email Compromise attempt. An external email with a display name matching the CFO attempted to instruct an accounts payable clerk to process an urgent wire transfer. SPF and DKIM checks failed for the sending domain.",
+    "metadata": {
+      "event_type": "email",
+      "source_ip": "192.0.2.88",
+      "dest_ip": "10.0.2.20",
+      "username": "j.martinez",
+      "timestamp": "2026-03-18T13:44:27Z",
+      "severity": "high",
+      "outcome": "blocked"
+    }
+  },
+  {
+    "id": "siem_020",
+    "text": "EDR alert on engineering workstation detecting lateral movement attempt. PsExec was used to attempt remote execution on three server IPs in the database VLAN. The attempts were blocked by the host-based firewall policy restricting workstation-to-server SMB traffic.",
+    "metadata": {
+      "event_type": "endpoint",
+      "source_ip": "10.0.12.10",
+      "dest_ip": "10.0.4.10",
+      "username": "d.chen",
+      "timestamp": "2026-03-18T02:28:19Z",
+      "severity": "critical",
+      "outcome": "blocked"
+    }
+  },
+  {
+    "id": "siem_021",
+    "text": "Successful multi-factor authentication for user admin.slee to the Splunk SIEM console. Login originated from the IT admin workstation during normal business hours. Session activities included creating a new saved search and modifying a detection rule.",
+    "metadata": {
+      "event_type": "authentication",
+      "source_ip": "10.0.9.10",
+      "dest_ip": "10.0.5.10",
+      "username": "admin.slee",
+      "timestamp": "2026-03-18T09:05:12Z",
+      "severity": "low",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_022",
+    "text": "DNS query to a Tor exit node relay address detected from the CTO workstation. The query was for a .onion gateway domain. Investigation revealed the user was conducting legitimate security research on dark web monitoring tools.",
+    "metadata": {
+      "event_type": "dns",
+      "source_ip": "10.0.13.11",
+      "dest_ip": "10.0.1.10",
+      "username": "m.zhang",
+      "timestamp": "2026-03-18T14:33:55Z",
+      "severity": "medium",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_023",
+    "text": "Firewall permitted but logged a large inbound file transfer from a known vendor IP to the staging environment. The transfer of 4.7 GB matched a scheduled software update delivery, but the volume triggered the anomalous transfer size alert.",
+    "metadata": {
+      "event_type": "firewall",
+      "source_ip": "203.0.113.100",
+      "dest_ip": "10.0.21.10",
+      "username": "svc-deploy",
+      "timestamp": "2026-03-19T02:15:08Z",
+      "severity": "low",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_024",
+    "text": "VPN gateway logged 23 failed authentication attempts for non-existent usernames over a 1-hour period. The source IPs rotated across a /24 subnet associated with a known VPN proxy service, suggesting automated credential testing against the VPN portal.",
+    "metadata": {
+      "event_type": "vpn",
+      "source_ip": "45.155.205.0",
+      "dest_ip": "10.0.0.5",
+      "username": "various",
+      "timestamp": "2026-03-19T05:42:33Z",
+      "severity": "medium",
+      "outcome": "failure"
+    }
+  },
+  {
+    "id": "siem_025",
+    "text": "EDR detected a suspicious scheduled task creation on the Exchange server. A new task named WindowsUpdateCheck was configured to execute a PowerShell script from a temp directory every 4 hours. The task was created using a service account.",
+    "metadata": {
+      "event_type": "endpoint",
+      "source_ip": "10.0.2.10",
+      "dest_ip": "10.0.2.10",
+      "username": "svc-exchange",
+      "timestamp": "2026-03-19T08:17:44Z",
+      "severity": "high",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_026",
+    "text": "File server audit detected bulk deletion of 234 files in the Engineering shared drive by user n.foster. The deletion occurred during lunch hours and affected project documentation for an active client engagement. Shadow copies were available for recovery.",
+    "metadata": {
+      "event_type": "file_access",
+      "source_ip": "10.0.12.11",
+      "dest_ip": "10.0.4.20",
+      "username": "n.foster",
+      "timestamp": "2026-03-19T12:33:21Z",
+      "severity": "high",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_027",
+    "text": "Email gateway detected outbound email with a password-protected ZIP attachment sent to a personal Gmail address. DLP inspection was unable to scan the encrypted attachment. The sender is in the Finance department and the email subject referenced quarterly reports.",
+    "metadata": {
+      "event_type": "email",
+      "source_ip": "10.0.10.50",
+      "dest_ip": "10.0.2.20",
+      "username": "c.davis",
+      "timestamp": "2026-03-19T16:05:18Z",
+      "severity": "medium",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_028",
+    "text": "Authentication failure spike detected on the internal web server. The intranet login page received 150 failed login attempts in 3 minutes from a single source IP in the HR subnet. The pattern is consistent with a password spraying attack using a common password list.",
+    "metadata": {
+      "event_type": "authentication",
+      "source_ip": "10.0.11.10",
+      "dest_ip": "10.0.3.11",
+      "username": "various",
+      "timestamp": "2026-03-20T07:22:45Z",
+      "severity": "high",
+      "outcome": "failure"
+    }
+  },
+  {
+    "id": "siem_029",
+    "text": "Firewall detected and blocked a reverse shell callback attempt from the Jenkins CI server to an external IP on port 4444. The connection pattern matched a Metasploit reverse TCP handler. The Jenkins server may have been compromised through an exposed build pipeline.",
+    "metadata": {
+      "event_type": "firewall",
+      "source_ip": "10.0.7.10",
+      "dest_ip": "198.51.100.77",
+      "username": "svc-jenkins",
+      "timestamp": "2026-03-20T11:48:33Z",
+      "severity": "critical",
+      "outcome": "blocked"
+    }
+  },
+  {
+    "id": "siem_030",
+    "text": "DNS sinkhole triggered for a domain associated with the Qakbot malware family. The query originated from a Finance workstation and was redirected to the internal sinkhole IP. The workstation has been flagged for immediate EDR investigation.",
+    "metadata": {
+      "event_type": "dns",
+      "source_ip": "10.0.10.51",
+      "dest_ip": "10.0.1.10",
+      "username": "j.martinez",
+      "timestamp": "2026-03-20T14:15:27Z",
+      "severity": "high",
+      "outcome": "blocked"
+    }
+  },
+  {
+    "id": "siem_031",
+    "text": "VPN session from user e.rodriguez showed unusual bandwidth consumption of 8.5 GB download within 2 hours. The traffic was primarily directed at file server shares containing product roadmap documents. Normal VPN usage for this user averages 200 MB per session.",
+    "metadata": {
+      "event_type": "vpn",
+      "source_ip": "73.162.44.18",
+      "dest_ip": "10.0.0.5",
+      "username": "e.rodriguez",
+      "timestamp": "2026-03-20T19:30:44Z",
+      "severity": "high",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_032",
+    "text": "EDR behavioral analysis detected a process injection technique on the backup server. A legitimate Windows service was observed injecting code into explorer.exe using the process hollowing method. CrowdStrike Falcon isolated the host and generated a high-fidelity detection.",
+    "metadata": {
+      "event_type": "endpoint",
+      "source_ip": "10.0.5.20",
+      "dest_ip": "10.0.5.20",
+      "username": "SYSTEM",
+      "timestamp": "2026-03-21T03:12:55Z",
+      "severity": "critical",
+      "outcome": "blocked"
+    }
+  },
+  {
+    "id": "siem_033",
+    "text": "Successful authentication to the AWS production console using root account credentials. The root account should only be used for break-glass emergency access. The login originated from the DevOps lead workstation and no change management ticket was associated.",
+    "metadata": {
+      "event_type": "authentication",
+      "source_ip": "10.0.12.11",
+      "dest_ip": "10.0.20.10",
+      "username": "aws-root",
+      "timestamp": "2026-03-21T08:45:22Z",
+      "severity": "critical",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_034",
+    "text": "Firewall log shows sustained connection from database server to an external NTP server that is not on the approved time source list. While likely benign, the connection could be used as a covert channel. The approved NTP servers are documented in the network baseline.",
+    "metadata": {
+      "event_type": "firewall",
+      "source_ip": "10.0.4.10",
+      "dest_ip": "162.159.200.1",
+      "username": "SYSTEM",
+      "timestamp": "2026-03-21T12:00:01Z",
+      "severity": "low",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_035",
+    "text": "File access monitoring detected a service account accessing the HR restricted folder on the file server. The service account svc-backup performed a full enumeration of the directory structure and read 1,247 files during the scheduled backup window.",
+    "metadata": {
+      "event_type": "file_access",
+      "source_ip": "10.0.5.20",
+      "dest_ip": "10.0.4.20",
+      "username": "svc-backup",
+      "timestamp": "2026-03-21T01:00:15Z",
+      "severity": "low",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_036",
+    "text": "Email gateway detected a phishing email that bypassed initial filtering and was delivered to 12 recipients. The email contained a link to a credential harvesting page hosted on a compromised WordPress site. Retrospective analysis triggered a clawback of the delivered messages.",
+    "metadata": {
+      "event_type": "email",
+      "source_ip": "198.51.100.33",
+      "dest_ip": "10.0.2.10",
+      "username": "multiple",
+      "timestamp": "2026-03-22T10:18:42Z",
+      "severity": "high",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_037",
+    "text": "EDR alert on workstation WS-FIN-CFO detecting a browser exploit attempt. A malvertising redirect loaded an exploit kit page that attempted to leverage a browser vulnerability. The exploit was blocked by the browser sandboxing mechanism and reported by CrowdStrike.",
+    "metadata": {
+      "event_type": "endpoint",
+      "source_ip": "10.0.10.50",
+      "dest_ip": "185.143.223.15",
+      "username": "c.davis",
+      "timestamp": "2026-03-22T15:42:11Z",
+      "severity": "high",
+      "outcome": "blocked"
+    }
+  },
+  {
+    "id": "siem_038",
+    "text": "Authentication logs show account lockout for 15 user accounts within a 10-minute window. The lockouts span multiple departments and originated from the internal network, consistent with a password spraying attack using a single common password across many accounts.",
+    "metadata": {
+      "event_type": "authentication",
+      "source_ip": "10.0.12.10",
+      "dest_ip": "10.0.1.10",
+      "username": "various",
+      "timestamp": "2026-03-22T06:33:28Z",
+      "severity": "high",
+      "outcome": "failure"
+    }
+  },
+  {
+    "id": "siem_039",
+    "text": "DNS query log shows the vulnerability scanner performing expected reverse DNS lookups across all managed subnets. The scanner VULN-NESSUS-01 is executing a scheduled weekly scan. Activity confirmed against the scan schedule in the change management system.",
+    "metadata": {
+      "event_type": "dns",
+      "source_ip": "10.0.5.50",
+      "dest_ip": "10.0.1.10",
+      "username": "svc-nessus",
+      "timestamp": "2026-03-22T02:00:05Z",
+      "severity": "low",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_040",
+    "text": "VPN connection from user h.kim was terminated by the system after the session exceeded the 12-hour maximum duration policy. The user had been connected for 12 hours and 1 minute before automatic disconnection. User reconnected within 5 minutes after re-authentication.",
+    "metadata": {
+      "event_type": "vpn",
+      "source_ip": "68.105.12.88",
+      "dest_ip": "10.0.0.5",
+      "username": "h.kim",
+      "timestamp": "2026-03-23T20:01:33Z",
+      "severity": "low",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_041",
+    "text": "Firewall detected SMB traffic from a workstation in the user VLAN attempting to connect directly to the database server VLAN. The traffic was blocked by the segmentation policy. This lateral movement attempt originated 2 minutes after a successful phishing link click on the same workstation.",
+    "metadata": {
+      "event_type": "firewall",
+      "source_ip": "10.0.10.51",
+      "dest_ip": "10.0.4.11",
+      "username": "j.martinez",
+      "timestamp": "2026-03-23T11:22:08Z",
+      "severity": "critical",
+      "outcome": "blocked"
+    }
+  },
+  {
+    "id": "siem_042",
+    "text": "EDR detected registry modification on a Finance workstation adding a new Run key for persistence. The registry entry pointed to a DLL in the user's AppData\\Local\\Temp directory. The file hash matched a known variant of the AsyncRAT remote access trojan.",
+    "metadata": {
+      "event_type": "endpoint",
+      "source_ip": "10.0.10.51",
+      "dest_ip": "10.0.10.51",
+      "username": "j.martinez",
+      "timestamp": "2026-03-23T11:24:15Z",
+      "severity": "critical",
+      "outcome": "blocked"
+    }
+  },
+  {
+    "id": "siem_043",
+    "text": "Successful login to the Entra Connect server using a domain admin account from the IT admin workstation. The session synchronized 47 new user objects and 12 group changes to Azure AD. Activity aligns with a documented HR onboarding batch.",
+    "metadata": {
+      "event_type": "authentication",
+      "source_ip": "10.0.9.10",
+      "dest_ip": "10.0.1.20",
+      "username": "admin.slee",
+      "timestamp": "2026-03-24T09:15:33Z",
+      "severity": "medium",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_044",
+    "text": "File server detected access to the Legal department restricted folder by user n.foster from Engineering. The user attempted to open attorney-client privileged documents. Access was denied by NTFS permissions, but the access attempt itself was logged and flagged.",
+    "metadata": {
+      "event_type": "file_access",
+      "source_ip": "10.0.12.11",
+      "dest_ip": "10.0.4.20",
+      "username": "n.foster",
+      "timestamp": "2026-03-24T14:28:44Z",
+      "severity": "medium",
+      "outcome": "failure"
+    }
+  },
+  {
+    "id": "siem_045",
+    "text": "Email gateway processed a high volume of outbound emails from user marketing-auto service account. 15,000 emails sent within 1 hour to external recipients. Volume is consistent with an approved marketing campaign blast but exceeded the daily threshold alert.",
+    "metadata": {
+      "event_type": "email",
+      "source_ip": "10.0.3.10",
+      "dest_ip": "10.0.2.20",
+      "username": "svc-marketing",
+      "timestamp": "2026-03-24T10:00:22Z",
+      "severity": "low",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_046",
+    "text": "DNS query from the Exchange server to resolve a domain used for a known phishing kit hosting service. The query was triggered by the email gateway scanning an inbound URL for threat analysis. The URL was blocked and the associated email was quarantined.",
+    "metadata": {
+      "event_type": "dns",
+      "source_ip": "10.0.2.10",
+      "dest_ip": "10.0.1.10",
+      "username": "svc-exchange",
+      "timestamp": "2026-03-25T08:45:12Z",
+      "severity": "medium",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_047",
+    "text": "Firewall blocked outbound ICMP tunnel detected from the monitoring server. The ICMP packets contained encoded data payloads exceeding normal ping packet sizes. Investigation revealed a misconfigured monitoring plugin sending diagnostic data via ICMP rather than HTTPS.",
+    "metadata": {
+      "event_type": "firewall",
+      "source_ip": "10.0.5.40",
+      "dest_ip": "151.101.1.57",
+      "username": "svc-nagios",
+      "timestamp": "2026-03-25T03:15:44Z",
+      "severity": "medium",
+      "outcome": "blocked"
+    }
+  },
+  {
+    "id": "siem_048",
+    "text": "EDR reported a new unsigned driver loaded on the secondary domain controller. The driver name did not match any known Microsoft or approved vendor drivers. Analysis confirmed it was a legitimate storage driver update that had not yet been added to the approved driver list.",
+    "metadata": {
+      "event_type": "endpoint",
+      "source_ip": "10.0.1.11",
+      "dest_ip": "10.0.1.11",
+      "username": "SYSTEM",
+      "timestamp": "2026-03-25T05:30:22Z",
+      "severity": "medium",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_049",
+    "text": "VPN gateway logged a successful connection from a contractor account that was scheduled for deactivation 30 days ago. The account vendor.techcorp was not properly disabled during the offboarding process, creating an orphaned access vector.",
+    "metadata": {
+      "event_type": "vpn",
+      "source_ip": "209.85.167.44",
+      "dest_ip": "10.0.0.5",
+      "username": "vendor.techcorp",
+      "timestamp": "2026-03-25T12:22:55Z",
+      "severity": "high",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_050",
+    "text": "File server audit log detected a bulk copy operation of the entire Executive shared drive to a USB storage device connected to the CEO workstation. The copy included board meeting minutes and M&A planning documents. USB storage access on executive endpoints requires a separate DLP exception review.",
+    "metadata": {
+      "event_type": "file_access",
+      "source_ip": "10.0.13.10",
+      "dest_ip": "10.0.4.20",
+      "username": "r.thompson",
+      "timestamp": "2026-03-25T17:45:33Z",
+      "severity": "high",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_051",
+    "text": "Successful VPN authentication detected from a known Tor exit node IP address. User b.johnson connected from 185.220.101.35 which is listed in the Tor Project exit relay directory. The session accessed email and SharePoint resources for 47 minutes before disconnecting.",
+    "metadata": {
+      "event_type": "vpn",
+      "source_ip": "185.220.101.35",
+      "dest_ip": "10.0.0.5",
+      "username": "b.johnson",
+      "timestamp": "2026-04-01T02:18:44Z",
+      "severity": "critical",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_052",
+    "text": "Impossible travel alert triggered for user a.kumar. Successful authentication from New York IP at 14:22 UTC followed by successful authentication from Singapore IP at 14:58 UTC. The 36-minute gap is insufficient for physical travel between locations.",
+    "metadata": {
+      "event_type": "authentication",
+      "source_ip": "103.252.114.22",
+      "dest_ip": "10.0.1.10",
+      "username": "a.kumar",
+      "timestamp": "2026-04-01T14:58:22Z",
+      "severity": "high",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_053",
+    "text": "Lateral movement via SMB detected. Workstation WS-ENG-012 established SMB sessions to five hosts in the server VLAN within 90 seconds, copying a service executable to the ADMIN$ share on each target. The activity matches PsExec-style remote execution patterns.",
+    "metadata": {
+      "event_type": "endpoint",
+      "source_ip": "10.0.12.10",
+      "dest_ip": "10.0.4.10",
+      "username": "d.chen",
+      "timestamp": "2026-04-01T23:44:11Z",
+      "severity": "critical",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_054",
+    "text": "WMI remote process creation detected from IT admin workstation targeting three database servers. The WMI calls executed encoded PowerShell commands on each remote host. The originating account admin.jreed does not have an associated change ticket for this activity.",
+    "metadata": {
+      "event_type": "endpoint",
+      "source_ip": "10.0.9.10",
+      "dest_ip": "10.0.4.11",
+      "username": "admin.jreed",
+      "timestamp": "2026-04-02T01:15:08Z",
+      "severity": "critical",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_055",
+    "text": "Data staging activity detected on workstation WS-FIN-AP01. User l.garcia created a 7z archive containing 1,847 files from the Finance restricted share totaling 3.2 GB. The archive was saved to the user's Desktop folder. No outbound transfer has been observed yet.",
+    "metadata": {
+      "event_type": "file_access",
+      "source_ip": "10.0.10.51",
+      "dest_ip": "10.0.10.51",
+      "username": "l.garcia",
+      "timestamp": "2026-04-02T03:22:37Z",
+      "severity": "high",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_056",
+    "text": "RAR archive creation detected on engineering workstation followed by upload to an external file sharing service. User k.nakamura compressed the entire product-specs directory into a RAR file and uploaded 1.8 GB to transfer.sh within 20 minutes of archive creation.",
+    "metadata": {
+      "event_type": "firewall",
+      "source_ip": "10.0.12.11",
+      "dest_ip": "144.76.136.153",
+      "username": "k.nakamura",
+      "timestamp": "2026-04-02T16:33:05Z",
+      "severity": "critical",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_057",
+    "text": "AWS CLI commands detected from an IP address not associated with corporate infrastructure. The API calls included sts:GetCallerIdentity, s3:ListBuckets, and iam:ListUsers executed with access keys belonging to the svc-deploy service account. Source IP geolocates to a VPS provider in the Netherlands.",
+    "metadata": {
+      "event_type": "authentication",
+      "source_ip": "185.56.83.12",
+      "dest_ip": "10.0.20.10",
+      "username": "svc-deploy",
+      "timestamp": "2026-04-02T08:55:19Z",
+      "severity": "critical",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_058",
+    "text": "Azure AD enumeration activity detected. A single user account executed 342 Microsoft Graph API queries within 10 minutes enumerating users, groups, roles, and applications. The queries originated from a device not registered in Intune and used delegated permissions from a legacy OAuth app.",
+    "metadata": {
+      "event_type": "authentication",
+      "source_ip": "10.0.12.10",
+      "dest_ip": "10.0.20.10",
+      "username": "d.chen",
+      "timestamp": "2026-04-03T10:12:44Z",
+      "severity": "high",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_059",
+    "text": "EDR detected process hollowing on workstation WS-HR-01. The legitimate svchost.exe process was spawned in a suspended state, its memory was unmapped and replaced with malicious code, then resumed. The hollowed process established an outbound HTTPS connection to an IP in Eastern Europe.",
+    "metadata": {
+      "event_type": "endpoint",
+      "source_ip": "10.0.11.10",
+      "dest_ip": "91.215.85.17",
+      "username": "s.patel",
+      "timestamp": "2026-04-03T04:28:33Z",
+      "severity": "critical",
+      "outcome": "blocked"
+    }
+  },
+  {
+    "id": "siem_060",
+    "text": "DLL sideloading detected on the backup server. A legitimate signed Microsoft binary was executed from a non-standard directory alongside a malicious DLL with the same name as a known dependency. The DLL was loaded instead of the legitimate system version due to DLL search order hijacking.",
+    "metadata": {
+      "event_type": "endpoint",
+      "source_ip": "10.0.5.20",
+      "dest_ip": "10.0.5.20",
+      "username": "SYSTEM",
+      "timestamp": "2026-04-03T22:15:07Z",
+      "severity": "critical",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_061",
+    "text": "Memory injection detected on domain controller DC-PRIMARY-01. An unrecognized process performed VirtualAllocEx and WriteProcessMemory calls targeting the lsass.exe process. CrowdStrike Falcon flagged the behavior as credential access via direct memory manipulation rather than traditional tool-based dumping.",
+    "metadata": {
+      "event_type": "endpoint",
+      "source_ip": "10.0.1.10",
+      "dest_ip": "10.0.1.10",
+      "username": "SYSTEM",
+      "timestamp": "2026-04-04T01:42:18Z",
+      "severity": "critical",
+      "outcome": "blocked"
+    }
+  },
+  {
+    "id": "siem_062",
+    "text": "AWS CloudTrail logged multiple AssumeRole API calls from an EC2 instance in the development account targeting production IAM roles. The instance profile does not have cross-account assume-role permissions, indicating the use of manually configured or stolen credentials.",
+    "metadata": {
+      "event_type": "authentication",
+      "source_ip": "10.0.21.15",
+      "dest_ip": "10.0.20.10",
+      "username": "svc-lambda",
+      "timestamp": "2026-04-04T09:33:27Z",
+      "severity": "high",
+      "outcome": "failure"
+    }
+  },
+  {
+    "id": "siem_063",
+    "text": "Lateral movement via PsExec detected between two servers in the database VLAN. The source host DB-SECONDARY-01 executed PsExec to run a batch script on DB-PRIMARY-01 that dumped the contents of the customer database to a CSV file in a temp directory.",
+    "metadata": {
+      "event_type": "endpoint",
+      "source_ip": "10.0.4.11",
+      "dest_ip": "10.0.4.10",
+      "username": "admin.jreed",
+      "timestamp": "2026-04-04T03:08:52Z",
+      "severity": "critical",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_064",
+    "text": "Successful login to the Azure portal from a Tor exit node IP address for user admin.slee. The sign-in occurred outside business hours and the conditional access policy for admin accounts requiring compliant devices was bypassed using a legacy browser user-agent string.",
+    "metadata": {
+      "event_type": "authentication",
+      "source_ip": "185.220.100.252",
+      "dest_ip": "10.0.20.10",
+      "username": "admin.slee",
+      "timestamp": "2026-04-04T23:14:05Z",
+      "severity": "critical",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_065",
+    "text": "Data staging detected on file server FS-CORP-01. A new directory named temp_archive was created in the root of the C: drive containing ZIP files with date-stamped names. The files were created by a service account and total 8.7 GB of compressed data from multiple department shares.",
+    "metadata": {
+      "event_type": "file_access",
+      "source_ip": "10.0.4.20",
+      "dest_ip": "10.0.4.20",
+      "username": "svc-backup",
+      "timestamp": "2026-04-05T02:45:11Z",
+      "severity": "high",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_066",
+    "text": "AWS S3 API calls detected from an unusual IP range. The calls included s3:GetObject requests for 247 objects in the production data bucket and s3:PutBucketPolicy attempting to make the bucket publicly accessible. The requests used valid access keys for user svc-deploy.",
+    "metadata": {
+      "event_type": "firewall",
+      "source_ip": "45.33.32.156",
+      "dest_ip": "10.0.20.10",
+      "username": "svc-deploy",
+      "timestamp": "2026-04-05T11:22:38Z",
+      "severity": "critical",
+      "outcome": "blocked"
+    }
+  },
+  {
+    "id": "siem_067",
+    "text": "Impossible travel alert for user e.rodriguez. Active VPN session from home IP in Chicago at 15:00 UTC with simultaneous Azure AD sign-in from an IP geolocated to Lagos, Nigeria at 15:03 UTC. The Azure session attempted to add an external email forwarding rule.",
+    "metadata": {
+      "event_type": "authentication",
+      "source_ip": "105.112.28.44",
+      "dest_ip": "10.0.20.10",
+      "username": "e.rodriguez",
+      "timestamp": "2026-04-05T15:03:22Z",
+      "severity": "critical",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_068",
+    "text": "Lateral movement via WMI detected from compromised workstation WS-FIN-AP01. WMI process creation events observed on three hosts in the HR subnet executing systeminfo and net group domain admins commands for reconnaissance. The activity occurred 15 minutes after a suspicious email attachment was opened.",
+    "metadata": {
+      "event_type": "endpoint",
+      "source_ip": "10.0.10.51",
+      "dest_ip": "10.0.11.10",
+      "username": "j.martinez",
+      "timestamp": "2026-04-06T09:18:55Z",
+      "severity": "critical",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_069",
+    "text": "GCP IAM policy change detected. A new service account was created in the production project with Owner role binding. The change was made by a user account that normally operates in the staging project and has no documented reason for production access.",
+    "metadata": {
+      "event_type": "authentication",
+      "source_ip": "10.0.12.11",
+      "dest_ip": "10.0.20.10",
+      "username": "k.nakamura",
+      "timestamp": "2026-04-06T14:05:33Z",
+      "severity": "high",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_070",
+    "text": "EDR detected DLL sideloading attempt on the Exchange server. The legitimate OneDrive sync client binary was placed in C:\\ProgramData alongside a trojanized version.dll. The malicious DLL established a Cobalt Strike HTTPS beacon to an external C2 server.",
+    "metadata": {
+      "event_type": "endpoint",
+      "source_ip": "10.0.2.10",
+      "dest_ip": "185.143.223.15",
+      "username": "svc-exchange",
+      "timestamp": "2026-04-06T20:44:18Z",
+      "severity": "critical",
+      "outcome": "blocked"
+    }
+  },
+  {
+    "id": "siem_071",
+    "text": "Compression utility executed on database server DB-PRIMARY-01. The mysqldump command exported the entire customer_orders database followed by 7z compression with AES-256 encryption. The resulting 4.1 GB archive was placed in a world-readable temp directory.",
+    "metadata": {
+      "event_type": "endpoint",
+      "source_ip": "10.0.4.10",
+      "dest_ip": "10.0.4.10",
+      "username": "admin.jreed",
+      "timestamp": "2026-04-07T02:30:44Z",
+      "severity": "critical",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_072",
+    "text": "Cloud API abuse detected in AWS account. Rapid succession of ec2:DescribeInstances, ec2:DescribeSecurityGroups, and rds:DescribeDBInstances API calls from a single IAM user within 3 minutes. The reconnaissance pattern matches known cloud enumeration tools such as Pacu and ScoutSuite.",
+    "metadata": {
+      "event_type": "firewall",
+      "source_ip": "10.0.12.10",
+      "dest_ip": "10.0.20.10",
+      "username": "d.chen",
+      "timestamp": "2026-04-07T07:15:22Z",
+      "severity": "high",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_073",
+    "text": "Process hollowing detected on workstation WS-ENG-DEVOPS. The legitimate RuntimeBroker.exe was spawned suspended, its image was replaced with a Sliver C2 implant in memory, and the process was resumed. Network telemetry shows the hollowed process communicating with a known Sliver C2 domain over mTLS.",
+    "metadata": {
+      "event_type": "endpoint",
+      "source_ip": "10.0.12.11",
+      "dest_ip": "198.51.100.88",
+      "username": "k.nakamura",
+      "timestamp": "2026-04-07T18:55:33Z",
+      "severity": "critical",
+      "outcome": "blocked"
+    }
+  },
+  {
+    "id": "siem_074",
+    "text": "Azure AD sign-in logs show enumeration of all tenant applications and service principals by user m.zhang. Over 500 Graph API queries for application credentials, certificates, and secrets were executed within 8 minutes. The activity is consistent with post-compromise Azure AD reconnaissance.",
+    "metadata": {
+      "event_type": "authentication",
+      "source_ip": "10.0.13.11",
+      "dest_ip": "10.0.20.10",
+      "username": "m.zhang",
+      "timestamp": "2026-04-08T11:42:08Z",
+      "severity": "high",
+      "outcome": "success"
+    }
+  },
+  {
+    "id": "siem_075",
+    "text": "Memory injection detected on Jenkins CI server. A Java process spawned by the Jenkins service injected shellcode into a newly created notepad.exe process using NtMapViewOfSection. The injected process attempted to download a second-stage payload from an external server over port 8080.",
+    "metadata": {
+      "event_type": "endpoint",
+      "source_ip": "10.0.7.10",
+      "dest_ip": "203.0.113.77",
+      "username": "svc-jenkins",
+      "timestamp": "2026-04-08T05:28:17Z",
+      "severity": "critical",
+      "outcome": "blocked"
+    }
+  }
+]

@@ -1,0 +1,85 @@
+{
+    "domain": "finance",
+    "version": "1.0.0",
+    "description": "Critical asset definitions for Finance escalation and denial triggers",
+    "assets": {
+        "trading_platform": {
+            "trade-engine": {
+                "criticality": "critical",
+                "type": "trading",
+                "description": "Core trading execution engine"
+            },
+            "trade-matching": {
+                "criticality": "high",
+                "type": "trading",
+                "description": "Trade matching and reconciliation system"
+            }
+        },
+        "wire_transfer": {
+            "wire-gw": {
+                "criticality": "critical",
+                "type": "wire_transfer",
+                "description": "Wire transfer gateway for outbound payments"
+            },
+            "wire-queue": {
+                "criticality": "high",
+                "type": "wire_transfer",
+                "description": "Wire transfer processing queue"
+            }
+        },
+        "core_banking": {
+            "core-banking": {
+                "criticality": "critical",
+                "type": "core_banking",
+                "description": "Core banking platform for account management"
+            },
+            "ledger-primary": {
+                "criticality": "critical",
+                "type": "core_banking",
+                "description": "Primary general ledger system"
+            }
+        },
+        "fraud_detection": {
+            "fraud-detector": {
+                "criticality": "high",
+                "type": "fraud_detection",
+                "description": "Real-time fraud detection engine"
+            },
+            "fraud-ml-model": {
+                "criticality": "high",
+                "type": "fraud_detection",
+                "description": "Machine learning fraud scoring model"
+            }
+        },
+        "settlement": {
+            "settlement-sys": {
+                "criticality": "high",
+                "type": "settlement",
+                "description": "Transaction settlement and clearing system"
+            },
+            "ach-processor": {
+                "criticality": "high",
+                "type": "settlement",
+                "description": "ACH payment processor"
+            }
+        }
+    },
+    "criticality_levels": {
+        "critical": {
+            "action": "deny_and_escalate",
+            "description": "Actions targeting critical assets are denied and escalated to compliance officer"
+        },
+        "high": {
+            "action": "escalate",
+            "description": "Actions targeting high-criticality assets require MMA consensus before execution"
+        },
+        "medium": {
+            "action": "log_and_proceed",
+            "description": "Actions are logged with enhanced audit trail"
+        },
+        "low": {
+            "action": "proceed",
+            "description": "Standard processing"
+        }
+    }
+}

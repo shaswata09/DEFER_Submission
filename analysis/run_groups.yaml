@@ -1,0 +1,144 @@
+# Runs whose logs sit in a main group's log directory but belong to a
+# separate experiment. parse_logs names a run's group after its log
+# directory and keeps the last run per (ap, variant, trial, config), so a
+# later experiment that reuses a directory and a config label silently
+# replaces the earlier rows. Listing the log files here routes them to
+# their own group instead; the log files themselves are never moved or
+# edited.
+
+q235_div4_e9:
+  reason: >-
+    E9 (judged writes to critical stores). Both arms, agenticcyops and
+    agenticcyops_writejudge, ran at defense-freeze-v2.8 in the main
+    q235_div4 log directories on the same AP-2/AP-4/AP-13 and benign cells
+    as the reported FULL runs, so the agenticcyops arm replaced those rows.
+    E9 compares its two arms with each other, not with the reported FULL.
+  logs:
+    - cyberops_eval_attacks_q235_div4/agenticcyops_20260923_220625.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_20260923_223605.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_20260923_231611.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_20260923_235038.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_writejudge_20260923_220438.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_writejudge_20260923_223337.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_writejudge_20260923_231512.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_writejudge_20260923_234851.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_writejudge_20260924_030638.jsonl
+    - finance_eval_attacks_q235_div4/agenticcyops_20260923_220640.jsonl
+    - finance_eval_attacks_q235_div4/agenticcyops_20260923_222945.jsonl
+    - finance_eval_attacks_q235_div4/agenticcyops_20260923_224838.jsonl
+    - finance_eval_attacks_q235_div4/agenticcyops_20260923_235057.jsonl
+    - finance_eval_attacks_q235_div4/agenticcyops_writejudge_20260923_220501.jsonl
+    - finance_eval_attacks_q235_div4/agenticcyops_writejudge_20260923_222552.jsonl
+    - finance_eval_attacks_q235_div4/agenticcyops_writejudge_20260923_224854.jsonl
+    - finance_eval_attacks_q235_div4/agenticcyops_writejudge_20260923_234917.jsonl
+    - healthcare_eval_attacks_q235_div4/agenticcyops_20260923_220707.jsonl
+    - healthcare_eval_attacks_q235_div4/agenticcyops_20260923_223958.jsonl
+    - healthcare_eval_attacks_q235_div4/agenticcyops_20260923_225755.jsonl
+    - healthcare_eval_attacks_q235_div4/agenticcyops_20260923_235122.jsonl
+    - healthcare_eval_attacks_q235_div4/agenticcyops_writejudge_20260923_220524.jsonl
+    - healthcare_eval_attacks_q235_div4/agenticcyops_writejudge_20260923_223834.jsonl
+    - healthcare_eval_attacks_q235_div4/agenticcyops_writejudge_20260923_225901.jsonl
+    - healthcare_eval_attacks_q235_div4/agenticcyops_writejudge_20260923_234941.jsonl
+    - legal_eval_attacks_q235_div4/agenticcyops_20260923_220731.jsonl
+    - legal_eval_attacks_q235_div4/agenticcyops_20260923_222839.jsonl
+    - legal_eval_attacks_q235_div4/agenticcyops_20260923_225158.jsonl
+    - legal_eval_attacks_q235_div4/agenticcyops_20260923_235147.jsonl
+    - legal_eval_attacks_q235_div4/agenticcyops_writejudge_20260923_220550.jsonl
+    - legal_eval_attacks_q235_div4/agenticcyops_writejudge_20260923_222546.jsonl
+    - legal_eval_attacks_q235_div4/agenticcyops_writejudge_20260923_225018.jsonl
+    - legal_eval_attacks_q235_div4/agenticcyops_writejudge_20260923_235007.jsonl
+
+q235_div4_e2:
+  reason: >-
+    E2 (paired siblings). 18 runs at defense-freeze-v2.4 and v2.5 re-ran whole
+    attack paths -- the parents at their original variant indices and the
+    siblings appended after them -- as agenticcyops and flat in the main
+    q235_div4 log directories, so the parent re-runs replaced the reported
+    rows and the siblings grew the development split from 75 to 80 variants.
+    With these runs routed here the main group is identical, row for row and
+    in order, to its last commit before E2 (e9df327).
+  logs:
+    - cyberops_eval_attacks_q235_div4/agenticcyops_20260923_022342.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_20260923_025307.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_20260923_030947.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_20260923_034243.jsonl
+    - cyberops_eval_attacks_q235_div4/flat_20260923_022312.jsonl
+    - cyberops_eval_attacks_q235_div4/flat_20260923_023812.jsonl
+    - cyberops_eval_attacks_q235_div4/flat_20260923_025032.jsonl
+    - cyberops_eval_attacks_q235_div4/flat_20260923_030010.jsonl
+    - finance_eval_attacks_q235_div4/agenticcyops_20260923_022427.jsonl
+    - finance_eval_attacks_q235_div4/agenticcyops_20260923_030345.jsonl
+    - finance_eval_attacks_q235_div4/agenticcyops_20260923_032104.jsonl
+    - finance_eval_attacks_q235_div4/agenticcyops_20260923_033956.jsonl
+    - finance_eval_attacks_q235_div4/flat_20260923_022403.jsonl
+    - healthcare_eval_attacks_q235_div4/agenticcyops_20260923_022516.jsonl
+    - healthcare_eval_attacks_q235_div4/agenticcyops_20260923_023850.jsonl
+    - healthcare_eval_attacks_q235_div4/agenticcyops_20260923_024900.jsonl
+    - healthcare_eval_attacks_q235_div4/flat_20260923_022453.jsonl
+    - healthcare_eval_attacks_q235_div4/flat_20260923_023119.jsonl
+
+q235_div4_e16null:
+  reason: >-
+    E16, first attempt (defense-freeze-v2.5). The permissive auto-approve rule
+    keyed on alignment, which the scorer pins at 0.5, so the gate never fired.
+    The rule was re-measured and the arm re-run at defense-freeze-v2.7 under the
+    same config label; that re-run stays in q235_div4. This one is kept
+    separately as the null result rather than pooled with it.
+  logs:
+    - cyberops_eval_attacks_q235_div4/agenticcyops_gate_permissive_20260923_040802.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_gate_permissive_20260923_040835.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_gate_permissive_20260923_043347.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_gate_permissive_20260923_045825.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_gate_permissive_20260923_052537.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_gate_permissive_20260923_060458.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_gate_permissive_20260923_063358.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_gate_permissive_20260923_065519.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_gate_permissive_20260923_072604.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_gate_permissive_20260923_075116.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_gate_permissive_20260923_080613.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_gate_permissive_20260923_084215.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_gate_permissive_20260923_085912.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_gate_permissive_20260923_091732.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_gate_permissive_20260923_094558.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_gate_permissive_20260923_101159.jsonl
+
+q235_div4_outage:
+  reason: >-
+    Invalid as measured. The no-auto-approve (E1) and P2 + panel (E17) arms ran on
+    23 September while both API validators were out of credit; the panel counted
+    their errors as rejections, could never reach its quorum, and approved no
+    proposal in either arm (T16). They measured a panel that denies everything,
+    not the arms they were meant to be, so no table reports them.
+  logs:
+    - cyberops_eval_attacks_q235_div4/agenticcyops_noautoapprove_20260923_040947.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_noautoapprove_20260923_041014.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_noautoapprove_20260923_043702.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_noautoapprove_20260923_050310.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_noautoapprove_20260923_052954.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_noautoapprove_20260923_060622.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_noautoapprove_20260923_063248.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_noautoapprove_20260923_065248.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_noautoapprove_20260923_072527.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_noautoapprove_20260923_074651.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_noautoapprove_20260923_080213.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_noautoapprove_20260923_083431.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_noautoapprove_20260923_085012.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_noautoapprove_20260923_090911.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_noautoapprove_20260923_093736.jsonl
+    - cyberops_eval_attacks_q235_div4/agenticcyops_noautoapprove_20260923_100406.jsonl
+    - cyberops_eval_attacks_q235_div4/p2_judge_20260923_040858.jsonl
+    - cyberops_eval_attacks_q235_div4/p2_judge_20260923_040924.jsonl
+    - cyberops_eval_attacks_q235_div4/p2_judge_20260923_044026.jsonl
+    - cyberops_eval_attacks_q235_div4/p2_judge_20260923_050501.jsonl
+    - cyberops_eval_attacks_q235_div4/p2_judge_20260923_053302.jsonl
+    - cyberops_eval_attacks_q235_div4/p2_judge_20260923_061459.jsonl
+    - cyberops_eval_attacks_q235_div4/p2_judge_20260923_065336.jsonl
+    - cyberops_eval_attacks_q235_div4/p2_judge_20260923_071944.jsonl
+    - cyberops_eval_attacks_q235_div4/p2_judge_20260923_075202.jsonl
+    - cyberops_eval_attacks_q235_div4/p2_judge_20260923_081644.jsonl
+    - cyberops_eval_attacks_q235_div4/p2_judge_20260923_085337.jsonl
+    - cyberops_eval_attacks_q235_div4/p2_judge_20260923_092747.jsonl
+    - cyberops_eval_attacks_q235_div4/p2_judge_20260923_094601.jsonl
+    - cyberops_eval_attacks_q235_div4/p2_judge_20260923_100714.jsonl
+    - cyberops_eval_attacks_q235_div4/p2_judge_20260923_102949.jsonl
+    - cyberops_eval_attacks_q235_div4/p2_judge_20260923_105134.jsonl

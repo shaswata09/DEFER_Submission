@@ -1,0 +1,29 @@
+2026-09-21 05:50:23  check-payloads (validate-all, measurability, hygiene)
+conda run --no-capture-output -n agenticcyops python3 -m attacks.payload_schema --validate-all
+validate-all: 0 problems across 4 domains
+conda run --no-capture-output -n agenticcyops python3 -m attacks.payload_schema --assert-measurable
+assert-measurable: 0 payloads can only score not_measurable
+conda run --no-capture-output -n agenticcyops python3 -m pytest -q -p no:cacheprovider tests/test_payload_hygiene.py
+........................................................................ [ 11%]
+........................................................................ [ 23%]
+........................................................................ [ 35%]
+........................................................................ [ 47%]
+............x...x....................x...........xx..x.....xxx.x.x.xx... [ 59%]
+.x.......................xxxxx............xxxxx..........xxxxxxxxxx..... [ 71%]
+.....xxxxxxxxxx.............xxxxx............xxxxx...xx.x...xxxxxxxxxx.. [ 83%]
+........xxxxxxxxxx.............xxxxx............xxxxx..........xxxxxxxxx [ 95%]
+x..........xxxxxxxxxx......                                              [100%]
+2026-09-21 05:50:28  E2b-main q235_div4: cyberops healthcare finance legal [ap2,ap3,ap4,ap14]
+2026-09-21 05:50:28    start q235_div4 cyberops ap2,ap3,ap4,ap14 flat (slot 0)
+2026-09-21 05:50:48    start q235_div4 cyberops ap2,ap3,ap4,ap14 acl_hardened (slot 1)
+2026-09-21 05:51:08    start q235_div4 cyberops ap2,ap3,ap4,ap14 agenticcyops (slot 2)
+2026-09-21 05:51:28    start q235_div4 healthcare ap2,ap3,ap4,ap14 flat (slot 0)
+2026-09-21 05:51:48    start q235_div4 healthcare ap2,ap3,ap4,ap14 acl_hardened (slot 1)
+2026-09-21 05:52:08    start q235_div4 healthcare ap2,ap3,ap4,ap14 agenticcyops (slot 2)
+2026-09-21 05:52:28    start q235_div4 finance ap2,ap3,ap4,ap14 flat (slot 0)
+2026-09-21 05:52:48    start q235_div4 finance ap2,ap3,ap4,ap14 acl_hardened (slot 1)
+2026-09-21 05:53:08    start q235_div4 finance ap2,ap3,ap4,ap14 agenticcyops (slot 2)
+2026-09-21 05:53:28    start q235_div4 legal ap2,ap3,ap4,ap14 flat (slot 0)
+2026-09-21 05:53:48    start q235_div4 legal ap2,ap3,ap4,ap14 acl_hardened (slot 1)
+2026-09-21 05:54:08    start q235_div4 legal ap2,ap3,ap4,ap14 agenticcyops (slot 2)
+2026-09-21 07:53:48  E2b-main done
