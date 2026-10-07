@@ -185,8 +185,8 @@ what produced the artifacts on disk, which held 5 trials per cell.
 
 `analysis/tamas_from_logs.py` maps the 15 DEFER APs onto the 6 TAMAS
 categories and computes ASR/TSR/ERS from the multi-agent evaluation logs. Figures
-below pool groups A, C, D, E over the four domains under attack-path scoring v2
-(see `docs/scoring_v2.md`); attack paths that are not measurable from the logs are
+below pool groups A, C, D, E over the four domains under attack-path scoring v2;
+attack paths that are not measurable from the logs are
 excluded from the category means.
 
 | Config               | ASR     | TSR     | **ERS**    | ERS_strict |
