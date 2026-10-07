@@ -257,8 +257,9 @@ mechanism analyses repeated on the v3.1 runs:
 - **Rule evasion hands the decision to the judges.** The 24 rule-evading siblings succeed as
   often as their parents undefended (88.9% against 87.5% under FLAT). Under FULL the evaded
   rule stops none of them; 22 of 24 are held (the panel intercepting in 14) and two CyberOps
-  handoff-poisoning siblings execute (6 of 72 trials). P2.2 on structured evidence only denies
-  501 attack proposals instead of 301 and the same 21 of 1,386 benign calls.
+  handoff-poisoning siblings execute (6 of 72 trials). P2.2 on structured evidence only, re-run offline
+  with the shipped embedding model, denies 184 attack proposals of the reported variants
+  instead of 157, and 88 of the 110 sibling attack calls, at the same 21 of 1,386 benign calls.
 - **Replay fidelity.** The cached votes reproduce 97.9% of the 45,426 votes Mistral-Small and
   Gemma cast live in the v3.1 runs.
 
@@ -543,7 +544,7 @@ logs/              per-trial JSONL logs of every reported run
 results/           generated tables and CSVs
 cache/             rebuilt judge inputs (replay/, v3.0 input: replay_v3/) and cached local
                    judge votes (validators/)
-docs/              scoring and ablation notes, figures for this README
+docs/              figures for this README and the offline results page
 ```
 
 ---
@@ -558,7 +559,6 @@ docs/              scoring and ablation notes, figures for this README
   for the labeled v3.0 runs, which it does not improve (see above).
   `defense-freeze-v3.1` (v2.9 plus the audit fixes) is the configuration of the reported
   boundary; `defense-freeze-v3.1.1` changes only the scoring oracle.
-  [`REPRODUCE.md`](REPRODUCE.md) lists every tag and diff.
 - **Validator outage.** The original panel (Div4) lost both API validators for part
   of the evaluation. Every panel-dependent result is therefore reported as its
   re-adjudication under Local4, and the as-run values are kept for comparison (paper,
@@ -613,8 +613,6 @@ docs/              scoring and ablation notes, figures for this README
   and state carry-over were). In the v3.0 panel input, `UNTRUSTED_KEYS` misses several
   attacker-writable fields (`analyst_notes`, `rationale`, `justification`, ...), part of
   the v3.0 result above.
-- **Implementation lessons.** [`docs/engineering_challenges.md`](docs/engineering_challenges.md)
-  records the engineering problems of the build and the lessons of the code audit.
 - **Log names.** The project was renamed DEFER after the runs. Configuration names
   beginning with `agenticcyops` denote FULL; they are kept as recorded in every log, run
   header, results table, and config file name, and in the `AGENTICCYOPS_HMAC_KEY`
